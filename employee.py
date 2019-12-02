@@ -1,3 +1,7 @@
 class Employee:
-    position_lst = []
+    def __init__(self,ssn,name,role,rank,licence):
+
+
+
+
 
