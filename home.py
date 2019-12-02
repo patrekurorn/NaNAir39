@@ -1,2 +1,3 @@
-Class NaNAir:
+class Nanair:
+    def __init__(self):
 

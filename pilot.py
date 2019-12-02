@@ -1,3 +1,3 @@
-print("Pilot")
-print("Ari")
-print("Patti")
+class Employee:
+    position_lst = []
+
