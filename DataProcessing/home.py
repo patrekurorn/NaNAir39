@@ -1,4 +1,8 @@
-class Nanair:
-    def __init__(self):
-        pass
+
+def main():
+
+    print("Nan Air")
+
+
+main()
 

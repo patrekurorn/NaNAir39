@@ -4,7 +4,7 @@ from employee import Employee
 
 def main():
     data = []
-    path = "Crew.csv"
+    path = "DataClasses/Crew.csv"
     file = open(path, newline= "")
     reader = csv.reader(file)
 
@@ -19,7 +19,7 @@ def main():
         address = str(row[5])
         phonenumber = int(row[6])
 
-#        data.append(Employee(ssn, name, role, rank, licence, address, phonenumber))
+        data.append(Employee(ssn, name, role, rank, licence, address, phonenumber,"vantar","vantar","vantar"))
 
     for lists in data:
         print(lists)
