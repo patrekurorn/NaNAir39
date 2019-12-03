@@ -11,4 +11,5 @@ class Destination:
         self.contactNumber = contactNumber
 
     def __str__(self):
-        return self.country + " " + self.airport + " " + self.flightDuration
+        return self.destinationID + "," + self.country + "," + self.airport + "," + self.flightDuration + "," \
+            + self.distanceFromIceland + "," + self.contactName + "," + self.contactNumber
