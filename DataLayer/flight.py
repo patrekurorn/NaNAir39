@@ -9,4 +9,6 @@ class Flight:
         self.arrival = arrival
 
     def __str__(self):
-        return self.flightID + " " + self.departingFrom + " " + self.arrival
+        return self.flightID + "," + self.seatsSold + "," + self.departingFrom + "," + destinationID + "," + self.arrival
+
+    
