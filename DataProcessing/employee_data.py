@@ -1,5 +1,5 @@
 import csv
-from DataLayer.employee import Employee
+from employee import Employee
 
 
 def main():
