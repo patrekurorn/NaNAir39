@@ -24,7 +24,4 @@ def main():
     for lists in data:
         print(lists)
 
-
-
-
 main()
