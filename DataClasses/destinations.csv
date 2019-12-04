@@ -1,7 +1,7 @@
-id,	destination,	country,	FlightDuration,	distanceFromIceland,		ContactName,		ContactNumber
-LYR,	Longyearbyean,	Norway,	3h-01m	1993.07 km,		Svalbard Airport,		+4-767-03-54-00
-GOH,	Nuuk,	Greenland,	02h-00, 1404.74 km,		Nuuk International Airport,		+299-32-60-05
-KUS,	Kulusuk,	Greenland,	01h-40m, 710 km,		Kulusuk Airport,		+299 98 69 88
-FAE,	Thorshavn,	Faroe Islands,	01h-25m, 797.80 km,		Vágar Airport,		+298 354400
-LWK,	Tingwall,	United Kingdom,	02h-13m, 1621.67 km,		Tingwall Airport,		+44 1595 840246
-KEF,	Keflavik,	Iceland,	?,	0 km, 		Keflavík International Airport,		+354 425 6000
+id, destination, country, FlightDuration, distanceFromIceland, ContactName, ContactNumber
+LYR, Longyearbyean, Norway, 3h-01m, 1993.07 km, Svalbard Airport, +4-767-03-54-00
+GOH, Nuuk, Greenland, 02h-00, 1404.74 km, Nuuk International Airport, +299-32-60-05
+KUS, Kulusuk, Greenland, 01h-40m, 710 km, Kulusuk Airport, +299 98 69 88
+FAE, Thorshavn, Faroe Islands, 01h-25m, 797.80 km, Vágar Airport, +298 354400
+LWK, Tingwall, United Kingdom, 02h-13m, 1621.67 km, Tingwall Airport, +44 1595 840246
+KEF, Keflavik, Iceland, ?, 0 km, Keflavík International Airport, +354 425 6000
