@@ -1,12 +1,16 @@
 import csv
+<<<<<<< HEAD
 import DataLayer.employee
 
 from DataLayer.employee import Employee
+=======
+from NaNAir39 import Employee
+>>>>>>> 9ca5e51d6d484d57ef405a8289335924ff1d5735
 
 
 def main():
     data = []
-    path = "DataLayer/Crew.csv"
+    path = "DataClasses/Crew.csv"
     file = open(path, newline= "")
     reader = csv.reader(file)
 
@@ -23,8 +27,5 @@ def main():
         data.append(Employee("vantar_id", ssn, name, position, rank, licence, address, mobile, "vantar_landlineNR",
                              "vantar_email"))
         print(row)
-
-
-
 
 main()

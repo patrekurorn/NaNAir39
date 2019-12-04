@@ -14,6 +14,3 @@ class Voyage:
 
     def listAllByWeek():
         return None
-
-a = Voyage(1,"Nuuk", "10:15", "12:15", "blah")
-print(a)

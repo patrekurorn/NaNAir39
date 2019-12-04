@@ -19,9 +19,3 @@ class AirplaneType:
 
     def __str__(self):
         return "Plane Type ID: {}\nManufacturer: {}\nModel: {}\nCapacity: {}".format(self.__planeTypeId, self.__manufacturer, self.__model, self.__capacity)
-    
-airplane_type = AirplaneType("NABAE146","BAE","146",82)
-print(airplane_type)
-print()
-print(airplane_type.get_capacity())
-print(airplane_type.get_manufacturer())

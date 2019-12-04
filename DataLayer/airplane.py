@@ -11,6 +11,3 @@ class Airplane:
 
     def get_planeTypeId(self):
         return self.__planeTypeId
-
-airplane = Airplane("TF-EPG","NAFokkerF100")
-print(airplane)

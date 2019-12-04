@@ -18,13 +18,3 @@ class PilotPermit:
 
     def get_allowedPlaneType(self):
         return self.__allowedPlaneType
-
-pilot = PilotPermit(123, "Captain", "F100")
-print(pilot)
-print()
-pilot.ChangeLicence("F230")
-print(pilot)
-
-print()
-
-print(pilot.get_allowedPlaneType())
