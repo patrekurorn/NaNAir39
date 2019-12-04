@@ -10,10 +10,10 @@ def main():
     header = next(reader)
 
     for row in reader:
-        planeInsignia = row[0]
-        planeTypeId = row[1]
+        planeInsignia_str = row[0]
+        planeTypeId_str = row[1]
 
-        data.append(Airplane(planeInsignia, planeInsignia))
+        data.append(Airplane(planeInsignia_str, planeInsignia_str))
 
         print(row)
 
