@@ -1,7 +1,6 @@
 import csv
 from NaNAir39 import Employee
 
-
 def main():
     data = []
     path = "DataClasses/employee.csv"
@@ -11,17 +10,19 @@ def main():
     header = next(reader) # The first line is a header
 
     for row in reader:
-        ssn = int(row[1])
-        name = row[2]
-        position = row[3]
-        rank = row[4]
-        licence = row[5]
-        address = row[6]
-        mobile = int(row[7])
-        landlineNr = row[8]
-        email = row[9]
-        data.append(Employee(ssn, name, position, rank, licence, address, mobile, landlineNr, email))
+        ssn_int = int(row[1])
+        name_str = row[2]
+        position_str = row[3]
+        rank_str = row[4]
+        licence_str = row[5]
+        address_str = row[6]
+        mobile_int = int(row[7])
+        landlineNr_int = row[8]
+        email_str = row[9]
+        data.append(Employee(ssn_int, name_str, position_str, rank_str, licence_str, address_str, mobile_int, landlineNr_int, email_str))
+
 
         print(row)
+
 
 main()

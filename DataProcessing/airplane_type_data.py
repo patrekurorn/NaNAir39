@@ -15,7 +15,6 @@ def main():
         manufacturer = row[1]
         model = row[2]
         capacity = int(row[3])
-
         data.append(AirplaneType(planeTypeId, manufacturer, model, capacity))
 
         print(row)
