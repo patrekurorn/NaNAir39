@@ -15,7 +15,7 @@ class Employee:
 
 
     def __str__(self):
-        return ("{} {} {} {} {} {} {} {} {} {} ".format(self.id, self.name, self.ssn, self.address, self.landlinenr, self.mobile, self.email, self.position, self.rank, self.licence))
+        return ("{} {} {} {} {} {} {} {} {} {}".format(self.id,self.ssn,self.name,self.position,self.rank,self.licence,self.address,self.mobile,self.landlinenr,self.email))
 
     """ ID """
     def get_id(self):
@@ -72,6 +72,8 @@ class Employee:
         return self.mobile
     def set_mobile(self):
         self.mobile = self
+
+
 
 
 
