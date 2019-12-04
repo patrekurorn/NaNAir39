@@ -4,7 +4,7 @@ from NaNAir39 import Employee
 
 def main():
     data = []
-    path = "DataLayer/Crew.csv"
+    path = "DataClasses/Crew.csv"
     file = open(path, newline= "")
     reader = csv.reader(file)
 
