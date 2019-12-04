@@ -1,5 +1,11 @@
 import csv
+<<<<<<< HEAD
+import DataLayer.employee
+
+from DataLayer.employee import Employee
+=======
 from NaNAir39 import Employee
+>>>>>>> 9ca5e51d6d484d57ef405a8289335924ff1d5735
 
 
 def main():
