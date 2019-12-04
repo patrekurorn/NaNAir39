@@ -15,13 +15,13 @@ class Employee:
 
 
     def __str__(self):
-        return ("{} {} {} {} {} {} {} {} {} {}".format(self.id,self.ssn,self.name,self.position,self.rank,self.licence,self.address,self.mobile,self.landlinenr,self.email))
+        return ("{} {} {} {} {} {} {} {} {}".format(self.ssn,self.name,self.position,self.rank,self.licence,self.address,self.mobile,self.landlineNr,self.email))
 
     """ ID """
-    def get_id(self):
-        return self.id
-    def set_id(self):
-        self.id = self
+   # def get_id(self):
+   #     return self.id
+   # def set_id(self):
+   #     self.id = self
     """ SSN """
     def get_ssn(self):
         return self.ssn
@@ -73,21 +73,23 @@ class Employee:
     def set_mobile(self):
         self.mobile = self
 
+    def list_all_employees(self):   # á eftir að setja í stafrósröð
+        self.empl_dict = {}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        key = self.name
+        value = (self.ssn,self.position,self.rank,self.licence,self.address,self.mobile,self.landlineNr,self.email)
+        
+        self.empl_dict[key] = value
+        print(self.empl_dict)
+        
+    def list_all_pilots(self):
+        self.pilot_dict = {}
+        key = self.name
+        value = (self.ssn,self.position,self.rank,self.licence,self.address,self.mobile,self.landlineNr,self.email)
+        
+        if self.position == "Pilot":
+            self.pilot_dict[key] = value
+        print(self.pilot_dict)
+        
+        
+    

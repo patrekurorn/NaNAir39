@@ -22,6 +22,9 @@ def main():
         email = row[9]
         data.append(Employee(ssn, name, position, rank, licence, address, mobile, landlineNr, email))
 
-        print(row)
-
+        #print(row)
+        employee_a = Employee(ssn, name, position, rank, licence, address, mobile, landlineNr, email)
+        employee_a.list_all_pilots()
+        
+        
 main()

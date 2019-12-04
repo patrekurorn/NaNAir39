@@ -3,7 +3,7 @@ from NaNAir39.DataLayer.airplane import Airplane
 
 def main():
     data = []
-    path = "DataClasses/Aircraft.csv"
+    path = "../DataClasses/Aircraft.csv"
     file = open(path, newline="")
     reader = csv.reader(file)
 
