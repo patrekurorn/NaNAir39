@@ -1,31 +1,27 @@
 import csv
-<<<<<<< HEAD
-import DataLayer.employee
-
-from DataLayer.employee import Employee
-=======
 from NaNAir39 import Employee
->>>>>>> 9ca5e51d6d484d57ef405a8289335924ff1d5735
 
 
 def main():
     data = []
-    path = "DataClasses/Crew.csv"
+    path = "DataClasses/employee.csv"
     file = open(path, newline= "")
     reader = csv.reader(file)
 
-    header = next(reader) #The first line is a header
+    header = next(reader) # The first line is a header
 
     for row in reader:
-        ssn = int(row[0])
-        name = str(row[1])
-        position = str(row[2])
-        rank = str(row[3])
-        licence = str(row[4])
-        address = str(row[5])
-        mobile = int(row[6])
-        data.append(Employee("vantar_id", ssn, name, position, rank, licence, address, mobile, "vantar_landlineNR",
-                             "vantar_email"))
+        ssn = int(row[1])
+        name = row[2]
+        position = row[3]
+        rank = row[4]
+        licence = row[5]
+        address = row[6]
+        mobile = int(row[7])
+        landlineNr = row[8]
+        email = row[9]
+        data.append(Employee(ssn, name, position, rank, licence, address, mobile, landlineNr, email))
+
         print(row)
 
 main()

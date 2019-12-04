@@ -1,8 +1,8 @@
 class Employee:
 
-    def __init__(self, id, ssn, name, position, rank, licence, address, mobile, landlineNr, email):
+    def __init__(self, ssn, name, position, rank, licence, address, mobile, landlineNr, email):
         self.my_list = []
-        self.id = id
+        #self.id = id
         self.ssn = ssn
         self.name = name
         self.position = position
@@ -10,7 +10,7 @@ class Employee:
         self.licence = licence
         self.address = address
         self.mobile = mobile
-        self.landlinenr = landlineNr
+        self.landlineNr = landlineNr
         self.email = email
 
 
