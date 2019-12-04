@@ -11,7 +11,12 @@ def main():
     header = next(reader)
 
     for row in reader:
-        planeTypeId = int(row[0])
+        planeTypeId = row[0]
+        manufacturer = row[1]
+        model = row[2]
+        capacity = int(row[3])
+
+        data.append(AirplaneType(planeTypeId, manufacturer, model, capacity))
 
         print(row)
 
