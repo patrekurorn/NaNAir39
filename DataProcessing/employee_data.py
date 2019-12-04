@@ -1,10 +1,10 @@
 import csv
-from DataLayer.employee import Employee
+from NaNAir39 import Employee
 
 
 def main():
     data = []
-    path = "DataClasses/Crew.csv"
+    path = "../DataClasses/Crew.csv"
     file = open(path, newline= "")
     reader = csv.reader(file)
 
