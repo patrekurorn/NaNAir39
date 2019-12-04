@@ -4,7 +4,7 @@ from DataLayer.employee import Employee
 
 def main():
     data = []
-    path = "DataClasses/Crew.csv"
+    path = "DataLayer/Crew.csv"
     file = open(path, newline= "")
     reader = csv.reader(file)
 
@@ -21,9 +21,6 @@ def main():
         data.append(Employee("vantar_id", ssn, name, position, rank, licence, address, mobile, "vantar_landlineNR",
                              "vantar_email"))
         print(row)
-
-
-
 
 
 
