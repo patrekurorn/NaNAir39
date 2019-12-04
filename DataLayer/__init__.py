@@ -1,5 +1,5 @@
-from NaNAir39.DataLayer.aircraft import Airplane
-from NaNAir39.DataLayer.aircraft_type import AirplaneType
+from NaNAir39.DataLayer.airplane import Airplane
+from NaNAir39.DataLayer.airplane_type import AirplaneType
 from NaNAir39.DataLayer.destination import Destination
 from NaNAir39.DataLayer.employee import Employee
 from NaNAir39.DataLayer.flight import Flight

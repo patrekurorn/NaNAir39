@@ -22,7 +22,4 @@ def main():
                              "vantar_email"))
         print(row)
 
-
-
-
 main()
