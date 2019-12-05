@@ -1,13 +1,9 @@
 import csv
 from NaNAir39 import Employee
 
-def main():
-    data = []
-    path = "DataClasses/employee.csv"
-    file = open(path, newline= "")
-    reader = csv.reader(file)
+class Employees:
 
-    header = next(reader) # The first line is a header
+    employees = get_all_employees()
 
     for row in reader:
         ssn_int = int(row[1])

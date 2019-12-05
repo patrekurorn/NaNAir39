@@ -2,10 +2,10 @@ from tkinter import *
 
 #Make the GUI
 root = Tk()
-root.geometry("300x300")
+root.geometry("300x150")
 
 #Adding label
-label = Label(root, text="*---o--(_)--o---*")
+label = Label(root, text="  -- \n *---o--(_)--o---*")
 label.pack(side=TOP)
 
 #Definng all sub-Routines:

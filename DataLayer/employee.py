@@ -90,6 +90,26 @@ class Employee:
         if self.position == "Pilot":
             self.pilot_dict[key] = value
         print(self.pilot_dict)
-        
+
+    def list_all_flight_attendants(self):
+        pass
+
+    def find_employee(self):
+        pass
+
+    def edit_employee(self):
+        pass
+
+    def new_pilot(self):
+        pass
+    def new_flight_attendant(self):
+        pass
+    def list_all_available(self):
+        pass
+    def list_all_bust(self):
+        pass
+    def print_week_of_employees(self):
+        pass
+
         
     

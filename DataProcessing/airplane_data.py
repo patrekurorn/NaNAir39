@@ -1,8 +1,12 @@
 import csv
-from NaNAir39.DataLayer.airplane import Airplane
+from NaNAir39 import Airplane
 
-def main():
-    data = []
+class Airplanes:
+
+    airplanes = get_all_airplanes()
+
+def get_all_airplanes(self):
+    airplanes = []
     path = "../DataClasses/Aircraft.csv"
     file = open(path, newline="")
     reader = csv.reader(file)
@@ -13,8 +17,7 @@ def main():
         planeInsignia_str = row[0]
         planeTypeId_str = row[1]
 
-        data.append(Airplane(planeInsignia_str, planeInsignia_str))
+        airplanes.append(Airplane(planeInsignia_str, planeInsignia_str))
 
-        print(row)
+    return airplanes
 
-main()
