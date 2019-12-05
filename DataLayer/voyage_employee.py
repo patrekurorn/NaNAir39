@@ -1,6 +1,6 @@
-from DataLayer.employee import Employee
+from employee import Employee
 
-class Voyage_Employee(Emp):
+class Voyage_Employee(Employee):
     def __init__(self,id, voyage_id, pilot, copilot, flightServiceManager):
         self.id = id
         self.voyage_id = voyage_id

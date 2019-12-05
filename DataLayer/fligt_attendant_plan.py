@@ -1,4 +1,4 @@
-from NaNAir39.DataLayer.employee import Employee
+from employee import Employee
 
 class Flight_Attendant_Plan:
     def __init__(self,id,voyage,flightAttendant):
