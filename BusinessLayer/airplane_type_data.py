@@ -8,7 +8,7 @@ class Airplane_Types:
     def get_all_airplane_types(self):
 
         airplane_types = []
-        path = "../DataClasses/AircraftType.csv"
+        path = "../Data/AircraftType.csv"
         file = open(path, newline="")
         reader = csv.reader(file)
 
@@ -22,4 +22,7 @@ class Airplane_Types:
             airplane_types.append(AirplaneType(planeTypeId_str, manufacturer_str, model_str, capacity_int))
 
         return airplane_types
+
+    def __str__(self):
+        return ""
 

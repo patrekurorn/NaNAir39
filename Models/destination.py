@@ -1,3 +1,5 @@
+
+
 class Destination:
 
     def __init__(self, destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber):

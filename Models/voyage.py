@@ -1,4 +1,7 @@
+
+
 class Voyage:
+
     def __init__(self, flightNumber, departingFrom, arrivingAt, departure, arrival):
         self.flightNumber = int(flightNumber)
         self.departingFrom = departingFrom

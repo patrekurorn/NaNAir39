@@ -1,8 +1,9 @@
+
+
 class Employee:
 
     def __init__(self, ssn, name, position, rank, licence, address, mobile, landlineNr, email):
         self.my_list = []
-        #self.id = id
         self.ssn = ssn
         self.name = name
         self.position = position
@@ -17,11 +18,6 @@ class Employee:
     def __str__(self):
         return ("{} {} {} {} {} {} {} {} {}".format(self.ssn,self.name,self.position,self.rank,self.licence,self.address,self.mobile,self.landlineNr,self.email))
 
-    """ ID """
-   # def get_id(self):
-   #     return self.id
-   # def set_id(self):
-   #     self.id = self
     """ SSN """
     def get_ssn(self):
         return self.ssn
