@@ -13,3 +13,7 @@ class Destination:
     def __str__(self):
         return self.destinationID + "," + self.country + "," + self.airport + "," + self.flightDuration + "," \
             + self.distanceFromIceland + "," + self.contactName + "," + self.contactNumber
+
+    def list_attributes(self):
+        return [self.destinationID, self.country, self.airport, self.flightDuration, self.distanceFromIceland, \
+            self.contactName, self.contactNumber]
