@@ -11,6 +11,18 @@ class Voyage_Employee(Employee):
     def __str__(self):
         return  "{} {} {} {} {}".format(self.id, self.voyage_id, self.pilot, self.copilot,self.flightServiceManager)
 
+    def get_id(self):
+        return self.id
 
+    def get_voyage_id(self):
+        return self.voyage_id
 
+    def get_pilot(self):
+        return self.pilot
+
+    def get_copilot(self):
+        return self.copilot
+
+    def get_flightServiceManager(self):
+        return self.flightServiceManager
 

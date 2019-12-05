@@ -9,8 +9,17 @@ class Voyage:
     def __str__(self):
         return "Flight number: {}\nDeparting from: {}\nArriving at: {}\nDeparture: {}\nArrival: {}\n".format(self.flightNumber, self.departingFrom, self.arrivingAt, self.departure, self.arrival)
     
-    def listAllByDate(self):
-        return None
+    def get_flightNumber(self):
+        return self.flightNumber
 
-    def listAllByWeek(self):
-        return None
+    def get_departingFrom(self):
+        return self.departingFrom
+
+    def get_arrivingAt(self):
+        return self.arrivingAt
+
+    def get_departure(self):
+        return self.departure
+
+    def get_arrival(self):
+        return self.arrival

@@ -72,44 +72,5 @@ class Employee:
         return self.mobile
     def set_mobile(self):
         self.mobile = self
-
-    def list_all_employees(self):   # á eftir að setja í stafrósröð
-        self.empl_dict = {}
-
-        key = self.name
-        value = (self.ssn,self.position,self.rank,self.licence,self.address,self.mobile,self.landlineNr,self.email)
-        
-        self.empl_dict[key] = value
-        print(self.empl_dict)
-        
-    def list_all_pilots(self):
-        self.pilot_dict = {}
-        key = self.name
-        value = (self.ssn,self.position,self.rank,self.licence,self.address,self.mobile,self.landlineNr,self.email)
-        
-        if self.position == "Pilot":
-            self.pilot_dict[key] = value
-        print(self.pilot_dict)
-
-    def list_all_flight_attendants(self):
-        pass
-
-    def find_employee(self):
-        pass
-
-    def edit_employee(self):
-        pass
-
-    def new_pilot(self):
-        pass
-    def new_flight_attendant(self):
-        pass
-    def list_all_available(self):
-        pass
-    def list_all_bust(self):
-        pass
-    def print_week_of_employees(self):
-        pass
-
         
     
