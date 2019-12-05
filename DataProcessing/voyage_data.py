@@ -1,23 +1,24 @@
 import csv
-from NaNAir39.DataLayer.voyage import Voyage
+from NaNAir39 import Voyage
 
-def main():
-    data = []
-    path = "../DataClasses/UpcomingFlights.csv"
-    file = open(path, newline="")
-    reader = csv.reader(file)
+class Voyages:
 
-    header = next(reader)
+    voyages = get_all_voyages()
 
-    for row in reader:
-        flightNumber_str = row[0]
-        departingFrom_str = row[1]
-        arrivingAt_str = row[2]
-        departure_str = row[3]
-        arrival_str = row[4]
+    def get_all_voyages(self):
+        voyages = []
+        path = "../DataClasses/UpcomingFlights.csv"
+        file = open(path, newline="")
+        reader = csv.reader(file)
 
-        data.append(AirplaneType(flightNumber_str, departingFrom_str, arrivingAt_str, departure_str, arrival_str))
+        header = next(reader)
 
-        print(row)
+        for row in reader:
+            flightNumber_str = row[0]
+            departingFrom_str = row[1]
+            arrivingAt_str = row[2]
+            departure_str = row[3]
+            arrival_str = row[4]
 
-main()
+            voyages.append(Voyage(flightNumber_str, departingFrom_str, arrivingAt_str, departure_str, arrival_str))
+            return voyages

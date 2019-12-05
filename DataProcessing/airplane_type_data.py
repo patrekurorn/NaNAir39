@@ -1,22 +1,25 @@
 import csv
-from NaNAir39.DataLayer.airplane_type import AirplaneType
+from NaNAir39 import AirplaneType
 
+class Airplane_Types:
 
-def main():
-    data = []
-    path = "../DataClasses/AircraftType.csv"
-    file = open(path, newline="")
-    reader = csv.reader(file)
+    airplane_types = get_all_airplane_types()
 
-    header = next(reader)
+    def get_all_airplane_types(self):
 
-    for row in reader:
-        planeTypeId_str= row[0]
-        manufacturer_str = row[1]
-        model_str = row[2]
-        capacity_int = int(row[3])
-        data.append(AirplaneType(planeTypeId_str, manufacturer_str, model_str, capacity_int))
+        airplane_types = []
+        path = "../DataClasses/AircraftType.csv"
+        file = open(path, newline="")
+        reader = csv.reader(file)
 
-        print(row)
+        header = next(reader)
 
-main()
+        for row in reader:
+            planeTypeId_str= row[0]
+            manufacturer_str = row[1]
+            model_str = row[2]
+            capacity_int = int(row[3])
+            airplane_types.append(AirplaneType(planeTypeId_str, manufacturer_str, model_str, capacity_int))
+
+        return airplane_types
+

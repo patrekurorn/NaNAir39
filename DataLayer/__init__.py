@@ -5,3 +5,5 @@ from NaNAir39.DataLayer.employee import Employee
 from NaNAir39.DataLayer.flight import Flight
 from NaNAir39.DataLayer.fligt_attendant_plan import Flight_Attendant_Plan
 from NaNAir39.DataLayer.pilot_permit import PilotPermit
+from NaNAir39.DataLayer.voyage import Voyage
+from NaNAir39.DataLayer.voyage_employee import Voyage_Employee
