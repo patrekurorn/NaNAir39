@@ -1,13 +1,13 @@
 class Voyage:
-    def __init__(self, ID, destinationID, flightOut, flightReturn, airplaneInsignia):
-        self.ID = int(ID)
-        self.destinationID = str(destinationID)
-        self.flightOut = flightOut
-        self.flightReturn = flightReturn
-        self.airplaneInsignia = str(airplaneInsignia)
+    def __init__(self, flightNumber, departingFrom, flightOut, flightReturn, airplaneInsignia):
+        self.flightNumber = int(flightNumber)
+        self.departingFrom = departingFrom
+        self.arrivingAt = arrivingAt
+        self.departure = departure
+        self.arrival = arrival
 
     def __str__(self):
-        return "ID: {}\nDestination ID: {}\nDeparture: {}\nArrival: {}\nAirplaneInsignia: {}\n".format(self.ID, self.destinationID, self.flightOut, self.flightReturn, self.airplaneInsignia)
+        return "Flight number: {}\nDeparting from: {}\nArriving at: {}\nDeparture: {}\nArrival: {}\n".format(self.flightNumber, self.departingFrom, self.arrivingAt, self.departure, self.arrival)
     
     def listAllByDate(self):
         return None
