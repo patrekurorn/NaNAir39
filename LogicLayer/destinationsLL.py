@@ -2,7 +2,7 @@ import csv
 from Models.destination import Destination
 from Models import destination
 
-class DestinationsRepo:
+class DestinationsLL:
 
     def __init__(self):
         pass
@@ -12,7 +12,7 @@ class DestinationsRepo:
         :return: List of all destinations
         """
         destination = []
-        path = "../Data/destinations.csv"
+        path = "../Data/Destinations.csv"
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)
@@ -48,5 +48,5 @@ class DestinationsRepo:
 
 if __name__ == "__main__":
     a = DestinationsRepo()
-    print(a)
+    print(a.get_all_destinations())
 
