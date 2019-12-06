@@ -1,7 +1,7 @@
 import csv
 from Models.airplane import Airplane
 
-class AirplaneRepo:
+class AirplaneLL:
 
     def __init__(self):
         pass

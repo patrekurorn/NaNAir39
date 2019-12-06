@@ -4,7 +4,7 @@ import csv
 #from Models import employee
 from NaNAir39.Models.employee_repo import Employee
 
-class EmployeeRepo():
+class EmployeeLL:
 
     def __init__(self):
         pass

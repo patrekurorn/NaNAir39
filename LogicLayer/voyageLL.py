@@ -2,7 +2,7 @@ import csv
 from Models.voyage import Voyage
 from Models import voyage
 
-class VoyageRepo:
+class VoyageLL:
 
     def __init__(self):
         pass
