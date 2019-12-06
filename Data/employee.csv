@@ -1,36 +1,36 @@
-id,ssn,name,position,rank,licence,address,mobile,landlineNr,email
-1,3009907461,William Carillo,Pilot,Captain,NAFokkerF100,Fellsmúli 1,8998801,**,williamcarillo@nanair.is
-2,2910858778,Virginia Ho,Pilot,Captain,NABAE146,Fellsmúli 2,8998802,**,virginiaho@nanair.is
-3,2706838569,Gerard Nelson,Pilot,Captain,NAFokkerF100,Fellsmúli 3,8998803,**,gerardnelson@nanair.is
-4,2209955782,Allen Ley,Pilot,Captain,NABAE146,Fellsmúli 4,8998804,**,allenley@nanair.is
-5,2907675667,Felecia Moye,Pilot,Captain,NABAE146,Fellsmúli 5,8998805,**,feleciamoye@nanair.is
-6,1309797899,Tyler Anderson,Pilot,Captain,NAFokkerF28,Fellsmúli 6,8998806,**,tyleranderson@nanair.is
-7,2410876598,Nan Gage,Pilot,Copilot,NAFokkerF100,Fellsmúli 7,8998807,**,nangage@nanair.is
-8,2211658134,Charla Johnson,Pilot,Copilot,NABAE146,Fellsmúli 8,8998808,**,charlajohnson@nanair.is
-9,2504939263,Sam Preciado,Pilot,Copilot,NABAE146,Fellsmúli 9,8998809,**,sampreciado@nanair.is
-10,1900769521,Jasmine Hagadone,Pilot,Copilot,NABAE146,Fellsmúli 10,8998810,**,jasminehagadone@nanair.is
-11,2500812671,Anna Phillips,Pilot,Copilot,NAFokkerF28,Fellsmúli 11,8998811,**,annaphillips@nanair.is
-12,1309927223,Patricia Bates,Pilot,Copilot,NAFokkerF28,Fellsmúli 12,8998812,**,patriciabates@nanair.is
-13,1600904199,Sherry Walker,Cabincrew,Flight Service Manager,N/A,Fellsmúli 13,8998813,**,sherrywalker@nanair.is
-14,0303758167,Margarita Fischer,Cabincrew,Flight Service Manager,N/A,Fellsmúli 14,8998814,**,margaritafischer@nanair.is
-15,2200763823,Judith Aleshire,Cabincrew,Flight Service Manager,N/A,Fellsmúli 15,8998815,**,judithaleshire@nanair.is
-16,1308941169,Jacob Blecha,Cabincrew,Flight Service Manager,N/A,Fellsmúli 16,8998816,**,jacobblecha@nanair.is
-17,1405853585,Lula Stefani,Cabincrew,Flight Service Manager,N/A,Fellsmúli 17,8998817,**,lulastefani@nanair.is
-18,0909862878,Richard Sanders,Cabincrew,Flight Service Manager,N/A,Fellsmúli 18,8998818,**,richardsanders@nanair.is
-19,1811931544,John Kline,Cabincrew,Flight Service Manager,N/A,Fellsmúli 19,8998819,**,johnkline@nanair.is
-20,0409858797,Evelyn Pickhardt,Cabincrew,Flight Service Manager,N/A,Fellsmúli 20,8998820,**,evelynpickhardt@nanair.is
-21,3002688722,Stacey Henrickson,Cabincrew,Flight Attendant,N/A,Fellsmúli 21,8998821,**,staceyhenrickson@nanair.is
-22,3003962187,Delores Whitfield,Cabincrew,Flight Attendant,N/A,Fellsmúli 22,8998822,**,deloreswhitfield@nanair.is
-23,1311772221,Maribel Lucero,Cabincrew,Flight Attendant,N/A,Fellsmúli 23,8998823,**,maribellucero@nanair.is
-24,2509913418,Katherine Wernimont,Cabincrew,Flight Attendant,N/A,Fellsmúli 24,8998824,**,katherinewernimont@nanair.is
-25,1103647756,Wilma Horne,Cabincrew,Flight Attendant,N/A,Fellsmúli 25,8998825,**,wilmahorne@nanair.is
-26,2807755841,Bernard Carr,Cabincrew,Flight Attendant,N/A,Fellsmúli 26,8998826,**,bernardcarr@nanair.is
-27,0409907212,Sara Davis,Cabincrew,Flight Attendant,N/A,Fellsmúli 27,8998827,**,saradavis@nanair.is
-28,1103912131,Robert Swope,Cabincrew,Flight Attendant,N/A,Fellsmúli 28,8998828,**,robertswope@nanair.is
-29,2801645554,John Iversen,Cabincrew,Flight Attendant,N/A,Fellsmúli 29,8998829,**,johniversen@nanair.is
-30,1501681497,Rhonda Forman,Cabincrew,Flight Attendant,N/A,Fellsmúli 30,8998830,**,rhondaforman@nanair.is
-31,1811813379,Melissa Paquette,Cabincrew,Flight Attendant,N/A,Fellsmúli 31,8998831,**,melissapaquette@nanair.is
-32,0505942924,Carlton Chan,Cabincrew,Flight Attendant,N/A,Fellsmúli 32,8998832,**,carltonchan@nanair.is
-33,1110732819,Arthur Karr,Cabincrew,Flight Attendant,N/A,Fellsmúli 33,8998833,**,arthurkarr@nanair.is
-34,2602806942,Teresa Thruman,Cabincrew,Flight Attendant,N/A,Fellsmúli 34,8998834,**,teresathruman@nanair.is
-35,1107951952,Elizabeth Mcfadden,Cabincrew,Flight Attendant,N/A,Fellsmúli 35,8998835,**,elizabethmcfadden@nanair.is
+ssn,name,position,rank,licence,address,mobile,landlineNr,email
+3009907461,William Carillo,Pilot,Captain,NAFokkerF100,Fellsmúli 1,8998801,**,williamcarillo@nanair.is
+2910858778,Virginia Ho,Pilot,Captain,NABAE146,Fellsmúli 2,8998802,**,virginiaho@nanair.is
+2706838569,Gerard Nelson,Pilot,Captain,NAFokkerF100,Fellsmúli 3,8998803,**,gerardnelson@nanair.is
+2209955782,Allen Ley,Pilot,Captain,NABAE146,Fellsmúli 4,8998804,**,allenley@nanair.is
+2907675667,Felecia Moye,Pilot,Captain,NABAE146,Fellsmúli 5,8998805,**,feleciamoye@nanair.is
+1309797899,Tyler Anderson,Pilot,Captain,NAFokkerF28,Fellsmúli 6,8998806,**,tyleranderson@nanair.is
+2410876598,Nan Gage,Pilot,Copilot,NAFokkerF100,Fellsmúli 7,8998807,**,nangage@nanair.is
+2211658134,Charla Johnson,Pilot,Copilot,NABAE146,Fellsmúli 8,8998808,**,charlajohnson@nanair.is
+2504939263,Sam Preciado,Pilot,Copilot,NABAE146,Fellsmúli 9,8998809,**,sampreciado@nanair.is
+1900769521,Jasmine Hagadone,Pilot,Copilot,NABAE146,Fellsmúli 10,8998810,**,jasminehagadone@nanair.is
+2500812671,Anna Phillips,Pilot,Copilot,NAFokkerF28,Fellsmúli 11,8998811,**,annaphillips@nanair.is
+1309927223,Patricia Bates,Pilot,Copilot,NAFokkerF28,Fellsmúli 12,8998812,**,patriciabates@nanair.is
+1600904199,Sherry Walker,Cabincrew,Flight Service Manager,N/A,Fellsmúli 13,8998813,**,sherrywalker@nanair.is
+0303758167,Margarita Fischer,Cabincrew,Flight Service Manager,N/A,Fellsmúli 14,8998814,**,margaritafischer@nanair.is
+2200763823,Judith Aleshire,Cabincrew,Flight Service Manager,N/A,Fellsmúli 15,8998815,**,judithaleshire@nanair.is
+1308941169,Jacob Blecha,Cabincrew,Flight Service Manager,N/A,Fellsmúli 16,8998816,**,jacobblecha@nanair.is
+1405853585,Lula Stefani,Cabincrew,Flight Service Manager,N/A,Fellsmúli 17,8998817,**,lulastefani@nanair.is
+0909862878,Richard Sanders,Cabincrew,Flight Service Manager,N/A,Fellsmúli 18,8998818,**,richardsanders@nanair.is
+1811931544,John Kline,Cabincrew,Flight Service Manager,N/A,Fellsmúli 19,8998819,**,johnkline@nanair.is
+0409858797,Evelyn Pickhardt,Cabincrew,Flight Service Manager,N/A,Fellsmúli 20,8998820,**,evelynpickhardt@nanair.is
+3002688722,Stacey Henrickson,Cabincrew,Flight Attendant,N/A,Fellsmúli 21,8998821,**,staceyhenrickson@nanair.is
+3003962187,Delores Whitfield,Cabincrew,Flight Attendant,N/A,Fellsmúli 22,8998822,**,deloreswhitfield@nanair.is
+1311772221,Maribel Lucero,Cabincrew,Flight Attendant,N/A,Fellsmúli 23,8998823,**,maribellucero@nanair.is
+2509913418,Katherine Wernimont,Cabincrew,Flight Attendant,N/A,Fellsmúli 24,8998824,**,katherinewernimont@nanair.is
+1103647756,Wilma Horne,Cabincrew,Flight Attendant,N/A,Fellsmúli 25,8998825,**,wilmahorne@nanair.is
+2807755841,Bernard Carr,Cabincrew,Flight Attendant,N/A,Fellsmúli 26,8998826,**,bernardcarr@nanair.is
+0409907212,Sara Davis,Cabincrew,Flight Attendant,N/A,Fellsmúli 27,8998827,**,saradavis@nanair.is
+1103912131,Robert Swope,Cabincrew,Flight Attendant,N/A,Fellsmúli 28,8998828,**,robertswope@nanair.is
+2801645554,John Iversen,Cabincrew,Flight Attendant,N/A,Fellsmúli 29,8998829,**,johniversen@nanair.is
+1501681497,Rhonda Forman,Cabincrew,Flight Attendant,N/A,Fellsmúli 30,8998830,**,rhondaforman@nanair.is
+1811813379,Melissa Paquette,Cabincrew,Flight Attendant,N/A,Fellsmúli 31,8998831,**,melissapaquette@nanair.is
+0505942924,Carlton Chan,Cabincrew,Flight Attendant,N/A,Fellsmúli 32,8998832,**,carltonchan@nanair.is
+1110732819,Arthur Karr,Cabincrew,Flight Attendant,N/A,Fellsmúli 33,8998833,**,arthurkarr@nanair.is
+2602806942,Teresa Thruman,Cabincrew,Flight Attendant,N/A,Fellsmúli 34,8998834,**,teresathruman@nanair.is
+1107951952,Elizabeth Mcfadden,Cabincrew,Flight Attendant,N/A,Fellsmúli 35,8998835,**,elizabethmcfadden@nanair.is

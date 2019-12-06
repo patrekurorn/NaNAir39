@@ -56,5 +56,5 @@ class DestinationsLL:
 
 if __name__ == "__main__":
     a = DestinationsLL()
-    print(a.get_all_destinations())
+    print(a.register_destination())
 

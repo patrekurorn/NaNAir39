@@ -18,6 +18,7 @@ class EmployeeLL:
 
             for row in reader:
                 employees.append(row)
+
         return employees
 
 
@@ -29,7 +30,7 @@ class EmployeeLL:
         data = self.get_all_employees()
 
         for row in data:
-            if row[1] == ssn:   # breyta?
+            if row[0] == ssn:
                 return True
 
         return False
@@ -44,8 +45,10 @@ class EmployeeLL:
 
         if self.ssn_valid(ssn):
             for row in data:
-                if row[1] == ssn:
+                if row[0] == ssn:
                     return row
+
+        return False
 
         #else:
         #    print("Invalid SSN, please try again.")   ÞARF AÐ VERA Í USER INTERFACE   || correction
@@ -66,36 +69,36 @@ class EmployeeLL:
         :return: Adds a new employee to the cvs file
         """
         #id = Employee.get_id()
-   #     ssn = Employee.get_ssn()
-    #    name = Employee.get_name()
-    #    position = Employee.get_name()
-   #     rank = Employee.get_rank()
-    #    licence = Employee.get_licence()
-    #    address = Employee.get_address()
-   #     mobile = Employee.get_mobile()
-   #     landlineNr = Employee.get_landlineNr()
-   #     email = Employee.get_email()
+        ssn = Employee.get_ssn()
+        name = Employee.get_name()
+        position = Employee.get_name()
+        rank = Employee.get_rank()
+        licence = Employee.get_licence()
+        address = Employee.get_address()
+        mobile = Employee.get_mobile()
+        landlineNr = Employee.get_landlineNr()
+        email = Employee.get_email()
 
         path = "../Data/employee.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
-                file.write(super(Employee).__init__())
-                #file.write("{} {} {} {} {} {} {} {} {}".format(ssn, name, position, rank, licence, address, mobile, landlineNr, email))
+                #file.write(super(Employee).__init__())
+                file.write("{} {} {} {} {} {} {} {} {}".format(ssn, name, position, rank, licence, address, mobile, landlineNr, email))
             except:
                 print("Couldn't add employee")
                 # setja error input í UI
 
 
-    def available_employees(self):
+    def available_employees(self):  # list of all available employees on a specific day
         pass
 
-    def available_pilots(self):  # list of all available employees on a specific day
+    def available_pilots(self):
         pass
 
-    def available_flight_attendants(self):   # list of all employees who are working on a specific day and which destination they are going to.
+    def available_flight_attendants(self):
         pass
 
-    def busy_employees(self):
+    def busy_employees(self):   # list of all employees who are working on a specific day and which destination they are going
         pass
 
     def busy_pilots(self):
@@ -105,19 +108,50 @@ class EmployeeLL:
         pass
 
     def list_all_pilots(self):
-        pass
+        """
+        :return: A list of all the pilots
+        """
+        data = self.get_all_employees()
+        pilots = []
 
-    def list_airplane_by_pilot(self):
-        pass
+        for x in data:
+            if x[2] == "Pilot":
+                pilots.append(x)
 
-    def list_pilots_by_airplane(self):
-        pass
+        return pilots
+
+
+    def list_airplane_by_pilot(self, ssn):
+        data = self.get_employee(ssn)
+
+        return data[4]
+
+
+    def list_pilots_by_airplane(self, licence):
+        data = self.get_all_employees()
+        pilots = []
+        try:
+            for x in data:
+                if x[4] == licence:
+                    pilots.append(x)
+
+            return pilots
+        except Exception:
+            return False
+
 
     def list_all_flight_attendants(self):
-        pass
+        """
+        :return: A list of all the flight attendants
+        """
+        data = self.get_all_employees()
+        flightAttendants = []
 
+        for x in data:
+            if x[2] == "Cabincrew":
+                flightAttendants.append(x)
 
-
+        return flightAttendants
 
 
 
@@ -125,6 +159,7 @@ class EmployeeLL:
 
 if __name__ == "__main__":
     a = EmployeeLL()
+    print(a.add_employee())
 
 
 
