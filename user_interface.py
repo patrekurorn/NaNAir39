@@ -83,7 +83,6 @@ class User:
                 "                   *---o--(_)--o---*                       \n" + \
                 "___________________________________________________________")
 
-
 user = User()
 user.get_header()
 user_selection = user.home_window()

@@ -25,22 +25,21 @@ class VoyageRepo:
 
     @staticmethod
     def voyage_registration():  # Planning manager gerir þetta
-        flightNumber = Voyage.get_flightNumber()
-        departingFrom = Voyage.get_departingFrom()
-        arrivingAt = Voyage.get_arrivingAt()
-        departure = Voyage.get_departure()
-        arrival = Voyage.get_arrival()
+     #   flightNumber = Voyage.get_flightNumber()
+    #    departingFrom = Voyage.get_departingFrom()
+    #    arrivingAt = Voyage.get_arrivingAt()
+    #    departure = Voyage.get_departure()
+    #    arrival = Voyage.get_arrival()
 
         path = "../Data/UpcomingFlights.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
-                super(voyage).__init__()
+                file.write(super(voyage).__init__())
                # file.write("{} {} {} {} {}".format(flightNumber, departingFrom, arrivingAt, departure, arrival))
             except:
                 print("Couldn't register voyage")
                 # setja error input í UI
 
-    def employee_
 
 
 
@@ -49,3 +48,4 @@ class VoyageRepo:
 
 if __name__ == "__main__":
     a = VoyageRepo()
+    print(a.get_all_voyages())

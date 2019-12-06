@@ -64,20 +64,20 @@ class EmployeeRepo():
         :return: Adds a new employee to the cvs file
         """
         #id = Employee.get_id()
-        ssn = Employee.get_ssn()
-        name = Employee.get_name()
-        position = Employee.get_name()
-        rank = Employee.get_rank()
-        licence = Employee.get_licence()
-        address = Employee.get_address()
-        mobile = Employee.get_mobile()
-        landlineNr = Employee.get_landlineNr()
-        email = Employee.get_email()
+   #     ssn = Employee.get_ssn()
+    #    name = Employee.get_name()
+    #    position = Employee.get_name()
+   #     rank = Employee.get_rank()
+    #    licence = Employee.get_licence()
+    #    address = Employee.get_address()
+   #     mobile = Employee.get_mobile()
+   #     landlineNr = Employee.get_landlineNr()
+   #     email = Employee.get_email()
 
         path = "../Data/employee.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
-                super(employee).__init__()
+                file.write(super(employee).__init__())
                 #file.write("{} {} {} {} {} {} {} {} {}".format(ssn, name, position, rank, licence, address, mobile, landlineNr, email))
             except:
                 print("Couldn't add employee")
