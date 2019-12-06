@@ -1,6 +1,8 @@
 import csv
-from Models.employee import Employee
-from Models import employee
+
+#from NaNModels.employee import Employee
+#from Models import employee
+from NaNAir39.Models.employee_repo import Employee
 
 class EmployeeRepo():
 
@@ -77,7 +79,7 @@ class EmployeeRepo():
         path = "../Data/employee.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
-                file.write(super(employee).__init__())
+                file.write(super(Employee).__init__())
                 #file.write("{} {} {} {} {} {} {} {} {}".format(ssn, name, position, rank, licence, address, mobile, landlineNr, email))
             except:
                 print("Couldn't add employee")
