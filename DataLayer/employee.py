@@ -73,6 +73,8 @@ class Employee:
     def set_mobile(self):
         self.mobile = self
 
+    #TODO þurfum að klára þessa klassa hér fyrir neðan 
+
     def list_all_employees(self):   # á eftir að setja í stafrósröð
         self.empl_dict = {}
 
