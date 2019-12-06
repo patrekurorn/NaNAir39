@@ -1,7 +1,7 @@
 import csv
 from Models.employee import Employee
 
-class EmployeeRepo:
+class EmployeeRepo():
 
     def __init__(self):
         pass
@@ -48,7 +48,7 @@ class EmployeeRepo:
                     return row
 
         #else:
-        #    print("Invalid SSN, please try again.")    ÞARF AÐ VERA Í USER INTERFACE
+        #    print("Invalid SSN, please try again.")   ÞARF AÐ VERA Í USER INTERFACE
         #    self.get_employee(ssn)
 
 
@@ -93,6 +93,7 @@ class EmployeeRepo:
 if __name__ == "__main__":
     a = EmployeeRepo()
     a.add_employee()
+
 
 
 
