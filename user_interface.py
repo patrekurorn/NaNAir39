@@ -46,7 +46,7 @@ class User:
                 invalid()
                 first_pick()
 
-
+        @staticmethod
         def second_pick():
             try:
                 pick_input = int(input("1. Manage voyages\n2. List of voyages\n3. Manage destinations\Your pick: "))
@@ -82,7 +82,6 @@ class User:
                 "                          _|_                              \n" + \
                 "                   *---o--(_)--o---*                       \n" + \
                 "___________________________________________________________")
-
 
 user = User()
 user.get_header()
