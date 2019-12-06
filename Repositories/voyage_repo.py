@@ -34,7 +34,7 @@ class VoyageRepo:
         path = "../Data/UpcomingFlights.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
-                super(voyage).__init__()
+                file.write(super(voyage).__init__())
                # file.write("{} {} {} {} {}".format(flightNumber, departingFrom, arrivingAt, departure, arrival))
             except:
                 print("Couldn't register voyage")
