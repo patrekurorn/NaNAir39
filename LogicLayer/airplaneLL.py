@@ -11,7 +11,7 @@ class AirplaneLL:
         :return: A list of all the airplanes
         """
         airplanes = []
-        path = "../Data/aircraft.csv"
+        path = "../Data/Aircraft.csv"
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)
@@ -21,10 +21,16 @@ class AirplaneLL:
 
         return airplanes
 
+    def register_airplane(self):
+        pass
+
+    def available_airplanes(self):
+        pass
+
 
 
 
 if __name__ == "__main__":
-    a = AirplaneRepo()
+    a = AirplaneLL()
     print(a.get_all_airplanes())
 

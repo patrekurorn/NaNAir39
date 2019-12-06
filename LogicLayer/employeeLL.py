@@ -1,8 +1,5 @@
 import csv
-
-#from NaNModels.employee import Employee
-#from Models import employee
-from NaNAir39.Models.employee_repo import Employee
+from NaNAir39.Models.employee import Employee
 
 class EmployeeLL:
 
@@ -55,8 +52,11 @@ class EmployeeLL:
         #    self.get_employee(ssn)                                                    || Þarf að vera í "business layer"
 
 
+    def print_week_of_employee(self):   # A printable work summary can be displayed showing all employee work trips in a given week.
+        pass
 
-    def change_employee_info(self, ssn):
+
+    def edit_employee(self, ssn):
         pass
         # LÍKLEGAST BARA Í UI
 
@@ -86,17 +86,46 @@ class EmployeeLL:
                 # setja error input í UI
 
 
-    def available_employees(self):  # list of all available employees on a specific day
+    def available_employees(self):
         pass
 
-    def busy_employees(self):   # list of all employees who are working on a specific day and which destination they are going to.
+    def available_pilots(self):  # list of all available employees on a specific day
         pass
+
+    def available_flight_attendants(self):   # list of all employees who are working on a specific day and which destination they are going to.
+        pass
+
+    def busy_employees(self):
+        pass
+
+    def busy_pilots(self):
+        pass
+
+    def busy_flight_attendants(self):
+        pass
+
+    def list_all_pilots(self):
+        pass
+
+    def list_airplane_by_pilot(self):
+        pass
+
+    def list_pilots_by_airplane(self):
+        pass
+
+    def list_all_flight_attendants(self):
+        pass
+
+
+
+
+
 
 
 
 if __name__ == "__main__":
-    a = EmployeeRepo()
-    a.add_employee()
+    a = EmployeeLL()
+
 
 
 

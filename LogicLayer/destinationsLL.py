@@ -1,5 +1,4 @@
 import csv
-from Models.destination import Destination
 from Models import destination
 
 class DestinationsLL:
@@ -21,8 +20,10 @@ class DestinationsLL:
                 destination.append(row)
         return destination
 
+
+
     @staticmethod
-    def add_destination():
+    def register_destination():
         """
         :return: Adds a new destination to the cvs file
         """
@@ -45,8 +46,15 @@ class DestinationsLL:
                 # setja error input í UI
 
 
+    def edit_destination(self):
+        pass
+
+    def edit_contact_info(self):
+        pass
+
+
 
 if __name__ == "__main__":
-    a = DestinationsRepo()
+    a = DestinationsLL()
     print(a.get_all_destinations())
 
