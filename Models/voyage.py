@@ -1,6 +1,6 @@
 
 
-class Voyage:
+class  Voyage:
 
     def __init__(self, flightNumber, departingFrom, arrivingAt, departure, arrival):
         self.flightNumber = flightNumber
