@@ -40,7 +40,6 @@ class VoyageRepo:
                 print("Couldn't register voyage")
                 # setja error input í UI
 
-    def employee_
 
 
 
@@ -49,3 +48,4 @@ class VoyageRepo:
 
 if __name__ == "__main__":
     a = VoyageRepo()
+    print(a.get_all_voyages())
