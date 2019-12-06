@@ -2,7 +2,7 @@ import csv
 from Models.voyage import Voyage
 from Models import voyage
 
-class VoyageRepo:
+class VoyageLL:
 
     def __init__(self):
         pass
@@ -37,7 +37,7 @@ class VoyageRepo:
                 file.write(super(voyage).__init__())
                # file.write("{} {} {} {} {}".format(flightNumber, departingFrom, arrivingAt, departure, arrival))
             except:
-                print("Couldn't register voyage")
+                print("Couldn't register voyage.")
                 # setja error input í UI
 
 
@@ -48,4 +48,4 @@ class VoyageRepo:
 
 if __name__ == "__main__":
     a = VoyageRepo()
-    print(a.get_all_voyages())
+    a.voyage_registration()
