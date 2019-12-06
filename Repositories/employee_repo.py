@@ -49,8 +49,8 @@ class EmployeeRepo():
                     return row
 
         #else:
-        #    print("Invalid SSN, please try again.")   ÞARF AÐ VERA Í USER INTERFACE
-        #    self.get_employee(ssn)
+        #    print("Invalid SSN, please try again.")   ÞARF AÐ VERA Í USER INTERFACE   || correction
+        #    self.get_employee(ssn)                                                    || Þarf að vera í "business layer"
 
 
 
