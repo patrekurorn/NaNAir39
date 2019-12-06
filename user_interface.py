@@ -1,3 +1,7 @@
+import os
+from time import sleep
+
+
 VALID = [1,2,3]
 
 class User:
@@ -46,10 +50,9 @@ class User:
                 invalid()
                 first_pick()
 
-
         def second_pick():
             try:
-                pick_input = int(input("1. Manage voyages\n2. List of voyages\n3. Manage destinations\Your pick: "))
+                pick_input = int(input("1. Manage voyages\n2. List of voyages\n3. Manage destinations\nYour pick: "))
                 if pick_input not in VALID:
                     invalid()
                     second_pick()
@@ -69,27 +72,33 @@ class User:
 
 
     def get_header(self):
-        print ("___________________________________________________________\n" + \
-                "                        NaN Air                            \n" + \
-                "___________________________________________________________\n" + \
-                "-----------------------------------------------------------\n" + \
-                "\n",end="")
+        print ("-----------------------------------------------------------\n" + \
+               "                        NaN Air                            \n" + \
+               "___________________________________________________________\n" + \
+               "___________________________________________________________\n" + \
+               "\n",end="")
 
     def get_footer(self):
         print("-----------------------------------------------------------\n" + \
-                "___________________________________________________________\n" + \
-                "\n" + \
-                "                          _|_                              \n" + \
-                "                   *---o--(_)--o---*                       \n" + \
-                "___________________________________________________________")
+              "___________________________________________________________\n" + \
+              "\n" + \
+              "                          _|_                              \n" + \
+              "                   *---o--(_)--o---*                       \n" + \
+              "___________________________________________________________")
 
 user = User()
 user.get_header()
 user_selection = user.home_window()
 user.get_footer()
+
+sleep(2) # Freeze screen for n seconds
+os.system('cls')  # For Windows
+os.system('clear')  # For Linux/OS X
+
 user.second_window()
 
-print(user)
+
+
 
 
 
