@@ -37,7 +37,7 @@ class DestinationsRepo:
         path = "../Data/Destinations.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
-                super(destination).__init__()
+                file.write(super(destination).__init__())
                 #file.write("{} {} {} {} {} {} {}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
             except:
                 print("Couldn't add destination")
