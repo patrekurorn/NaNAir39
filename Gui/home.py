@@ -5,7 +5,7 @@ root = Tk()
 root.geometry("300x150")
 
 #Adding label
-label = Label(root, text="  -- \n *---o--(_)--o---*")
+label = Label(root, text=" _|_ \n*---o--(_)--o---*")
 label.pack(side=TOP)
 
 #Definng all sub-Routines:
@@ -18,6 +18,7 @@ b.pack(side=TOP)
 
 b2 = Button(root, text="Planning manager",width =15,command=speak)
 b2.pack(side=TOP)
+
 
 
 #Everything goes above this
