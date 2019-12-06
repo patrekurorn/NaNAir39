@@ -21,4 +21,5 @@ class Voyages:
             arrival_str = row[4]
 
             voyages.append(Voyage(flightNumber_str, departingFrom_str, arrivingAt_str, departure_str, arrival_str))
-            return voyages
+        
+        return voyages
