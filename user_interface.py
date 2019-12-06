@@ -96,6 +96,7 @@ os.system('cls')  # For Windows
 os.system('clear')  # For Linux/OS X
 
 user.second_window()
+print("home window: {} second_window: {}".format(user.first_pick,user.second_pick))
 
 
 
