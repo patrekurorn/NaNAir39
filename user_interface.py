@@ -1,22 +1,97 @@
-
+VALID = [1,2,3]
 
 class User:
+    def __init__(self,first_pick = None, second_pick = None):
+        self.first_pick = first_pick
+        self.second_pick = second_pick
 
-    def __init__(self):
-        pass
+    def __str__(self):
+        return "First pick:{}, second pick: {}".format(str(self.first_pick),str(self.second_pick))
 
-    def home(self):
-        choice = ""
 
-        print("1. Staff manager")
-        print("2. Planning manager")
+    def home_window(self):
+        def invalid():
+            print("Please enter a valid number ")
+            user.home_window()
 
-        if choice == "1":
-            print("1. Man flights")
-            print("2. List of work force")
-            print("3. Manage work force")
-        if choice == "2":
-            print("1. Manage voyages")
-            print("2. List of voyages")
-            print("3. Manage destinations")
+        try:
+            userInput_int = int(input("1. Staff manager \n2. Planning manager \nYour pick: "))
+
+        except KeyError:
+            invalid()
+
+        if userInput_int == 1 or userInput_int == 2:
+            self.first_pick = userInput_int
+            return self.first_pick
+        else:
+            invalid()
+
+
+    def second_window(self):
+
+        def invalid():
+            print("Please enter a valid number ")
+
+        def first_pick():
+            try:
+                pick_input = int(input("1. Man flights \n2. List of work force\n3. Manage work force\nYour pick: "))
+                if pick_input not in VALID:
+                    invalid()
+                    first_pick()
+                else:
+                    self.second_pick = pick_input
+                    return self.second_pick
+
+            except KeyError:
+                invalid()
+                first_pick()
+
+        @staticmethod
+        def second_pick():
+            try:
+                pick_input = int(input("1. Manage voyages\n2. List of voyages\n3. Manage destinations\Your pick: "))
+                if pick_input not in VALID:
+                    invalid()
+                    second_pick()
+                else:
+                    self.second_pick = pick_input
+                    return self.second_pick
+
+            except KeyError:
+                invalid()
+                second_pick()
+
+        if self.first_pick == 1:
+            first_pick()
+
+        elif self.first_pick  == 2:
+            second_pick()
+
+
+    def get_header(self):
+        print ("___________________________________________________________\n" + \
+                "                        NaN Air                            \n" + \
+                "___________________________________________________________\n" + \
+                "-----------------------------------------------------------\n" + \
+                "\n",end="")
+
+    def get_footer(self):
+        print("-----------------------------------------------------------\n" + \
+                "___________________________________________________________\n" + \
+                "\n" + \
+                "                          _|_                              \n" + \
+                "                   *---o--(_)--o---*                       \n" + \
+                "___________________________________________________________")
+
+user = User()
+user.get_header()
+user_selection = user.home_window()
+user.get_footer()
+user.second_window()
+
+print(user)
+
+
+
+
 

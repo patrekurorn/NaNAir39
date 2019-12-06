@@ -1,5 +1,6 @@
 import csv
 from Models.destination import Destination
+from Models import destination
 
 class DestinationsRepo:
 
@@ -25,26 +26,27 @@ class DestinationsRepo:
         """
         :return: Adds a new destination to the cvs file
         """
-        destinationID = Destination.get_destinatiodID()
-        country = Destination.get_country()
-        airport = Destination.get_airport()
-        flightDuration = Destination.get_flightDuration()
-        distanceFromIceland = Destination.get_distanceFromIceland()
-        contactName = Destination.get_contactName()
-        contactNumber = Destination.get_contactNumber()
+      #  destinationID = Destination.get_destinatiodID()
+      #  country = Destination.get_country()
+     #   airport = Destination.get_airport()
+      #  flightDuration = Destination.get_flightDuration()
+      #  distanceFromIceland = Destination.get_distanceFromIceland()
+      #  contactName = Destination.get_contactName()
+      #  contactNumber = Destination.get_contactNumber()
 
         path = "../Data/Destinations.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
-                file.write("{} {} {} {} {} {} {}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
+                super(destination).__init__()
+                #file.write("{} {} {} {} {} {} {}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
             except:
                 print("Couldn't add destination")
+                return
                 # setja error input í UI
-
-
-
 
 
 
 if __name__ == "__main__":
     a = DestinationsRepo()
+    print(a)
+
