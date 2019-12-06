@@ -1,5 +1,4 @@
 
-
 class User:
 
     def __init__(self):
@@ -7,9 +6,11 @@ class User:
 
     def home(self):
         choice = ""
+        get_header()
 
         print("1. Staff manager")
         print("2. Planning manager")
+        print(get_feed())
 
         if choice == "1":
             print("1. Man flights")

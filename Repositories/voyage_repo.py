@@ -35,7 +35,7 @@ class VoyageRepo:
         with open(path, "a+", encoding="utf-8") as file:
             try:
                 super(voyage).__init__()
-                #.write("{} {} {} {} {}".format(flightNumber, departingFrom, arrivingAt, departure, arrival))
+               # file.write("{} {} {} {} {}".format(flightNumber, departingFrom, arrivingAt, departure, arrival))
             except:
                 print("Couldn't register voyage")
                 # setja error input í UI
