@@ -1,5 +1,6 @@
 import csv
 from Models.voyage import Voyage
+from Models import voyage
 
 class VoyageRepo:
 
@@ -33,7 +34,8 @@ class VoyageRepo:
         path = "../Data/UpcomingFlights.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
-                file.write("{} {} {} {} {}".format(flightNumber, departingFrom, arrivingAt, departure, arrival))
+                super(voyage).__init__()
+                #.write("{} {} {} {} {}".format(flightNumber, departingFrom, arrivingAt, departure, arrival))
             except:
                 print("Couldn't register voyage")
                 # setja error input í UI

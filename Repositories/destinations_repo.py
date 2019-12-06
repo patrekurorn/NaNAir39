@@ -1,5 +1,6 @@
 import csv
 from Models.destination import Destination
+from Models import destination
 
 class DestinationsRepo:
 
@@ -36,15 +37,15 @@ class DestinationsRepo:
         path = "../Data/Destinations.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
-                file.write("{} {} {} {} {} {} {}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
+                super(destination).__init__()
+                #file.write("{} {} {} {} {} {} {}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
             except:
                 print("Couldn't add destination")
                 # setja error input í UI
 
 
 
-
-
-
 if __name__ == "__main__":
     a = DestinationsRepo()
+    print(a)
+

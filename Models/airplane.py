@@ -1,5 +1,3 @@
-
-
 class Airplane:
 
     def __init__(self, planeInsignia, planeTypeId, manufacturer, model, capacity):
