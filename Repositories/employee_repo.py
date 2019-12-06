@@ -77,7 +77,7 @@ class EmployeeRepo():
         path = "../Data/employee.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
-                filter.write(super(employee).__init__())
+                file.write(super(employee).__init__())
                 #file.write("{} {} {} {} {} {} {} {} {}".format(ssn, name, position, rank, licence, address, mobile, landlineNr, email))
             except:
                 print("Couldn't add employee")
