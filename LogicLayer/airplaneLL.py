@@ -1,5 +1,5 @@
 import csv
-from Models.airplane import Airplane
+from NaNAir39.Models.airplane import Airplane
 
 class AirplaneLL:
 
@@ -22,7 +22,8 @@ class AirplaneLL:
         return airplanes
 
     def register_airplane(self):
-        pass
+
+
 
     def available_airplanes(self):
         pass
@@ -32,5 +33,6 @@ class AirplaneLL:
 
 if __name__ == "__main__":
     a = AirplaneLL()
+    print(a.register_airplane())
     print(a.get_all_airplanes())
 

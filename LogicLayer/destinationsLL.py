@@ -57,6 +57,10 @@ class DestinationsLL(destination):
 
 if __name__ == "__main__":
     a = DestinationsLL()
+<<<<<<< HEAD
     print(a.get_all_destinations())
     a.register_destination("bla","bla","bla","bla","bla","bla","bla",)
+=======
+    print(a.register_destination())
+>>>>>>> 92421078c881bbc1037f5aceb69f214f05726ac4
 
