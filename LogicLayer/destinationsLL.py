@@ -2,7 +2,7 @@ import csv
 from Models import destination
 from Models.destination import Destination
 
-class DestinationsLL(destination):
+class DestinationsLL(Destination):
 
     def __init__(self):
         pass
@@ -24,17 +24,17 @@ class DestinationsLL(destination):
 
 
     @staticmethod
-    def register_destination():
+    def register_destination(destination):
         """
         :return: Adds a new destination to the cvs file
         """
-        destinationID = Destination.get_destinatiodID()
+        destinationID = Destination.get_destinationID()
         country = Destination.get_country()
         airport = Destination.get_airport()
         flightDuration = Destination.get_flightDuration()
-        distanceFromIceland = Destination.get_distanceFromIceland()
-        contactName = Destination.get_contactName()
-        contactNumber = Destination.get_contactNumber()
+        distanceFromIceland = Destination.get_distance_from_iceland()
+        contactName = Destination.get_contact_name()
+        contactNumber = Destination.get_contact_number()
 
         path = "../Data/Destinations.csv"
         with open(path, "a+", encoding="utf-8") as file:
@@ -57,10 +57,9 @@ class DestinationsLL(destination):
 
 if __name__ == "__main__":
     a = DestinationsLL()
-<<<<<<< HEAD
     print(a.get_all_destinations())
-    a.register_destination("bla","bla","bla","bla","bla","bla","bla",)
-=======
-    print(a.register_destination())
->>>>>>> 92421078c881bbc1037f5aceb69f214f05726ac4
+    a.register_destination("destinarin")
+
+
+
 

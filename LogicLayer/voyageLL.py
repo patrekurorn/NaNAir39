@@ -20,17 +20,17 @@ class VoyageLL:
 
     @staticmethod
     def voyage_registration():  # Planning manager gerir þetta
-        #flightNumber = Voyage.get_flightNumber()
-        #departingFrom = Voyage.get_departingFrom()
-        #arrivingAt = Voyage.get_arrivingAt()
-        #departure = Voyage.get_departure()
-        #arrival = Voyage.get_arrival()
+        flightNumber = Voyage.get_flight_number()
+        departingFrom = Voyage.get_departing_from()
+        arrivingAt = Voyage.get_arriving_at()
+        departure_time = Voyage.get_departure_time()
+        arrival_time = Voyage.get_arrival_time()
 
         path = "../Data/UpcomingFlights.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
-                file.write(super(voyage).__init__())
-                #file.write("{} {} {} {} {}".format(flightNumber, departingFrom, arrivingAt, departure, arrival))
+                #file.write(super(voyage).__init__())
+                file.write("{} {} {} {} {}".format(flightNumber, departingFrom, arrivingAt, departure_time, arrival_time))
             except Exception:
                 print("Couldn't register voyage.")
                 # setja error input í UI

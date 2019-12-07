@@ -22,11 +22,11 @@ class Voyage:
     def get_arriving_at(self):
         return self.arrivingAt
 
-    def get_departure(self):
-        return self.departure_time
+    def get_departure_time(self):
+        return self.departureTime
 
-    def get_arrival(self):
-        return self.arrival_time
+    def get_arrival_time(self):
+        return self.arrivalTime
 
     """Setters"""
     def set_flight_number(self,other):

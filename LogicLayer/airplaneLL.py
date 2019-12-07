@@ -22,6 +22,7 @@ class AirplaneLL:
         return airplanes
 
     def register_airplane(self):
+        pass
 
 
 
