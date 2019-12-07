@@ -1,7 +1,8 @@
 import csv
 from Models import destination
+from Models.destination import Destination
 
-class DestinationsLL:
+class DestinationsLL(destination):
 
     def __init__(self):
         pass
@@ -27,19 +28,19 @@ class DestinationsLL:
         """
         :return: Adds a new destination to the cvs file
         """
-      #  destinationID = Destination.get_destinatiodID()
-      #  country = Destination.get_country()
-     #   airport = Destination.get_airport()
-      #  flightDuration = Destination.get_flightDuration()
-      #  distanceFromIceland = Destination.get_distanceFromIceland()
-      #  contactName = Destination.get_contactName()
-      #  contactNumber = Destination.get_contactNumber()
+        destinationID = Destination.get_destinatiodID()
+        country = Destination.get_country()
+        airport = Destination.get_airport()
+        flightDuration = Destination.get_flightDuration()
+        distanceFromIceland = Destination.get_distanceFromIceland()
+        contactName = Destination.get_contactName()
+        contactNumber = Destination.get_contactNumber()
 
         path = "../Data/Destinations.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
-                file.write(super(destination).__init__())
-                #file.write("{} {} {} {} {} {} {}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
+                theWriter = csv.writer(file)
+                theWriter.write("{} {} {} {} {} {} {}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
             except:
                 print("Couldn't add destination")
                 return
@@ -57,4 +58,5 @@ class DestinationsLL:
 if __name__ == "__main__":
     a = DestinationsLL()
     print(a.get_all_destinations())
+    a.register_destination("bla","bla","bla","bla","bla","bla","bla",)
 
