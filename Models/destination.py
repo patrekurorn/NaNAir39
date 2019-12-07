@@ -2,7 +2,7 @@
 
 class Destination:
 
-    def __init__(self, destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber):
+    def __init__(self, destinationID ="", country ="", airport ="", flightDuration ="", distanceFromIceland="", contactName="", contactNumber=0):
 
         self.destinationID = destinationID
         self.country = country
@@ -13,7 +13,7 @@ class Destination:
         self.contactNumber = contactNumber
 
     def __str__(self):
-        return "{} {} {} {} {} {} {}".format(self.destinationID, self.country, self.airport, self.flightDuration, self. distanceFromIceland, self.contactName, self.contactNumber)
+        return "{} {} {} {} {} {} {}".format(self.destinationID, self.country, self.airport, self.flightDuration, self.distanceFromIceland, self.contactName, self.contactNumber)
 
     """ Getters """
     def get_destinationID(self):

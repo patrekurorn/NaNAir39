@@ -1,8 +1,9 @@
 import csv
+import os
 from Models import destination
 from Models.destination import Destination
 
-class DestinationsLL(Destination):
+class DestinationsLL(object):
 
     def __init__(self):
         pass
@@ -40,7 +41,8 @@ class DestinationsLL(Destination):
         with open(path, "a+", encoding="utf-8") as file:
             try:
                 theWriter = csv.writer(file)
-                theWriter.write("{} {} {} {} {} {} {}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
+                theWriter.writerow(destination)
+                theWriter.writerow("{} {} {} {} {} {} {}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
             except:
                 print("Couldn't add destination")
                 return
@@ -58,7 +60,8 @@ class DestinationsLL(Destination):
 if __name__ == "__main__":
     a = DestinationsLL()
     print(a.get_all_destinations())
-    a.register_destination("destinarin")
+
+    a.register_destination("desti")
 
 
 
