@@ -8,14 +8,36 @@ class EmployeeUI:
         self.__employee_LL = EmployeeLL()
 
 
-    def header(self):
-        pass
+    def header(self, i):
+        """
+        This the header on the employee user interface
+        we use it here in the functions down below
+        :param i:
+        :return:
+        """
+        print("-" * 50)
+        print("|{:^48}|".format(i))
+        print("-" * 50)
+        print()
+
+
+    def get_all_employees(self):
+
+        self.header("All employees")
+
+        all_employees = self.__employee_LL.get_all_employees()
+
+        employees = ""
+        for index, row in enumerate(all_employees):
+            for x in row:
+                employees += (x + ", ")
+            print("Employee nr. {}: {}".format(index+1, employees))
+            employees = ""
 
     def register_employee(self):
 
-        # Setja header
+        self.header("Register new employee")
 
-        print("Creating new employee")
         ssn = input("Enter a social security number: ")
         if self.__employee_LL.ssn_valid(ssn):
             print("Employee already exists")
@@ -40,4 +62,4 @@ class EmployeeUI:
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.register_employee()
+    a.get_all_employees()
