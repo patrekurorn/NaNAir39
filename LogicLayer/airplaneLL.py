@@ -21,8 +21,30 @@ class AirplaneLL:
 
         return airplanes
 
-    def register_airplane(self):
-        pass
+    def check_airplane(self, planeInsignia):
+        data = self.get_all_airplanes()
+
+        for row in data:
+            if row[0] == planeInsignia:
+                return True
+
+        return False
+
+
+    @staticmethod
+    def register_airplane(new_airplane):
+        planeInsignia = new_airplane.get_plane_insignia()
+        planeTypeId = new_airplane.get_plane_type_id()
+        manufacturer = new_airplane.get_manufacturer()
+        model = new_airplane.get_model()
+        capacity = new_airplane.get_capacity()
+
+        path = "../Data/Aircraft.csv"
+        with open(path, "a+", encoding="utf-8") as file:
+            try:
+                file.write("{},{},{},{},{}".format(planeInsignia, planeTypeId, manufacturer, model, capacity))
+            except:
+                return False
 
 
 

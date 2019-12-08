@@ -10,7 +10,11 @@ class Voyage:
         self.arrivalTime = arrival
 
     def __str__(self):
-        return "{} {} {} {} {}".format(self.flightNumber, self.departingFrom, self.arrivingAt, self.departure_time, self.arrival_time)
+        return "Flight number: {}\nDeparting from: {}\nArraving at: {}\nDeparture time: {}\nArrival time: {}".format(self.flightNumber,
+                                                                                                                     self.departingFrom,
+                                                                                                                     self.arrivingAt,
+                                                                                                                     self.departureTime,
+                                                                                                                     self.arrivalTime)
 
     """Getters"""
     def get_flight_number(self):

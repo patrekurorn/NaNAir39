@@ -14,7 +14,11 @@ class Employee:
 
 
         def __str__(self):
-            return ("{} {} {} {} {} {} {} {} {}".format(self.ssn,self.name,self.position,self.rank,self.licence,self.address,self.mobile,self.landlineNr,self.email))
+            return ("SSN: {}\nName: {}\nPosition: {}\nRank: {}\nLicence: {}\nAddress: {}\nMobile: {}\nLandline number: {}\nEmail: {}".format(self.ssn,self.name,
+                                                                                                                                             self.position,self.rank,
+                                                                                                                                             self.licence,self.address,
+                                                                                                                                             self.mobile,self.landlineNr,
+                                                                                                                                             self.email))
 
         """ SSN """
         def get_ssn(self):
@@ -60,9 +64,9 @@ class Employee:
 
         """ Landline Nr """
         def get_landlineNr(self):
-            return self.landlinenr
+            return self.landlineNr
         def set_landlineNr(self, other):
-            self.landlinenr = other
+            self.landlineNr = other
 
         """ Email """
         def get_email(self):
