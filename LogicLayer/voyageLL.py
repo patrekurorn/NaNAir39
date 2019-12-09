@@ -18,22 +18,30 @@ class VoyageLL:
         return voyages
 
 
+    def check_flight_number(self, flightNumber):
+        data = self.get_all_voyages()
+
+        for row in data:
+            if row[0] == flightNumber:
+                return True
+
+        return False
+
+
     @staticmethod
-    def voyage_registration():  # Planning manager gerir þetta
-        flightNumber = Voyage.get_flight_number()
-        departingFrom = Voyage.get_departing_from()
-        arrivingAt = Voyage.get_arriving_at()
-        departure_time = Voyage.get_departure_time()
-        arrival_time = Voyage.get_arrival_time()
+    def register_voyage(new_voyage):  # Planning manager gerir þetta
+        flightNumber = new_voyage.get_flight_number()
+        departingFrom = new_voyage.get_departing_from()
+        arrivingAt = new_voyage.get_arriving_at()
+        departure_time = new_voyage.get_departure_time()
+        arrival_time = new_voyage.get_arrival_time()
 
         path = "../Data/UpcomingFlights.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
-                #file.write(super(voyage).__init__())
-                file.write("{} {} {} {} {}".format(flightNumber, departingFrom, arrivingAt, departure_time, arrival_time))
-            except Exception:
-                print("Couldn't register voyage.")
-                # setja error input í UI
+                file.write("{},{},{},{},{}".format(flightNumber, departingFrom, arrivingAt, departure_time, arrival_time))
+            except:
+                return False
 
 
     def list_unmanned_voyages(self):
@@ -75,4 +83,3 @@ class VoyageLL:
 
 if __name__ == "__main__":
     a = VoyageLL()
-    a.voyage_registration()

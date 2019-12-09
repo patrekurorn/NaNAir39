@@ -50,10 +50,8 @@ class EmployeeLL:
 
         return False
 
-        #else:
-        #    print("Invalid SSN, please try again.")   ÞARF AÐ VERA Í USER INTERFACE   || correction
-        #    self.get_employee(ssn)                                                    || Þarf að vera í "business layer"
-
+    def print_employee(self, ssn):
+        
 
     def print_week_of_employee(self):   # A printable work summary can be displayed showing all employee work trips in a given week.
         pass
@@ -64,29 +62,27 @@ class EmployeeLL:
         # LÍKLEGAST BARA Í UI
 
     @staticmethod
-    def add_employee():
+    def register_employee(new_employee):
         """
         :return: Adds a new employee to the cvs file
         """
-        #id = Employee.get_id()
-        ssn = Employee.get_ssn()
-        name = Employee.get_name()
-        position = Employee.get_name()
-        rank = Employee.get_rank()
-        licence = Employee.get_licence()
-        address = Employee.get_address()
-        mobile = Employee.get_mobile()
-        landlineNr = Employee.get_landlineNr()
-        email = Employee.get_email()
+        ssn = new_employee.get_ssn()
+        name = new_employee.get_name()
+        position = new_employee.get_name()
+        rank = new_employee.get_rank()
+        licence = new_employee.get_licence()
+        address = new_employee.get_address()
+        mobile = new_employee.get_mobile()
+        landlineNr = new_employee.get_landlineNr()
+        email = new_employee.get_email()
 
         path = "../Data/employee.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
-                #file.write(super(Employee).__init__())
-                file.write("{} {} {} {} {} {} {} {} {}".format(ssn, name, position, rank, licence, address, mobile, landlineNr, email))
+                file.write("\n{},{},{},{},{},{},{},{},{}".format(ssn, name, position, rank, licence, address, mobile, landlineNr, email))
             except:
-                print("Couldn't add employee")
-                # setja error input í UI
+                return False
+
 
 
     def available_employees(self):  # list of all available employees on a specific day

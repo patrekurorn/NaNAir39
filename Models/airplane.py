@@ -7,6 +7,13 @@ class Airplane:
         self.model = model
         self.capacity = int(capacity)  # passenger seats
 
+
+    def __str__(self):
+        return "Plane insignia: {}\nPlane Type ID: {}\nManufacturer: {}\nModel: {}\nCapacity: {}".format(self.planeInsignia,
+                                                                                                         self.planeTypeId,
+                                                                                                         self.manufacturer,
+                                                                                                         self.model,self.capacity)
+
     """Getters"""
     def get_plane_insignia(self):
         return self.planeInsignia
@@ -38,7 +45,3 @@ class Airplane:
 
     def set_capacity(self,other):
         self.capacity = other
-
-    def __str__(self):
-        return "Plane insignia: {}\nPlane Type ID: {}\nPlane Type ID: {}\nManufacturer: {}\nModel: {}\nCapacity: {}".format(self.__planeInsignia, self.__planeTypeId, self.__planeTypeId, self.__manufacturer, self.__model, self.__capacity)
-
