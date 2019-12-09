@@ -1,6 +1,6 @@
 import os
 from time import sleep
-
+import keyboard
 
 VALID = [1,2,3]
 
@@ -18,18 +18,26 @@ class User:
             print("Please enter a valid number ")
             user.home_window()
 
-        try:
-            userInput_int = int(input("1. Staff manager \n2. Planning manager \nYour pick: "))
+        print("1. Staff manager \n2. Planning manager")
 
-        except KeyError:
-            invalid()
+        # try:
+        #     userInput_int = int(input("1. Staff manager \n2. Planning manager \nYour pick: "))
 
-        if userInput_int == 1 or userInput_int == 2:
-            self.first_pick = userInput_int
-            return self.first_pick
+        # except KeyError:
+        #     invalid()
+
+        user_pick = keyboard.read_key()
+        
+        if user_pick == '1':
+            self.first_pick = 1
+
+        elif user_pick == '2':
+            self.first_pick = 2
+
         else:
             invalid()
 
+        return self.first_pick
 
     def second_window(self):
 
@@ -65,41 +73,35 @@ class User:
                 second_pick()
 
         if self.first_pick == 1:
-            first_pick()
+            second_pick()
 
         elif self.first_pick  == 2:
             second_pick()
 
 
     def get_header(self):
-        print ("-----------------------------------------------------------\n" + \
-               "                        NaN Air                            \n" + \
-               "___________________________________________________________\n" + \
-               "___________________________________________________________\n" + \
-               "\n",end="")
+        print ("___________________________________________________________\n" + \
+                "                        NaN Air                            \n" + \
+                "___________________________________________________________\n" + \
+                "-----------------------------------------------------------\n" + \
+                "\n",end="")
 
     def get_footer(self):
         print("-----------------------------------------------------------\n" + \
-              "___________________________________________________________\n" + \
-              "\n" + \
-              "                          _|_                              \n" + \
-              "                   *---o--(_)--o---*                       \n" + \
-              "___________________________________________________________")
+                "___________________________________________________________\n" + \
+                "\n" + \
+                "                          _|_                              \n" + \
+                "                   *---o--(_)--o---*                       \n" + \
+                "___________________________________________________________")
+
 
 user = User()
 user.get_header()
 user_selection = user.home_window()
 user.get_footer()
-
-sleep(2) # Freeze screen for n seconds
-os.system('cls')  # For Windows
-os.system('clear')  # For Linux/OS X
-
 user.second_window()
-print("home window: {} second_window: {}".format(user.first_pick,user.second_pick))
 
-
-
+print(user)
 
 
 
