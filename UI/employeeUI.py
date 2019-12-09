@@ -35,17 +35,23 @@ class EmployeeUI:
     def get_employee(self):    # list information about a specific employee.
 
         self.header("Employee information")
-        ssn = input("Enter a social security number: ")
-        try:
-            employee = self.__employee_LL.get_employee(ssn)
 
-            print("\nSSN: \t\t\t{}\nName: \t\t\t{}\nPosition: \t\t{}\nRank: \t\t\t{}\nLicence: \t\t{}\nAddress: \t\t{}\nMobile: \t\t{}\nLandline nr: \t{}\nEmail: \t\t\t{}".format(employee[0],employee[1],
-                                                                                                                                         employee[2],employee[3],
-                                                                                                                                         employee[4],employee[5],
-                                                                                                                                         employee[6],employee[7],
-                                                                                                                                         employee[8]))
-        except:
-            print("\nSocial security number not in system.")
+        isValid = False
+        while isValid == False:
+            ssn = input("\nEnter q to quit.\nEnter a social security number: ")
+            if ssn == "q":
+                break
+            try:
+                employee = self.__employee_LL.get_employee(ssn)
+
+                print("\nSSN: \t\t\t{}\nName: \t\t\t{}\nPosition: \t\t{}\nRank: \t\t\t{}\nLicence: \t\t{}\nAddress: \t\t{}\nMobile: \t\t{}\nLandline nr: \t{}\nEmail: \t\t\t{}".format(employee[0],employee[1],
+                                                                                                                                             employee[2],employee[3],
+                                                                                                                                             employee[4],employee[5],
+                                                                                                                                             employee[6],employee[7],
+                                                                                                                                             employee[8]))
+
+            except:
+                print("\nSocial security number not in system.")
 
 
 
@@ -53,28 +59,48 @@ class EmployeeUI:
 
         self.header("Register new employee")
 
-        ssn = input("Enter a social security number: ")
-        if self.__employee_LL.ssn_valid(ssn):
-            print("Employee already exists")
-        else:
-            new_ssn = ssn
-            name = input("Enter name: ")
-            position = input("Enter position: ")
-            rank = input("Enter rank: ")
-            licence = input("Enter licence: ")
-            address = input("Enter address: ")
-            mobile = input("Enter mobile: ")
-            landlineNr = input("Enter landline number: ")
-            email = input("Enter email: ")
-
-            new_employee = Employee(new_ssn, name, position, rank, licence, address, mobile, landlineNr, email)
-            print("\n{}\n".format(new_employee))
-
-            if input("Do you want to create this employee? ").upper() == "Y":
-                self.__employee_LL.register_employee(new_employee)
-                print("\nEmployee created!\n")
+        isValid = False
+        while isValid == False:
+            ssn = input("Enter a social security number: ")
+            if self.__employee_LL.ssn_valid(ssn):
+                print("\nEmployee already exists.\n")
+                choice = input("Y: Yes\nAnything else: No\nDo you want to continue? ").upper()
+                if choice == "Y":
+                    continue
+                else:
+                    break
             else:
-                print("\nNo employee created.\n")
+                new_ssn = ssn
+                name = input("Enter name: ")
+                position = input("Enter position: ")
+                rank = input("Enter rank: ")
+                licence = input("Enter licence: ")
+                address = input("Enter address: ")
+                mobile = input("Enter mobile: ")
+                landlineNr = input("Enter landline number: ")
+                email = input("Enter email: ")
+
+                new_employee = Employee(new_ssn, name, position, rank, licence, address, mobile, landlineNr, email)
+                print("\n{}\n".format(new_employee))
+
+                choice = input("Y: Yes\nAnything else: No\nDo you want to create this employee? ").upper()
+                if choice == "Y":
+                    self.__employee_LL.register_employee(new_employee)
+                    print("\nEmployee created!\n")
+
+                    choice = input("Y: Yes\nAnything else: No\nDo you want to register another employee? ").upper()
+                    if choice == "Y":
+                        continue
+                    else:
+                        break
+                else:
+                    print("\nNo employee created.\n")
+                    choice = input("Y: Yes\nAnything else: No\nDo you want to continue? ").upper()
+                    if choice == "Y":
+                        continue
+                    else:
+                        break
+
 
     def edit_employee(self):
         self.header("Edit employee")
@@ -99,7 +125,10 @@ class EmployeeUI:
                     action = input(("\nEnter q to quit.\nChoose what you want to edit (1-8): "))
 
                     if action == "1":
-                        employee_edit.set_name(input("Enter new name: "))
+                        name = input("Enter new name: ")
+                        employee_edit.set_name(name)
+                        print("Name changed to {}".format(name))
+
                     elif action == "2":
                         print("\n1. Pilot\n2. Cabincrew\n")
 
@@ -194,20 +223,29 @@ class EmployeeUI:
                             continue
 
                     elif action == "5":
-                        employee_edit.set_address(input("Enter new address: "))
+                        address = input("Enter new address: ")
+                        employee_edit.set_address(address)
+                        print("Address changed to {}".format(choice))
+
                     elif action == "6":
-                        employee_edit.set_mobile(input("Enter new mobile: "))
+                        mobile = input("Enter new mobile: ")
+                        employee_edit.set_mobile(mobile)
+                        print("Mobile changed to {}".format(mobile))
+
                     elif action == "7":
-                        employee_edit.set_landlineNr(input("Enter new landline nr.: "))
+                        landlineNr = input("Enter new landline nr.: ")
+                        employee_edit.set_landlineNr(landlineNr)
+                        print("Landline nr. changed to {}".format(landlineNr))
+
                     elif action == "8":
-                        employee_edit.set_email(input("Enter new email: "))
+                        email = input("Enter new email: ")
+                        employee_edit.set_email(email)
+                        print("Email changed to {}".format(email))
 
                 self.__employee_LL.remove_employee(ssn_edit)
                 self.__employee_LL.register_employee(employee_edit)
-                print("\nEmployee succesfully edited!")
+                print("\nEmployee successfully edited!")
                 break
-
-
 
             else:
                 print("\nEmployee not in system.")
@@ -216,4 +254,4 @@ class EmployeeUI:
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.edit_employee()
+    a.register_employee()
