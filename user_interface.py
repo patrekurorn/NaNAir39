@@ -1,6 +1,7 @@
 import os
 from time import sleep
 from UI.destinationUI import DestinationUI
+from UI.voyageUI import VoyageUI
 
 import string
 
@@ -14,6 +15,11 @@ class User:
 
     def __str__(self):
         return "First pick:{}, second pick: {}".format(str(self.first_pick),str(self.second_pick))
+
+    def os_virkni(self):
+        sleep(1.5)  # Freeze screen for n seconds
+        os.system('cls')  # For Windows
+        os.system('clear')  # For Linux/OS X
 
 
     def home_window(self):
@@ -62,22 +68,69 @@ class User:
 
         def invalid():
             print("Please enter a valid number ")
-            user.second_window_planning_manager()
+
+        def manage_voyages():
+            user.get_header()
+            voyage_pick = input("1.Register a new voyager\n2.Edit a voyage\n3.Cancel a voyage ").strip()
+
+            if voyage_pick not in VALID_THREE:
+                invalid()
+                user.os_virkni()
+                manage_voyages()
+
+            elif voyage_pick =="1":
+                user.get_footer()
+                pass
+
+            elif voyage_pick =="2":
+                user.get_footer()
+                pass
+
+            elif voyage_pick == "3":
+                user.get_footer()
+                pass
+
+
+
+
+        def list_of_voyages():
+            pass
+
+        def manage_destinations():
+            pass
+
+
 
 
         pick_input = input("1. Manage voyages\n2. List of voyages\n3. Manage destinations\nYour pick: ")
+        
         if pick_input not in VALID_THREE:
             invalid()
+            user.second_window_planning_manager()
 
         else:
             if pick_input == "1":
-                print("MANAGE VOYAGES")
+                """MANAGE VOYAGES"""
+                user.get_footer()
+                user.os_virkni()
+                manage_voyages()
+
+
+
+
             if pick_input == "2":
                 print("List of voyages".upper())
+                user.get_footer()
+                user.os_virkni()
+
             if pick_input == "3":
                 print("Manage destinations".upper())
-                DestinationUI()
+                user.get_footer()
+                user.os_virkni()
+
+
         user.get_footer()
+        user.os_virkni()
 
 
 
