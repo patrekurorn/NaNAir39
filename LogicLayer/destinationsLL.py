@@ -40,9 +40,7 @@ class DestinationsLL(object):
         path = "../Data/Destinations.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
-                theWriter = csv.writer(file)
-                theWriter.writerow(destination)
-                theWriter.writerow("{} {} {} {} {} {} {}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
+                file.write("{} {} {} {} {} {} {}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
             except:
                 print("Couldn't add destination")
                 return
@@ -50,9 +48,12 @@ class DestinationsLL(object):
 
 
     def edit_destination(self):
+        """ örruglega gert í UI"""
+
         pass
 
     def edit_contact_info(self):
+        """ Örruglega gert í UI"""
         pass
 
 
@@ -60,8 +61,8 @@ class DestinationsLL(object):
 if __name__ == "__main__":
     a = DestinationsLL()
     print(a.get_all_destinations())
-
-    a.register_destination("desti")
+    b = ("a","a","a","a","a","a","a",)
+    a.register_destination(b)
 
 
 
