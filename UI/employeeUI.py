@@ -76,11 +76,14 @@ class EmployeeUI:
     def edit_employee(self):
         self.header("Edit employee")
 
-        ssn = input("Enter a social security number: ")
-        if self.__employee_LL.ssn_valid(ssn):
+        self.get_all_employees()
+
             editing_employee = True
             while editing_employee:
-
+                ssn = input("Enter the ssn of the employee you want to edit.")
+                
+        else:
+            print("\nEmployee not in system.")
 
 
 

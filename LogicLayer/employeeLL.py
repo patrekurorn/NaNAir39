@@ -50,8 +50,6 @@ class EmployeeLL:
 
         return False
 
-    def print_employee(self, ssn):
-        
 
     def print_week_of_employee(self):   # A printable work summary can be displayed showing all employee work trips in a given week.
         pass
