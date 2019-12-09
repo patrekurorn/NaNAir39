@@ -3,8 +3,9 @@ from time import sleep
 from UI.destinationUI import DestinationUI
 from UI.voyageUI import VoyageUI
 
-import string
+from LogicLayer.destinationsLL import DestinationsLL
 
+import string
 
 VALID_THREE= ["1","2","3"]
 
@@ -153,7 +154,7 @@ class User:
               "                          _|_                              \n" + \
               "                   *---o--(_)--o---*                       \n" + \
               "___________________________________________________________")
-
+"""
 user = User()
 user_selection = user.home_window()
 sleep(1) # Freeze screen for n seconds
@@ -168,6 +169,8 @@ elif user.first_pick== "2":
     user.second_window_planning_manager()
 
 #print("home window: {} second_window: {}".format(user.first_pick,user.second_pick))
+"""
+
 
 
 
