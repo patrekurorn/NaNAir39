@@ -58,6 +58,7 @@ class User:
 
 
     def second_window_planning_manager(self):
+        user.get_header()
 
         def invalid():
             print("Please enter a valid number ")
@@ -76,6 +77,7 @@ class User:
             if pick_input == "3":
                 print("Manage destinations".upper())
                 DestinationUI()
+        user.get_footer()
 
 
 
@@ -101,9 +103,9 @@ class User:
 
 user = User()
 user_selection = user.home_window()
-sleep(1.5) # Freeze screen for n seconds
-#os.system('cls')  # For Windows
-#os.system('clear')  # For Linux/OS X
+sleep(1) # Freeze screen for n seconds
+os.system('cls')  # For Windows
+os.system('clear')  # For Linux/OS X
 
 
 if user.first_pick == "1":
