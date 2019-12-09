@@ -1,6 +1,6 @@
 import os
 from time import sleep
-# from UI.destinationUI import DestinationUi
+from UI.destinationUI import DestinationUI
 
 import string
 
@@ -75,7 +75,7 @@ class User:
                 print("List of voyages".upper())
             if pick_input == "3":
                 print("Manage destinations".upper())
-              #  DestinationUi()
+                DestinationUI()
 
 
 
