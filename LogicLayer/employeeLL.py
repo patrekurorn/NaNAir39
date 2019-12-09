@@ -1,4 +1,5 @@
 import csv
+import os
 from NaNAir39.Models.employee import Employee
 
 class EmployeeLL:
@@ -50,6 +51,19 @@ class EmployeeLL:
 
         return False
 
+    def print_employee(self, ssn):
+        data = self.get_all_employees()
+
+        if self.ssn_valid(ssn):
+            for row in data:
+                if row[0] == ssn:
+                    return "\n   SSN: \t\t\t{}\n1. Name: \t\t\t{}\n2. Position: \t\t{}\n3. Rank: \t\t\t{}\n4. Licence: \t\t{}\n5. Address: \t\t{}\n6. Mobile: \t\t\t{}\n7. Landline nr: \t{}\n8. Email: \t\t\t{}".format(row[0],row[1],
+                                                                                                                                                                                            row[2], row[3],
+                                                                                                                                                                                            row[4],row[5],
+                                                                                                                                                                                            row[6],row[7],
+                                                                                                                                                                                            row[8])
+        else:
+            return False
 
     def print_week_of_employee(self):   # A printable work summary can be displayed showing all employee work trips in a given week.
         pass
@@ -66,7 +80,7 @@ class EmployeeLL:
         """
         ssn = new_employee.get_ssn()
         name = new_employee.get_name()
-        position = new_employee.get_name()
+        position = new_employee.get_position()
         rank = new_employee.get_rank()
         licence = new_employee.get_licence()
         address = new_employee.get_address()
@@ -147,14 +161,28 @@ class EmployeeLL:
 
         return flightAttendants
 
+    def remove_employee(self, ssn):
+        employee = self.get_employee(ssn)
+        employees = self.get_all_employees()
 
+        selected_employee = employee[0]
+
+        os.remove("../Data/employee.csv")
+        header = "ssn,name,position,rank,licence,address,mobile,landlineNr,email"
+        with open("../Data/employee.csv", "a+", encoding="utf-8") as file:
+            file.write(header)
+
+        for x in employees:
+            if x[0] == selected_employee:
+                pass
+            else:
+                new_employee = Employee(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],)
+                self.register_employee(new_employee)
 
 
 
 if __name__ == "__main__":
     a = EmployeeLL()
-    print(a.add_employee())
-
 
 
 
