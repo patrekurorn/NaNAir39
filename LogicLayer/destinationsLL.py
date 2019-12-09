@@ -13,7 +13,8 @@ class DestinationsLL(object):
         :return: List of all destinations
         """
         destination = []
-        path = "../Data/Destinations.csv"
+        #path = "../Data/Destinations.csv
+        path = "Data/Destinations.csv"
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)
