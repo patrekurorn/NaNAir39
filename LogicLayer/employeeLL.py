@@ -50,10 +50,8 @@ class EmployeeLL:
 
         return False
 
-        #else:
-        #    print("Invalid SSN, please try again.")   ÞARF AÐ VERA Í USER INTERFACE   || correction
-        #    self.get_employee(ssn)                                                    || Þarf að vera í "business layer"
-
+    def print_employee(self, ssn):
+        
 
     def print_week_of_employee(self):   # A printable work summary can be displayed showing all employee work trips in a given week.
         pass

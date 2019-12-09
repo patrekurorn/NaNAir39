@@ -9,12 +9,7 @@ class EmployeeUI:
 
 
     def header(self, i):
-        """
-        This the header on the employee user interface
-        we use it here in the functions down below
-        :param i:
-        :return:
-        """
+
         print("-" * 50)
         print("|{:^48}|".format(i))
         print("-" * 50)
@@ -33,6 +28,24 @@ class EmployeeUI:
                 employees += (x + ", ")
             print("Employee nr. {}: {}".format(index+1, employees))
             employees = ""
+
+
+    def get_employee(self):    # list information about a specific employee.
+
+        self.header("Employee information")
+        ssn = input("Enter a social security number: ")
+        try:
+            employee = self.__employee_LL.get_employee(ssn)
+
+            print("\nSSN: \t\t\t{}\nName: \t\t\t{}\nPosition: \t\t{}\nRank: \t\t\t{}\nLicence: \t\t{}\nAddress: \t\t{}\nMobile: \t\t{}\nLandline nr: \t{}\nEmail: \t\t\t{}".format(employee[0],employee[1],
+                                                                                                                                         employee[2],employee[3],
+                                                                                                                                         employee[4],employee[5],
+                                                                                                                                         employee[6],employee[7],
+                                                                                                                                         employee[8]))
+        except:
+            print("\nSocial security number not in system.")
+
+
 
     def register_employee(self):
 
@@ -60,6 +73,17 @@ class EmployeeUI:
             else:
                 print("\nNo employee created.\n")
 
+    def edit_employee(self):
+        self.header("Edit employee")
+
+        ssn = input("Enter a social security number: ")
+        if self.__employee_LL.ssn_valid(ssn):
+            editing_employee = True
+            while editing_employee:
+
+
+
+
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.get_all_employees()
+    a.edit_employee()
