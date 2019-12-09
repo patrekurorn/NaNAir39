@@ -42,8 +42,14 @@ class DestinationUI:
                 print("\nDestination registered!\n")
             else:
                 print("\nNo destination registered.\n")
+        
+    def edit_destination(self):
+        self.__destinationLL.get_all_destinations()
+
+
+
 
 if __name__ == "__main__":
     a = DestinationUI()
-    a.register_destination()
-
+    #a.register_destination()
+    a.edit_destination()
