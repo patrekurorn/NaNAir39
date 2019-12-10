@@ -42,7 +42,7 @@ class Destination:
 
     """ Setters """
     def set_destinationID(self,other):
-        self.destinationID = oth
+        self.destinationID = other
 
     def set_country(self,other):
         self.country = other

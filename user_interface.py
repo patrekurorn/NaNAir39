@@ -7,6 +7,7 @@ from LogicLayer.destinationsLL import DestinationsLL
 
 import string
 
+
 VALID_THREE= ["1","2","3"]
 
 class User:
