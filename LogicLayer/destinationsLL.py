@@ -33,8 +33,6 @@ class DestinationsLL(object):
 
         return False
 
-
-
     @staticmethod
     def register_destination(new_destination):
         """
@@ -63,7 +61,6 @@ class DestinationsLL(object):
     def edit_contact_info(self):
         """ Örruglega gert í UI"""
         pass
-
 
 
 if __name__ == "__main__":

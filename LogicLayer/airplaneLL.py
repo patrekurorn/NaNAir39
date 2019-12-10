@@ -35,7 +35,7 @@ class AirplaneLL:
 
     @staticmethod
     def register_airplane(new_airplane):
-        planeInsignia = new_airplane.get_plane_insignia()
+        planeInsignia = new_airplane.get_plane_ins  ignia()
         planeTypeId = new_airplane.get_plane_type_id()
         manufacturer = new_airplane.get_manufacturer()
         model = new_airplane.get_model()

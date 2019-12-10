@@ -92,7 +92,7 @@ class EmployeeLL:
                 return False
 
 
-
+    """ Available """
     def available_employees(self):  # list of all available employees on a specific day
         pass
         # kannski bara í UI?
@@ -105,6 +105,8 @@ class EmployeeLL:
         pass
         # kannski bara í UI?
 
+    """ ef ekki available þá busy.."""
+
     def busy_employees(self):   # list of all employees who are working on a specific day and which destination they are going
         pass
         # kannski bara í UI?
@@ -112,6 +114,7 @@ class EmployeeLL:
     def busy_pilots(self):
        pass
        # kannski bara í UI?
+
 
     def busy_flight_attendants(self):
         pass
