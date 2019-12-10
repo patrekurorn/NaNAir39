@@ -1,40 +1,15 @@
 import os
 from time import sleep
-from UI.destinationUI import DestinationUI
+from NaNAir39.UI.destinationUI import DestinationUI
 import keyboard
 import string
 from UI.voyageUI import VoyageUI
+from NaNAir39.UI.page import Page
 
-from LogicLayer.destinationsLL import DestinationsLL
+# from LogicLayer.destinationsLL import DestinationsLL
 
 import string
 
-class Page:
-    def Clear_screen(self):
-        if os.name == "nt":
-            os.system('cls')
-        else:
-            os.system('clear')
-
-    def Last_input_valid_check(self):
-        if self.valid == False:
-            print("Please enter a valid number")
-            self.valid = True
-
-    def Print_header(self):
-        print("___________________________________________________________\n" +
-              "                        NaN Air                            \n" +
-              "___________________________________________________________\n" +
-              "-----------------------------------------------------------\n")
-
-    def Print_footer(self):
-        print("\n" +
-              "-----------------------------------------------------------\n" +
-              "___________________________________________________________\n" +
-              "\n" +
-              "                          _|_                              \n" +
-              "                   *---o--(_)--o---*                       \n" +
-              "___________________________________________________________")
 
 
 
@@ -58,11 +33,13 @@ class User(Page):
         self.Print_footer()
         self.Last_input_valid_check()
 
+        # Read_key() reads key_down and key_up seperately. Since there's no use for the "key_up" 
+        # I don't assign it to a variable but I write it here to keep it from interfering with
+        # the program and for clarifications.
         user_input = keyboard.read_key()
         keyboard.read_key()
         print(user_input)
 
-        print(user_input)
 
         if user_input in self.valid_inputs:
             escaped = False
@@ -125,18 +102,13 @@ class User(Page):
                 print("MAN FLIGHTS")
                 # svo man flights
 
-
-            elif pick_input == "2":
-                pass
-
             elif user_input == "2":
                 """List of work force"""
 
                 print("List of work force".upper())
                 #svo list of work force
 
-            elif pick_input == "3":
-                pass
+
             elif user_input == "3":
                 """Manage work force"""
 
@@ -168,7 +140,7 @@ class User(Page):
             self.Print_footer
             if voyage_pick not in self.valid_inputs:
                 self.Last_input_valid_check
-                user.os_virkni()
+                self.Clear_screen()
                 manage_voyages()
 
             elif voyage_pick =="1":
@@ -209,15 +181,7 @@ class User(Page):
                 return False
 
         else:
-            if pick_input == "1":
-                """MANAGE VOYAGES"""
-                user.get_footer()
-                user.os_virkni()
-                manage_voyages()
-
-
-            if pick_input == "2":
-                pass
+            
             if user_input == "1":
                 print("MANAGE VOYAGES")
             if user_input == "2":
@@ -239,19 +203,6 @@ class User(Page):
                 "6. List of all busy employees\n" + \
                 "7. find employee")
         self.Print_footer()
-            
-
-
-
-
-    def get_header(self):
-        print ("-----------------------------------------------------------\n" + \
-               "                        NaN Air                            \n" + \
-               "___________________________________________________________\n" + \
-               "___________________________________________________________\n" + \
-               "\n",end="")
-
-
 
 
 

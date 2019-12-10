@@ -63,7 +63,20 @@ class VoyageLL:
         pass
 
     def list_all_destinations(self):
+<<<<<<< HEAD
         pass
+=======
+
+        destinations = []
+        path = "../Data/Destinations.csv"
+        with open(path, encoding="utf-8") as file:
+            reader = csv.reader(file)
+            next(reader)
+            for row in reader:
+                destinations.append(row[1])
+
+        return destinations
+>>>>>>> 8b1c29da4e76ebb71cc80b648673a437624ed75b
 
     def voyage_repetition(self):
         pass
@@ -92,4 +105,4 @@ class VoyageLL:
 
 if __name__ == "__main__":
     a = VoyageLL()
-    print(a.get_all_upcoming_voyages())
+    print(a.list_all_destinations())
