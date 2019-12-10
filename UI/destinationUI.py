@@ -3,7 +3,7 @@ import os
 import string
 from LogicLayer.destinationsLL import DestinationsLL
 from Models.destination import Destination
-from NaNAir39 import Page
+from NaNAir39.UI.page import Page
 
 
 class DestinationUI(Page):
