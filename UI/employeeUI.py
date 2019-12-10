@@ -2,6 +2,7 @@
 from LogicLayer.employeeLL import EmployeeLL
 from Models.employee import Employee
 from LogicLayer.voyageLL import VoyageLL
+import datetime
 
 
 class EmployeeUI:
@@ -297,7 +298,17 @@ class EmployeeUI:
 
 
     def available_employees(self):
-        pass
+
+
+        self.header("All available employees")
+
+        isValid = False
+        while isValid == False:
+            date = self.get_date()
+            if date == None:
+                break
+
+
 
     def available_pilots(self):
         pass
@@ -317,27 +328,29 @@ class EmployeeUI:
             if date == None:
                 break
 
-            voyage = self.__voyage_LL.get_all_upcoming_voyages()
+            try:
+                voyage = self.__voyage_LL.get_all_upcoming_voyages()
 
-            for x in voyage:
-                if x[3] == date or x[4] == date:
-                    employees = x[5:]
-                    destination = x[2]
+                for x in voyage:
+                    if x[3] == date or x[4] == date:
+                        employees = x[5:]
+                        destination = x[2]
 
-            print()
-            header = "\n{:<5} {:>10} {:>23} {:>15}\n".format("SSN", "Name", "Position", "Rank")
-            print(header)
+                if len(employees) > 0:
+                    header = "\n{:<5} {:>10} {:>23} {:>15}\n".format("SSN", "Name", "Position", "Rank")
+                    print(header)
 
-            for i in employees:
-                employee = self.__employee_LL.get_employee(i)
+                for i in employees:
+                    employee = self.__employee_LL.get_employee(i)
+                    print("{:<5}\t{:<17}\t{:<17}\t{:<15}".format(employee[0], employee[1], employee[2], employee[3]))
 
-                print("{:<5}\t{:<17}\t{:<17}\t{:<15}".format(employee[0], employee[1], employee[2], employee[3]))
-
-            print("\nDestination:\t\t{}".format(destination))
-            if input("\nY: Yes\nAnything else: No\nWould you like to enter another date? ").upper() == "Y":
-                isValid = False
-            else:
-                break
+                print("\nDestination:\t\t{}".format(destination))
+                if input("\nY: Yes\nAnything else: No\nWould you like to enter another date? ").upper() == "Y":
+                    isValid = False
+                else:
+                    break
+            except:
+                print("\nNo busy employees at this time.\n")
 
 
     def busy_pilots(self):
@@ -351,27 +364,30 @@ class EmployeeUI:
             if date == None:
                 break
 
-            voyage = self.__voyage_LL.get_all_upcoming_voyages()
+            try:
+                voyage = self.__voyage_LL.get_all_upcoming_voyages()
 
-            for x in voyage:
-                if x[3] == date or x[4] == date:
-                    pilots = x[5:7]
-                    destination = x[2]
+                for x in voyage:
+                    if x[3] == date or x[4] == date:
+                        pilots = x[5:7]
+                        destination = x[2]
 
-            print()
-            header = "\n{:<5} {:>10} {:>19}\n".format("SSN", "Name", "Rank")
-            print(header)
+                if len(pilots) > 0:
+                    header = "\n{:<5} {:>10} {:>19}\n".format("SSN", "Name", "Rank")
+                    print(header)
 
-            for i in pilots:
-                employee = self.__employee_LL.get_employee(i)
+                for i in pilots:
+                    employee = self.__employee_LL.get_employee(i)
 
-                print("{:<5}\t{:<17}\t{:<15}".format(employee[0], employee[1], employee[3]))
+                    print("{:<5}\t{:<17}\t{:<15}".format(employee[0], employee[1], employee[3]))
 
-            print("\nDestination:\t\t{}".format(destination))
-            if input("\nY: Yes\nAnything else: No\nWould you like to enter another date? ").upper() == "Y":
-                isValid = False
-            else:
-                break
+                print("\nDestination:\t\t{}".format(destination))
+                if input("\nY: Yes\nAnything else: No\nWould you like to enter another date? ").upper() == "Y":
+                    isValid = False
+                else:
+                    break
+            except:
+                print("\nNo busy pilots at this time.\n")
 
     def busy_flight_attendants(self):
         """ Lists information about all flight attendants who are busy at the given date/time and the
@@ -384,27 +400,30 @@ class EmployeeUI:
             if date == None:
                 break
 
-            voyage = self.__voyage_LL.get_all_upcoming_voyages()
+            try:
+                voyage = self.__voyage_LL.get_all_upcoming_voyages()
 
-            for x in voyage:
-                if x[3] == date or x[4] == date:
-                    flight_attendants = x[7:]
-                    destination = x[2]
+                for x in voyage:
+                    if x[3] == date or x[4] == date:
+                        flight_attendants = x[7:]
+                        destination = x[2]
 
-            print()
-            header = "\n{:<5} {:>10} {:>19}\n".format("SSN", "Name", "Rank")
-            print(header)
+                if len(flight_attendants) > 0:
+                    header = "\n{:<5} {:>10} {:>19}\n".format("SSN", "Name", "Rank")
+                    print(header)
 
-            for i in flight_attendants:
-                employee = self.__employee_LL.get_employee(i)
+                for i in flight_attendants:
+                    employee = self.__employee_LL.get_employee(i)
 
-                print("{:<5}\t{:<17}\t{:<15}".format(employee[0], employee[1], employee[3]))
+                    print("{:<5}\t{:<17}\t{:<15}".format(employee[0], employee[1], employee[3]))
 
-            print("\nDestination:\t\t{}".format(destination))
-            if input("\nY: Yes\nAnything else: No\nWould you like to enter another date? ").upper() == "Y":
-                isValid = False
-            else:
-                break
+                print("\nDestination:\t\t{}".format(destination))
+                if input("\nY: Yes\nAnything else: No\nWould you like to enter another date? ").upper() == "Y":
+                    isValid = False
+                else:
+                    break
+            except:
+                print("\nNo busy flight attendants at this time.\n")
 
     def list_all_pilots(self):
         """ Lists all pilots in employee.csv file. """
@@ -504,7 +523,6 @@ class EmployeeUI:
                 continue
 
 
-
     def list_all_flight_attendants(self):
 
         self.header("All flight attendants")
@@ -522,4 +540,4 @@ class EmployeeUI:
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.busy_flight_attendants()
+    a.register_employee()

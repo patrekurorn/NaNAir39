@@ -49,7 +49,7 @@ class EmployeeLL:
                 if row[0] == ssn:
                     return row
 
-        return False
+        return "hi"
 
     def print_employee(self, ssn):
         data = self.get_all_employees()
