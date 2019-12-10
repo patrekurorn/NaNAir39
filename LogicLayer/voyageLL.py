@@ -62,7 +62,9 @@ class VoyageLL:
                 writer = file.writer(file)
                 writer.writerow([aded_voyage.get_fli])
 
-        pass
+            except:
+                pass
+
 
     def list_unmanned_voyages(self):
         pass

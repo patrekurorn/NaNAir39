@@ -18,6 +18,7 @@ class VoyageUI:
         print()
 
     def register_voyage(self):  # Planning manager
+        pass
 
 
     def register_voyage_PM(self):
