@@ -1,5 +1,6 @@
 import csv
 from Models.voyage import Voyage
+from Models.voyage_Sm import VoyageSm
 
 
 class VoyageLL:
@@ -47,9 +48,19 @@ class VoyageLL:
 
 
     @staticmethod
-    def register_voyage_SM(added_voyage):
-        """ Þarf að bætta við til að leifa SM að appenda í nú þegar búinn til csv skrá frá SM"""
+    def register_voyage_SM(aded_voyage):
+        """ Þarf að bætta við til að leifa SM að appenda í nú þegar búinn til csv skrá frá PM"""
+        flightNumber = aded_voyage.get_captain()
+        captain = added_voyage.get_copilot()
+        fsm = aded_voyage.get_fsm()
+        fa1 = added_voyage.get_fa1()
+        fa2 = added_voyage.get_fa2()
 
+        path = "../Data/UpcomingFlightsSM.csv"
+        with open(path,"a+") as file:
+            try:
+                writer = file.writer(file)
+                writer.writerow([aded_voyage.get_fli])
 
         pass
 
@@ -63,9 +74,8 @@ class VoyageLL:
         pass
 
     def list_all_destinations(self):
-<<<<<<< HEAD
         pass
-=======
+
 
         destinations = []
         path = "../Data/Destinations.csv"
@@ -76,7 +86,7 @@ class VoyageLL:
                 destinations.append(row[1])
 
         return destinations
->>>>>>> 8b1c29da4e76ebb71cc80b648673a437624ed75b
+
 
     def voyage_repetition(self):
         pass

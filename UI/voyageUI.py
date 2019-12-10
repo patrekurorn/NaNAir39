@@ -17,10 +17,8 @@ class VoyageUI:
         print("-" * 50)
         print()
 
-<<<<<<< HEAD
-=======
     def register_voyage(self):  # Planning manager
->>>>>>> 8b1c29da4e76ebb71cc80b648673a437624ed75b
+
 
     def register_voyage_PM(self):
         """ Header """
