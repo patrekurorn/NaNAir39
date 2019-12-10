@@ -2,8 +2,7 @@
 from LogicLayer.employeeLL import EmployeeLL
 from Models.employee import Employee
 from LogicLayer.voyageLL import VoyageLL
-import datetime
-import dateutil.parser
+
 
 class EmployeeUI:
 
@@ -53,7 +52,6 @@ class EmployeeUI:
                                                                                                                                              employee[4],employee[5],
                                                                                                                                              employee[6],employee[7],
                                                                                                                                              employee[8]))
-
             except:
                 print("\nSocial security number not in system.")
 
@@ -70,10 +68,11 @@ class EmployeeUI:
             if self.__employee_LL.ssn_valid(ssn):
                 print("\nEmployee already exists.\n")
                 choice = input("Y: Yes\nAnything else: No\nDo you want to continue? ").upper()
-                if choice == "Y":
+                if choice == "Y" or choice == "YES":
                     continue
                 else:
                     break
+
             else:
                 new_ssn = ssn
                 name = input("Enter name: ")
@@ -100,6 +99,7 @@ class EmployeeUI:
                         break
                 else:
                     print("\nNo employee created.\n")
+
                     choice = input("Y: Yes\nAnything else: No\nDo you want to continue? ").upper()
                     if choice == "Y":
                         continue
@@ -501,3 +501,4 @@ class EmployeeUI:
 if __name__ == "__main__":
     a = EmployeeUI()
     a.list_all_pilots()
+    a.register_employee()

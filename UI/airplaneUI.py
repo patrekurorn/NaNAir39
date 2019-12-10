@@ -35,7 +35,6 @@ class AirplaneUI:
 
             new_airplane = Airplane(planeInsignia, planeTypeId, manufacturer, model, capacity)
             print("\n{}\n".format(new_airplane))
-
             inputed = input("Do you want to register this airplane?").upper()
 
             if inputed == "Y".upper()  or inputed == "YES":

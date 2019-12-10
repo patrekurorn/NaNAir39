@@ -85,9 +85,10 @@ class EmployeeLL:
         email = new_employee.get_email()
 
         path = "../Data/employee.csv"
-        with open(path, "a+" ) as file:
+        with open(path, "a") as file:
             try:
-                file.write("\n{},{},{},{},{},{},{},{},{}".format(ssn, name, position, rank, licence, address, mobile, landlineNr, email))
+                writer = csv.writer(file)
+                writer.writerow([ssn, name, position, rank, licence, address, mobile, landlineNr, email])
             except:
                 return False
 
