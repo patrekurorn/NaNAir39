@@ -3,7 +3,11 @@ from time import sleep
 from UI.destinationUI import DestinationUI
 import keyboard
 import string
+from UI.voyageUI import VoyageUI
 
+from LogicLayer.destinationsLL import DestinationsLL
+
+import string
 
 class Page:
     def Clear_screen(self):
@@ -17,13 +21,13 @@ class Page:
             print("Please enter a valid number")
             self.valid = True
 
-    def print_header(self):
+    def Print_header(self):
         print("___________________________________________________________\n" +
               "                        NaN Air                            \n" +
               "___________________________________________________________\n" +
               "-----------------------------------------------------------\n")
 
-    def print_footer(self):
+    def Print_footer(self):
         print("\n" +
               "-----------------------------------------------------------\n" +
               "___________________________________________________________\n" +
@@ -49,9 +53,9 @@ class User(Page):
         self.valid_inputs = ["1", "2"]
 
         self.Clear_screen()
-        self.print_header()
+        self.Print_header()
         print("1.Staff manager\n2.Planning manager")
-        self.print_footer()
+        self.Print_footer()
         self.Last_input_valid_check()
 
         user_input = keyboard.read_key()
@@ -93,9 +97,9 @@ class User(Page):
         self.valid_inputs = ["1", "2", "3"]
 
         self.Clear_screen()
-        self.print_header()
+        self.Print_header()
         print("1. Man flights \n2. Workforce_information\n3. Manage work force")
-        self.print_footer()
+        self.Print_footer()
         self.Last_input_valid_check()
 
         user_input = keyboard.read_key()
@@ -136,14 +140,49 @@ class User(Page):
         self.valid_inputs = ["1", "2", "3"]
 
         self.Clear_screen()
-        self.print_header()
+        self.Print_header()
         print("1. Manage voyages\n2. Workforce information\n3. Manage destinations")
-        self.print_footer()
+        self.Print_footer()
         self.Last_input_valid_check()
 
         user_input = keyboard.read_key()
         keyboard.read_key()
         print(user_input)
+        
+
+        def manage_voyages():
+            
+            self.Clear_screen
+            user.Print_header()
+            voyage_pick = input("1.Register a new voyager\n2.Edit a voyage\n3.Cancel a voyage ").strip()
+            self.Print_footer
+            if voyage_pick not in self.valid_inputs:
+                self.Last_input_valid_check
+                user.os_virkni()
+                manage_voyages()
+
+            elif voyage_pick =="1":
+                user.get_footer()
+                pass
+
+            elif voyage_pick =="2":
+                user.get_footer()
+                pass
+
+            elif voyage_pick == "3":
+                user.get_footer()
+                pass
+
+
+
+
+        def list_of_voyages():
+            pass
+
+        def manage_destinations():
+            pass
+
+
 
         if user_input not in self.valid_inputs:
 
@@ -179,7 +218,6 @@ class User(Page):
                 "7. find employee")
         self.Print_footer()
             
-
 
 
 

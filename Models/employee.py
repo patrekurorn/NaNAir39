@@ -32,7 +32,7 @@ class Employee:
         def set_name(self, other):
             self.name = other
 
-        """ Role """
+        """ Position """
         def get_position(self):
             return self.position
         def set_position(self, other):
@@ -56,11 +56,6 @@ class Employee:
         def set_address(self, other):
             self.address = other
 
-        """ Postion """
-        def get_position(self):
-            return self.position
-        def set_position(self, other):
-            self.position = other
 
         """ Landline Nr """
         def get_landlineNr(self):
