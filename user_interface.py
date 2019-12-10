@@ -1,109 +1,216 @@
 import os
 from time import sleep
+from UI.destinationUI import DestinationUI
 import keyboard
+import string
 
-VALID = [1,2,3]
 
-class User:
-    def __init__(self,first_pick = None, second_pick = None):
+class Page:
+    def Clear_screen(self):
+        if os.name == "nt":
+            os.system('cls')
+        else:
+            os.system('clear')
+
+    def Last_input_valid_check(self):
+        if self.valid == False:
+            print("Please enter a valid number")
+            self.valid = True
+
+    def print_header(self):
+        print("___________________________________________________________\n" +
+              "                        NaN Air                            \n" +
+              "___________________________________________________________\n" +
+              "-----------------------------------------------------------\n")
+
+    def print_footer(self):
+        print("\n" +
+              "-----------------------------------------------------------\n" +
+              "___________________________________________________________\n" +
+              "\n" +
+              "                          _|_                              \n" +
+              "                   *---o--(_)--o---*                       \n" +
+              "___________________________________________________________")
+
+
+
+class User(Page):
+    def __init__(self, first_pick=None, second_pick=None, valid=True):
+        self.valid_inputs = []
         self.first_pick = first_pick
         self.second_pick = second_pick
+        self.valid = valid
 
     def __str__(self):
-        return "First pick:{}, second pick: {}".format(str(self.first_pick),str(self.second_pick))
+        return "First pick:{}, second pick: {}".format(str(self.first_pick), str(self.second_pick))
 
+    def Home(self):
 
-    def home_window(self):
-        def invalid():
-            print("Please enter a valid number ")
-            user.home_window()
+        self.valid_inputs = ["1", "2"]
 
-        print("1. Staff manager \n2. Planning manager")
+        self.Clear_screen()
+        self.print_header()
+        print("1.Staff manager\n2.Planning manager")
+        self.print_footer()
+        self.Last_input_valid_check()
 
-        # try:
-        #     userInput_int = int(input("1. Staff manager \n2. Planning manager \nYour pick: "))
+        user_input = keyboard.read_key()
+        keyboard.read_key()
+        print(user_input)
 
-        # except KeyError:
-        #     invalid()
+        print(user_input)
 
-        user_pick = keyboard.read_key()
-        
-        if user_pick == '1':
-            self.first_pick = 1
+        if user_input in self.valid_inputs:
+            escaped = False
+            self.first_pick = user_input
+            if user_input == "1":
 
-        elif user_pick == '2':
-            self.first_pick = 2
+                while not escaped:
+                    escaped = self.Staff_manager()
+
+                return False
+            else:
+
+                while not escaped:
+                    escaped = self.Planning_manager()
+
+                return False
+        else:
+            if user_input == "esc":
+                # Return "True" to end the outside loop (in this case the loop in the main program) displaying the screen.
+                return True
+            else:
+                self.valid = False
+                return False
+
+    def Staff_manager(self):
+        """
+        Displays the option screen for a staff manager.
+
+        Options: Man flights, lists of work force and manage work force
+
+        """
+        self.valid_inputs = ["1", "2", "3"]
+
+        self.Clear_screen()
+        self.print_header()
+        print("1. Man flights \n2. Workforce_information\n3. Manage work force")
+        self.print_footer()
+        self.Last_input_valid_check()
+
+        user_input = keyboard.read_key()
+        keyboard.read_key()
+        print(user_input)
+
+        if user_input not in self.valid_inputs:
+
+            if user_input == "esc":
+                # return "True" so the loop displaying the screen ends.
+                return True
+
+            else:
+                # set valid to false to display a "... valid input..." message
+                self.valid = False
+                # Return "False" to display the screen again
+                return False
 
         else:
-            invalid()
+            if user_input == "1":
+                """Man flights"""
 
-        return self.first_pick
+                print("MAN FLIGHTS")
+                
+            elif user_input == "2":
+                """List of work force"""
 
-    def second_window(self):
+                print("List of work force".upper())
+            elif user_input == "3":
+                """Manage work force"""
 
-        def invalid():
-            print("Please enter a valid number ")
+                print("Manage work force".upper())
 
-        def first_pick():
-            try:
-                pick_input = int(input("1. Man flights \n2. List of work force\n3. Manage work force\nYour pick: "))
-                if pick_input not in VALID:
-                    invalid()
-                    first_pick()
-                else:
-                    self.second_pick = pick_input
-                    return self.second_pick
+        
 
-            except KeyError:
-                invalid()
-                first_pick()
+    def Planning_manager(self):
 
-        def second_pick():
-            try:
-                pick_input = int(input("1. Manage voyages\n2. List of voyages\n3. Manage destinations\nYour pick: "))
-                if pick_input not in VALID:
-                    invalid()
-                    second_pick()
-                else:
-                    self.second_pick = pick_input
-                    return self.second_pick
+        self.valid_inputs = ["1", "2", "3"]
 
-            except KeyError:
-                invalid()
-                second_pick()
+        self.Clear_screen()
+        self.print_header()
+        print("1. Manage voyages\n2. Workforce information\n3. Manage destinations")
+        self.print_footer()
+        self.Last_input_valid_check()
 
-        if self.first_pick == 1:
-            second_pick()
+        user_input = keyboard.read_key()
+        keyboard.read_key()
+        print(user_input)
 
-        elif self.first_pick  == 2:
-            second_pick()
+        if user_input not in self.valid_inputs:
+
+            if user_input == "esc":
+                # return "True" so the loop displaying the screen ends.
+                return True
+            else:
+                # set valid to false to display a "... valid input..." message
+                self.valid = False
+                # Return "False" to display the screen again
+                return False
+
+        else:
+            if user_input == "1":
+                print("MANAGE VOYAGES")
+            if user_input == "2":
+                print("List of voyages".upper())
+            if user_input == "3":
+                print("Manage destinations".upper())
+                DestinationUI()
 
 
-    def get_header(self):
-        print ("___________________________________________________________\n" + \
-                "                        NaN Air                            \n" + \
-                "___________________________________________________________\n" + \
-                "-----------------------------------------------------------\n" + \
-                "\n",end="")
+    def Workforce_information(self):
+        
+        self.Clear_screen()
+        self.Print_header()
+        print(  "1. List of all airplanes\n" + \
+                "2. List of all employees\n" + \
+                "3. List of all flight attendants\n" + \
+                "4. List of all pilots\n" + \
+                "5. List of all available employees\n" + \
+                "6. List of all busy employees\n" + \
+                "7. find employee")
+        self.Print_footer()
+            
 
-    def get_footer(self):
-        print("-----------------------------------------------------------\n" + \
-                "___________________________________________________________\n" + \
-                "\n" + \
-                "                          _|_                              \n" + \
-                "                   *---o--(_)--o---*                       \n" + \
-                "___________________________________________________________")
 
+
+
+
+
+
+
+
+
+
+
+
+    
 
 user = User()
-user.get_header()
-user_selection = user.home_window()
-user.get_footer()
-user.second_window()
+exit = False
 
-print(user)
+while(not exit):
+    user_selection = user.Home()
+    exit = user_selection
 
-
-
+# sleep(0.5) # Freeze screen for n seconds
 
 
+# if user.first_pick == "1":
+#     user.Staff_manager()
+
+# elif user.first_pick== "2":
+#     user.Planning_manager()
+
+#print("home window: {} second_window: {}".format(user.first_pick,user.second_pick))
+
+
+# print(user)

@@ -1,19 +1,28 @@
 
+import os
+import string
 from LogicLayer.destinationsLL import DestinationsLL
 from Models.destination import Destination
+from NaNAir39 import Page
 
-class DestinationUI:
+class DestinationUI(Page):
 
     def __init__(self):
         self.__destinationLL = DestinationsLL()
 
     def header(self):
-        pass
+        """ prints a header on the user interface """
+
+        print("-" * 50)
+        print("|{:^48}|".format(head))
+        print("-" * 50)
+        print()
+
 
     def register_destination(self):
 
-        # setja header
-
+        self.Clear_screen()
+        self.Print_header()
         print("Registering a new destination")
         id = input("Enter a destination ID: ")
         if self.__destinationLL.check_destination(id):
@@ -38,3 +47,4 @@ class DestinationUI:
 if __name__ == "__main__":
     a = DestinationUI()
     a.register_destination()
+

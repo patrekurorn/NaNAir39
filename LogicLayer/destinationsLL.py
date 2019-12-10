@@ -50,21 +50,28 @@ class DestinationsLL(object):
         path = "../Data/Destinations.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
+                file.write("{} {} {} {} {} {} {}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
                 file.write("\n{},{},{},{},{},{},{}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
+
             except:
                 return False
 
     def edit_destination(self):
+        """ örruglega gert í UI"""
+
         pass
 
     def edit_contact_info(self):
+        """ Örruglega gert í UI"""
         pass
 
 
 
 if __name__ == "__main__":
     a = DestinationsLL()
-
+    print(a.get_all_destinations())
+    b = ("a","a","a","a","a","a","a",)
+    a.register_destination(b)
 
 
 
