@@ -37,7 +37,7 @@ class VoyageLL:
         arrival_time = new_voyage.get_arrival_time()
 
         path = "../Data/UpcomingFlightsPM.csv"
-        with open(path, "a+", encoding="utf-8") as file:
+        with open(path, "a+") as file:
             try:
                 file.write("{},{},{},{},{}".format(flightNumber, departingFrom, arrivingAt, departure_time, arrival_time))
             except:

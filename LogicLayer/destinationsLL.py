@@ -49,11 +49,9 @@ class DestinationsLL(object):
         contactNumber = new_destination.get_contact_number()
 
         path = "../Data/Destinations.csv"
-        with open(path, "a+", encoding="utf-8") as file:
+        with open(path, "a+") as file:
             try:
                 file.write("{} {} {} {} {} {} {}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
-                file.write("\n{},{},{},{},{},{},{}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
-
             except:
                 return False
 
@@ -69,11 +67,5 @@ class DestinationsLL(object):
 
 
 if __name__ == "__main__":
-    a = DestinationsLL()
-    print(a.get_all_destinations())
-    b = ("a","a","a","a","a","a","a",)
-    a.register_destination(b)
-
-
 
 
