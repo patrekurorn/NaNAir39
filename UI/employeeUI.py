@@ -651,7 +651,7 @@ class EmployeeUI:
         for index, row in enumerate(all_flight_attendants):
             for x in row:
                 flight_attendants += (x + ", ")
-            print("{}. {}".format(index+1, flight_attendants))
+            print("{}.  \t{}".format(index+1, flight_attendants))
             flight_attendants = ""
 
 
@@ -659,4 +659,4 @@ class EmployeeUI:
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.edit_employee()
+    a.list_all_flight_attendants()
