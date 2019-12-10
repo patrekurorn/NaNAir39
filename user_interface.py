@@ -33,11 +33,13 @@ class User(Page):
         self.Print_footer()
         self.Last_input_valid_check()
 
+        # Read_key() reads key_down and key_up seperately. Since there's no use for the "key_up" 
+        # I don't assign it to a variable but I write it here to keep it from interfering with
+        # the program and for clarifications.
         user_input = keyboard.read_key()
         keyboard.read_key()
         print(user_input)
 
-        print(user_input)
 
         if user_input in self.valid_inputs:
             escaped = False

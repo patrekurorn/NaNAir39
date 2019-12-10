@@ -49,7 +49,8 @@ class DestinationsLL(object):
         path = "../Data/Destinations.csv"
         with open(path, "a+") as file:
             try:
-                file.write("{} {} {} {} {} {} {}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
+                writer = csv.writer(file)
+                writer.writerow([destinationID,country,airport,flightDuration,distanceFromIceland,contactName,contactNumber])
             except:
                 return False
 
@@ -64,5 +65,5 @@ class DestinationsLL(object):
 
 
 if __name__ == "__main__":
+    a = DestinationsLL()
 
-    pass

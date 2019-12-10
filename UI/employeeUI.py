@@ -2,8 +2,7 @@
 from LogicLayer.employeeLL import EmployeeLL
 from Models.employee import Employee
 from LogicLayer.voyageLL import VoyageLL
-import datetime
-import dateutil.parser
+
 
 class EmployeeUI:
 
@@ -53,7 +52,6 @@ class EmployeeUI:
                                                                                                                                              employee[4],employee[5],
                                                                                                                                              employee[6],employee[7],
                                                                                                                                              employee[8]))
-
             except:
                 print("\nSocial security number not in system.")
 
@@ -70,10 +68,11 @@ class EmployeeUI:
             if self.__employee_LL.ssn_valid(ssn):
                 print("\nEmployee already exists.\n")
                 choice = input("Y: Yes\nAnything else: No\nDo you want to continue? ").upper()
-                if choice == "Y":
+                if choice == "Y" or choice == "YES":
                     continue
                 else:
                     break
+
             else:
                 new_ssn = ssn
                 name = input("Enter name: ")
@@ -100,6 +99,7 @@ class EmployeeUI:
                         break
                 else:
                     print("\nNo employee created.\n")
+
                     choice = input("Y: Yes\nAnything else: No\nDo you want to continue? ").upper()
                     if choice == "Y":
                         continue
@@ -324,8 +324,15 @@ class EmployeeUI:
                     employees = x[5:]
                     destination = x[2]
 
+            print()
+            header = "\n{:<5} {:>10} {:>23} {:>15}\n".format("SSN", "Name", "Position", "Rank")
+            print(header)
+
             for i in employees:
-                print(self.__employee_LL.print_employee(i))
+                employee = self.__employee_LL.get_employee(i)
+
+                print("{:<5}\t{:<17}\t{:<17}\t{:<15}".format(employee[0], employee[1], employee[2], employee[3]))
+
             print("\nDestination:\t\t{}".format(destination))
             if input("\nY: Yes\nAnything else: No\nWould you like to enter another date? ").upper() == "Y":
                 isValid = False
@@ -351,8 +358,15 @@ class EmployeeUI:
                     pilots = x[5:7]
                     destination = x[2]
 
+            print()
+            header = "\n{:<5} {:>10} {:>19}\n".format("SSN", "Name", "Rank")
+            print(header)
+
             for i in pilots:
-                print(self.__employee_LL.print_employee(i))
+                employee = self.__employee_LL.get_employee(i)
+
+                print("{:<5}\t{:<17}\t{:<15}".format(employee[0], employee[1], employee[3]))
+
             print("\nDestination:\t\t{}".format(destination))
             if input("\nY: Yes\nAnything else: No\nWould you like to enter another date? ").upper() == "Y":
                 isValid = False
@@ -377,8 +391,15 @@ class EmployeeUI:
                     flight_attendants = x[7:]
                     destination = x[2]
 
+            print()
+            header = "\n{:<5} {:>10} {:>19}\n".format("SSN", "Name", "Rank")
+            print(header)
+
             for i in flight_attendants:
-                print(self.__employee_LL.print_employee(i))
+                employee = self.__employee_LL.get_employee(i)
+
+                print("{:<5}\t{:<17}\t{:<15}".format(employee[0], employee[1], employee[3]))
+
             print("\nDestination:\t\t{}".format(destination))
             if input("\nY: Yes\nAnything else: No\nWould you like to enter another date? ").upper() == "Y":
                 isValid = False
@@ -401,7 +422,7 @@ class EmployeeUI:
     def list_airplane_by_pilot(self):
         """ Lists which airplane the given pilot has a licence to. """
 
-        self.header("Pilot listing by airplane")
+        self.header("List airplane by pilot")
         pilots = self.__employee_LL.list_all_pilots()
 
         isValid = False
@@ -434,6 +455,7 @@ class EmployeeUI:
         NAFokkerF28 = 2
         NAFokkerF100 = 3
 
+        self.header("List pilots by airplane")
 
         isValid = False
         while isValid == False:
@@ -500,4 +522,4 @@ class EmployeeUI:
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.list_all_pilots()
+    a.busy_flight_attendants()
