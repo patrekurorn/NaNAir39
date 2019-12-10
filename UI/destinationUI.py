@@ -5,6 +5,7 @@ from LogicLayer.destinationsLL import DestinationsLL
 from Models.destination import Destination
 from NaNAir39 import Page
 
+
 class DestinationUI(Page):
     ID = 0
     DESTINATION = 1
@@ -28,7 +29,6 @@ class DestinationUI(Page):
 
 
     def register_destination(self):
-
         self.Clear_screen()
         self.Print_header()
         print("Registering a new destination")
@@ -77,10 +77,6 @@ class DestinationUI(Page):
             except ValueError:
                 print("Enter a valid Number between 1-{}".format(destinationsListLen))
                 editDestinationChoice_int = input("Enter the number of the destination you want to edit: ")
-
-        
-        
-    
 
 
 

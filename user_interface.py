@@ -127,6 +127,7 @@ class User(Page):
 
 
             elif pick_input == "2":
+                pass
 
             elif user_input == "2":
                 """List of work force"""
@@ -135,6 +136,7 @@ class User(Page):
                 #svo list of work force
 
             elif pick_input == "3":
+                pass
             elif user_input == "3":
                 """Manage work force"""
 
@@ -215,6 +217,7 @@ class User(Page):
 
 
             if pick_input == "2":
+                pass
             if user_input == "1":
                 print("MANAGE VOYAGES")
             if user_input == "2":

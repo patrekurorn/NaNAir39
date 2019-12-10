@@ -58,6 +58,7 @@ class VoyageLL:
         pass
 
     def list_all_destinations(self):
+
         pass
 
     def voyage_repetition(self):
