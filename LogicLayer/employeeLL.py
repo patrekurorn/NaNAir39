@@ -189,6 +189,6 @@ class EmployeeLL:
 
 if __name__ == "__main__":
     a = EmployeeLL()
-    a.available_employees()
+    print(a.get_all_employees())
 
 
