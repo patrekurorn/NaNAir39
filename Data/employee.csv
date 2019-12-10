@@ -1,7 +1,4 @@
-ssn,name,position,rank,licence,address,mobile,landlineNr,email
-3009907461,William Carillo,Pilot,Captain,NAFokkerF100,Fellsmúli 1,8998801,**,williamcarillo@nanair.is
-2910858778,Virginia Ho,Pilot,Captain,NABAE146,Fellsmúli 2,8998802,**,virginiaho@nanair.is
-2706838569,Gerard Nelson,Pilot,Captain,NAFokkerF100,Fellsmúli 3,8998803,**,gerardnelson@nanair.is
+ssn,name,position,rank,licence,address,mobile,landlineNr,email2706838569,Gerard Nelson,Pilot,Captain,NAFokkerF100,Fellsmúli 3,8998803,**,gerardnelson@nanair.is
 2209955782,Allen Ley,Pilot,Captain,NABAE146,Fellsmúli 4,8998804,**,allenley@nanair.is
 2907675667,Felecia Moye,Pilot,Captain,NABAE146,Fellsmúli 5,8998805,**,feleciamoye@nanair.is
 1309797899,Tyler Anderson,Pilot,Captain,NAFokkerF28,Fellsmúli 6,8998806,**,tyleranderson@nanair.is

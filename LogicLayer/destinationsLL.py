@@ -32,8 +32,6 @@ class DestinationsLL(object):
 
         return False
 
-
-
     @staticmethod
     def register_destination(new_destination):
         """
@@ -47,11 +45,10 @@ class DestinationsLL(object):
         contactName = new_destination.get_contact_name()
         contactNumber = new_destination.get_contact_number()
         path = "../Data/Destinations.csv"
-        with open(path, "a+", encoding="utf-8") as file:
+        with open(path, "a+") as file:
             try:
-                file.write("{} {} {} {} {} {} {}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
-                file.write("\n{},{},{},{},{},{},{}".format(destinationID, country, airport, flightDuration, distanceFromIceland, contactName, contactNumber))
-
+                writer = csv.writer(file)
+                writer.writerow([destinationID,country,airport,flightDuration,distanceFromIceland,contactName,contactNumber])
             except:
                 return False
 
@@ -91,13 +88,6 @@ class DestinationsLL(object):
                 self.register_destination(new_destination)
 
 
-
 if __name__ == "__main__":
     a = DestinationsLL()
-    print(a.get_all_destinations())
-    b = ("a","a","a","a","a","a","a",)
-    a.register_destination(b)
-
-
-
 

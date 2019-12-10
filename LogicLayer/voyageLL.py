@@ -1,5 +1,7 @@
 import csv
 from Models.voyage import Voyage
+from Models.voyage_Sm import VoyageSm
+
 
 class VoyageLL:
 
@@ -37,16 +39,40 @@ class VoyageLL:
         arrival_time = new_voyage.get_arrival_time()
 
         path = "../Data/UpcomingFlightsPM.csv"
-        with open(path, "a+", encoding="utf-8") as file:
+        with open(path, "a") as file:
             try:
-                file.write("{},{},{},{},{}".format(flightNumber, departingFrom, arrivingAt, departure_time, arrival_time))
+                writer = csv.writer(file)
+                writer.writerow([flightNumber, departingFrom, arrivingAt, departure_time, arrival_time])
             except:
                 return False
 
-    @staticmethod
-    def register_voyage_SM(new_voyage):
-        pass
 
+    @staticmethod
+    def register_voyage_SM(aded_voyage):
+        pass
+        """ Þarf að bætta við til að leifa SM að appenda í nú þegar búinn til csv skrá frá PM
+        flightNumber = aded_voyage.get_captain()
+        captain = added_voyage.get_copilot()
+        fsm = aded_voyage.get_fsm()
+        fa1 = added_voyage.get_fa1()
+        fa2 = added_voyage.get_fa2()
+
+        path = "../Data/UpcomingFlightsSM.csv"
+        with open(path,"a+") as file:
+            try:
+                pass
+                writer = file.writer(file)
+                writer.writerow([aded_voyage.get_fli])
+        """
+
+
+
+<<<<<<< HEAD
+=======
+            except:
+                pass
+
+>>>>>>> 557c996e4283d17230b1a3b8b98cc04bd3b300d5
 
     def list_unmanned_voyages(self):
         pass
@@ -60,10 +86,23 @@ class VoyageLL:
     def list_all_destinations(self):
         pass
 
+
+        destinations = []
+        path = "../Data/Destinations.csv"
+        with open(path, encoding="utf-8") as file:
+            reader = csv.reader(file)
+            next(reader)
+            for row in reader:
+                destinations.append(row[1])
+
+        return destinations
+
+
     def voyage_repetition(self):
         pass
 
     def edit_voyage(self):
+
         pass
 
     def edit_time(self):
@@ -73,7 +112,7 @@ class VoyageLL:
         pass
 
     def cancel_voyage(self):
-        pass
+        """ UI """
 
     def list_voyages_day(self):
         pass
@@ -87,4 +126,4 @@ class VoyageLL:
 
 if __name__ == "__main__":
     a = VoyageLL()
-    print(a.get_all_upcoming_voyages())
+    print(a.list_all_destinations())

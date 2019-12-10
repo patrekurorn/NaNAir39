@@ -6,6 +6,8 @@ class AirplaneLL:
     def __init__(self):
         pass
 
+
+
     def get_all_airplanes(self):
         """
         :return: A list of all the airplanes
@@ -40,15 +42,17 @@ class AirplaneLL:
         capacity = new_airplane.get_capacity()
 
         path = "../Data/Aircraft.csv"
-        with open(path, "a+", encoding="utf-8") as file:
+        with open(path, "a+") as file:
             try:
-                file.write("{},{},{},{},{}".format(planeInsignia, planeTypeId, manufacturer, model, capacity))
+                writer = csv.writer(file)
+                writer.writerow([planeInsignia,planeTypeId,manufacturer,model,capacity])
             except:
                 return False
 
 
 
     def available_airplanes(self):
+        """ örruglega gert í UI """
         pass
 
 
