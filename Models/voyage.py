@@ -1,5 +1,3 @@
-
-
 class Voyage:
 
     def __init__(self, flightNumber, departingFrom, arrivingAt, departure, arrival):
@@ -15,7 +13,6 @@ class Voyage:
                                                                                                                      self.arrivingAt,
                                                                                                                      self.departureTime,
                                                                                                                      self.arrivalTime)
-
     """Getters"""
     def get_flight_number(self):
         return self.flightNumber

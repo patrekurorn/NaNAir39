@@ -1,6 +1,7 @@
 import csv
 from Models.voyage import Voyage
 
+
 class VoyageLL:
 
     def __init__(self):
@@ -37,14 +38,19 @@ class VoyageLL:
         arrival_time = new_voyage.get_arrival_time()
 
         path = "../Data/UpcomingFlightsPM.csv"
-        with open(path, "a+") as file:
+        with open(path, "a") as file:
             try:
-                file.write("{},{},{},{},{}".format(flightNumber, departingFrom, arrivingAt, departure_time, arrival_time))
+                writer = csv.writer(file)
+                writer.writerow([flightNumber, departingFrom, arrivingAt, departure_time, arrival_time])
             except:
                 return False
 
+
     @staticmethod
-    def register_voyage_SM(new_voyage):
+    def register_voyage_SM(added_voyage):
+        """ Þarf að bætta við til að leifa SM að appenda í nú þegar búinn til csv skrá frá SM"""
+
+
         pass
 
     def list_unmanned_voyages(self):
@@ -57,7 +63,6 @@ class VoyageLL:
         pass
 
     def list_all_destinations(self):
-
         pass
 
     def voyage_repetition(self):
