@@ -298,6 +298,7 @@ class EmployeeUI:
 
 
     def available_employees(self):
+        """ Lists all available employees on a given day/time. """
 
         self.header("All available employees")
 
@@ -340,6 +341,7 @@ class EmployeeUI:
 
 
     def available_pilots(self):
+        """ Lists all available pilots on a given day/time. """
 
         self.header("All available pilots")
 
@@ -381,6 +383,7 @@ class EmployeeUI:
                 print("No available pilots at this time.")
 
     def available_flight_attendants(self):
+        """ Lists all available flight attendants on a given day/time. """
 
         self.header("All available flight attendants")
 
@@ -576,7 +579,7 @@ class EmployeeUI:
 
 
     def list_pilots_by_airplane(self):
-        """ Lists which pilots have licence to given licence. """
+        """ Lists which pilots have licence to given airplanes. """
 
         NABAE146 = 1
         NAFokkerF28 = 2
@@ -632,6 +635,7 @@ class EmployeeUI:
 
 
     def list_all_flight_attendants(self):
+        """ Lists all flight attendants (Cabincrew) in employee.csv file. """
 
         self.header("All flight attendants")
         all_flight_attendants = self.__employee_LL.list_all_flight_attendants()
@@ -648,4 +652,4 @@ class EmployeeUI:
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.available_flight_attendants()
+    a.busy_employees()
