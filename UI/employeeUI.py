@@ -1,13 +1,15 @@
 
 from LogicLayer.employeeLL import EmployeeLL
 from Models.employee import Employee
-
-
+from LogicLayer.voyageLL import VoyageLL
+import datetime
+import dateutil.parser
 
 class EmployeeUI:
 
     def __init__(self):
         self.__employee_LL = EmployeeLL()
+        self.__voyage_LL = VoyageLL()
 
 
     def header(self, i):
@@ -19,6 +21,7 @@ class EmployeeUI:
 
 
     def get_all_employees(self):
+        """ Lists information about all employees. """
 
         self.header("All employees")
 
@@ -32,7 +35,8 @@ class EmployeeUI:
             employees = ""
 
 
-    def get_employee(self):    # list information about a specific employee.
+    def get_employee(self):
+        """ Lists information about a specific employee. """
 
         self.header("Employee information")
 
@@ -56,6 +60,7 @@ class EmployeeUI:
 
 
     def register_employee(self):
+        """ Registers a new employee and adds him to the employee.csv file. """
 
         self.header("Register new employee")
 
@@ -103,6 +108,8 @@ class EmployeeUI:
 
 
     def edit_employee(self):
+        """ Edits information for a specific employee. SSN can not be edited. """
+
         self.header("Edit employee")
 
         self.get_all_employees()
@@ -186,7 +193,7 @@ class EmployeeUI:
                                         isValid = True
                                     elif choice == 2:
                                         employee_edit.set_rank("Flight Attendant")
-                                        print("Rank changed to Flight Attendan.t")
+                                        print("Rank changed to Flight Attendant")
                                         isValid = True
                                     else:
                                         isValid = False
@@ -251,7 +258,246 @@ class EmployeeUI:
                 print("\nEmployee not in system.")
 
 
+    def get_date(self):
+        """ Returns a date in ISO format. """
+
+        isValid = False
+        while isValid == False:
+            print("Enter q anytime to quit.")
+            year = input("Enter a year: ").lower()
+            if year == "q":
+                break
+            month = input("Enter a month: ").lower()
+            if month == "q":
+                break
+            day = input("Enter a day: ").lower()
+            if day == "q":
+                break
+            hour = input("Enter an hour: ").lower()
+            if hour == "q":
+                break
+            minute = input("Enter a minute: ").lower()
+            if minute == "q":
+                break
+            second = 0
+
+            try:
+                year = int(year)
+                month = int(month)
+                day = int(day)
+                hour = int(hour)
+                minute = int(minute)
+
+                date = datetime.datetime(year,month,day,hour,minute,second).isoformat()
+                return date
+
+            except ValueError:
+                print("\nPlease enter a valid number for each attribute.\n")
+        return None
+
+
+    def available_employees(self):
+        pass
+
+    def available_pilots(self):
+        pass
+
+    def available_flight_attendants(self):
+        pass
+
+
+    def busy_employees(self):
+        """ Lists information about all employees who are busy at the given date/time and the
+            destination they are going to. """
+
+        self.header("All busy employees")
+        isValid = False
+        while isValid == False:
+            date = self.get_date()
+            if date == None:
+                break
+
+            voyage = self.__voyage_LL.get_all_upcoming_voyages()
+
+            for x in voyage:
+                if x[3] == date or x[4] == date:
+                    employees = x[5:]
+                    destination = x[2]
+
+            for i in employees:
+                print(self.__employee_LL.print_employee(i))
+            print("\nDestination:\t\t{}".format(destination))
+            if input("\nY: Yes\nAnything else: No\nWould you like to enter another date? ").upper() == "Y":
+                isValid = False
+            else:
+                break
+
+
+    def busy_pilots(self):
+        """ Lists information about all pilots who are busy at the given date/time and the
+            destination they are going to. """
+
+        self.header("All busy pilots")
+        isValid = False
+        while isValid == False:
+            date = self.get_date()
+            if date == None:
+                break
+
+            voyage = self.__voyage_LL.get_all_upcoming_voyages()
+
+            for x in voyage:
+                if x[3] == date or x[4] == date:
+                    pilots = x[5:7]
+                    destination = x[2]
+
+            for i in pilots:
+                print(self.__employee_LL.print_employee(i))
+            print("\nDestination:\t\t{}".format(destination))
+            if input("\nY: Yes\nAnything else: No\nWould you like to enter another date? ").upper() == "Y":
+                isValid = False
+            else:
+                break
+
+    def busy_flight_attendants(self):
+        """ Lists information about all flight attendants who are busy at the given date/time and the
+            destination they are going to. """
+
+        self.header("All busy flight attendants")
+        isValid = False
+        while isValid == False:
+            date = self.get_date()
+            if date == None:
+                break
+
+            voyage = self.__voyage_LL.get_all_upcoming_voyages()
+
+            for x in voyage:
+                if x[3] == date or x[4] == date:
+                    flight_attendants = x[7:]
+                    destination = x[2]
+
+            for i in flight_attendants:
+                print(self.__employee_LL.print_employee(i))
+            print("\nDestination:\t\t{}".format(destination))
+            if input("\nY: Yes\nAnything else: No\nWould you like to enter another date? ").upper() == "Y":
+                isValid = False
+            else:
+                break
+
+    def list_all_pilots(self):
+        """ Lists all pilots in employee.csv file. """
+
+        self.header("All pilots.")
+        all_pilots = self.__employee_LL.list_all_pilots()
+
+        pilots = ""
+        for index, row in enumerate(all_pilots):
+            for x in row:
+                pilots += (x + ", ")
+            print("{}. {}".format(index+1, pilots))
+            pilots = ""
+
+    def list_airplane_by_pilot(self):
+        """ Lists which airplane the given pilot has a licence to. """
+
+        self.header("Pilot listing by airplane")
+        pilots = self.__employee_LL.list_all_pilots()
+
+        isValid = False
+        while isValid == False:
+            ssn = input("Enter q to quit.\nEnter a social security number: ")
+            if ssn == "q":
+                break
+            try:
+                licence = self.__employee_LL.list_airplane_by_pilot(ssn)
+                if licence == "N/A":
+                    print("\nEmployee must be a pilot.\nPlease try agan.\n")
+                else:
+                    for x in pilots:
+                        if x[0] == ssn:
+                            print("\nEmployee:\t{}, {}\nLicence:\t{}".format(ssn, x[1], licence))
+
+                    choice = input("\nY: Yes\nAnything else: No\nWould you like to list another pilot? ").upper()
+                    if choice == "Y":
+                        continue
+                    else:
+                        break
+            except TypeError:
+                print("\nPlease enter a valid social security number.\n")
+
+
+    def list_pilots_by_airplane(self):
+        """ Lists which pilots have licence to given licence. """
+
+        NABAE146 = 1
+        NAFokkerF28 = 2
+        NAFokkerF100 = 3
+
+
+        isValid = False
+        while isValid == False:
+            print("\n1. NABAE146\n2. NAFokkerF28\n3. NAFokkerF100\n")
+            licence = input("Enter q to quit.\nEnter a licence: ")
+            header = "\n{:<5} {:>10} {:>19}\n".format("SSN", "Name", "Rank")
+            if licence == "q":
+                break
+            try:
+                licence = int(licence)
+                if licence == NABAE146:
+                    airplanes = self.__employee_LL.list_pilots_by_airplane("NABAE146")
+                    print(header)
+                    for x in airplanes:
+                        print("{:<5}\t{:<17}\t{:<15}".format(x[0], x[1], x[3]))
+                    if input("\nY: Yes\nAnything else: No\nDo you want to enter another licence: ").upper() == "Y":
+                        continue
+                    else:
+                        break
+
+                elif licence == NAFokkerF28:
+                    airplanes = self.__employee_LL.list_pilots_by_airplane("NAFokkerF28")
+                    print(header)
+                    for x in airplanes:
+                        print("{:<5}\t{:<17}\t{:<15}".format(x[0], x[1], x[3]))
+                    if input("\nY: Yes\nAnything else: No\nDo you want to enter another licence: ").upper() == "Y":
+                        continue
+                    else:
+                        break
+
+                elif licence == NAFokkerF100:
+                    airplanes = self.__employee_LL.list_pilots_by_airplane("NAFokkerF100")
+                    print(header)
+                    for x in airplanes:
+                        print("{:<5}\t{:<17}\t{:<15}".format(x[0], x[1], x[3]))
+                    if input("\nY: Yes\nAnything else: No\nDo you want to enter another licence: ").upper() == "Y":
+                        continue
+                    else:
+                        break
+
+                else:
+                    print("\nPlease enter 1, 2 or 3.")
+                    continue
+            except ValueError:
+                print("\nPlease enter 1, 2 or 3.")
+                continue
+
+
+
+    def list_all_flight_attendants(self):
+
+        self.header("All flight attendants")
+        all_flight_attendants = self.__employee_LL.list_all_flight_attendants()
+
+        flight_attendants = ""
+        for index, row in enumerate(all_flight_attendants):
+            for x in row:
+                flight_attendants += (x + ", ")
+            print("{}. {}".format(index+1, flight_attendants))
+            flight_attendants = ""
+
+
+
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.register_employee()
+    a.list_all_pilots()

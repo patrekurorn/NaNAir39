@@ -69,10 +69,6 @@ class EmployeeLL:
         pass
 
 
-    def edit_employee(self, ssn):
-        pass
-        # LÍKLEGAST BARA Í UI
-
     @staticmethod
     def register_employee(new_employee):
         """
@@ -99,21 +95,27 @@ class EmployeeLL:
 
     def available_employees(self):  # list of all available employees on a specific day
         pass
+        # kannski bara í UI?
 
     def available_pilots(self):
         pass
+        # kannski bara í UI?
 
     def available_flight_attendants(self):
         pass
+        # kannski bara í UI?
 
     def busy_employees(self):   # list of all employees who are working on a specific day and which destination they are going
         pass
+        # kannski bara í UI?
 
     def busy_pilots(self):
-        pass
+       pass
+       # kannski bara í UI?
 
     def busy_flight_attendants(self):
         pass
+        # kannski bara í UI?
 
     def list_all_pilots(self):
         """
@@ -183,6 +185,6 @@ class EmployeeLL:
 
 if __name__ == "__main__":
     a = EmployeeLL()
-
+    a.available_employees()
 
 

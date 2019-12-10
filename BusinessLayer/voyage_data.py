@@ -7,7 +7,7 @@ class Voyages:
 
     def get_all_voyages(self):
         voyages = []
-        path = "../DataClasses/UpcomingFlights.csv"
+        path = "../DataClasses/UpcomingFlightsSM.csv"
         file = open(path, newline="")
         reader = csv.reader(file)
 

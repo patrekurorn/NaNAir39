@@ -6,9 +6,9 @@ class VoyageLL:
     def __init__(self):
         pass
 
-    def get_all_voyages(self):  # display voyages
+    def get_all_upcoming_voyages(self):  # display voyages
         voyages = []
-        path = "../Data/UpcomingFlights.csv"
+        path = "../Data/UpcomingFlightsSM.csv"
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)
@@ -19,7 +19,7 @@ class VoyageLL:
 
 
     def check_flight_number(self, flightNumber):
-        data = self.get_all_voyages()
+        data = self.get_all_upcoming_voyages()
 
         for row in data:
             if row[0] == flightNumber:
@@ -29,19 +29,23 @@ class VoyageLL:
 
 
     @staticmethod
-    def register_voyage(new_voyage):  # Planning manager gerir þetta
+    def register_voyage_PM(new_voyage):  # Planning manager gerir þetta
         flightNumber = new_voyage.get_flight_number()
         departingFrom = new_voyage.get_departing_from()
         arrivingAt = new_voyage.get_arriving_at()
         departure_time = new_voyage.get_departure_time()
         arrival_time = new_voyage.get_arrival_time()
 
-        path = "../Data/UpcomingFlights.csv"
+        path = "../Data/UpcomingFlightsPM.csv"
         with open(path, "a+", encoding="utf-8") as file:
             try:
                 file.write("{},{},{},{},{}".format(flightNumber, departingFrom, arrivingAt, departure_time, arrival_time))
             except:
                 return False
+
+    @staticmethod
+    def register_voyage_SM(new_voyage):
+        pass
 
 
     def list_unmanned_voyages(self):
@@ -83,3 +87,4 @@ class VoyageLL:
 
 if __name__ == "__main__":
     a = VoyageLL()
+    print(a.get_all_upcoming_voyages())
