@@ -82,7 +82,13 @@ class EmployeeUI:
                 address = input("Enter address: ")
                 mobile = input("Enter mobile: ")
                 landlineNr = input("Enter landline number: ")
-                email = input("Enter email: ")
+
+                email_list = name.split()
+                email = ""
+                for x in email_list:
+                    email += x
+
+                email += "@nanair.is"
 
                 new_employee = Employee(new_ssn, name, position, rank, licence, address, mobile, landlineNr, email)
                 print("\n{}\n".format(new_employee))
@@ -132,7 +138,7 @@ class EmployeeUI:
                     action = input(("\nEnter q to quit.\nChoose what you want to edit (1-8): "))
 
                     if action == "1":
-                        name = input("Enter new name: ")
+                        name = input("\nEnter new name: ")
                         employee_edit.set_name(name)
                         print("Name changed to {}".format(name))
 
@@ -230,22 +236,23 @@ class EmployeeUI:
                             continue
 
                     elif action == "5":
-                        address = input("Enter new address: ")
+                        address = input("\nEnter new address: ")
                         employee_edit.set_address(address)
                         print("Address changed to {}".format(choice))
 
                     elif action == "6":
-                        mobile = input("Enter new mobile: ")
+                        mobile = input("\nEnter new mobile: ")
                         employee_edit.set_mobile(mobile)
                         print("Mobile changed to {}".format(mobile))
 
                     elif action == "7":
-                        landlineNr = input("Enter new landline nr.: ")
+                        landlineNr = input("\nEnter new landline nr.: ")
                         employee_edit.set_landlineNr(landlineNr)
                         print("Landline nr. changed to {}".format(landlineNr))
 
                     elif action == "8":
-                        email = input("Enter new email: ")
+                        username = input("\nEnter new username: ")
+                        email = username + "@nanair.is"
                         employee_edit.set_email(email)
                         print("Email changed to {}".format(email))
 
@@ -421,7 +428,7 @@ class EmployeeUI:
                 print()
 
             except:
-                print("No available flight attendants at this time.")
+                print("\nNo available flight attendants at this time.\n")
 
 
     def busy_employees(self):
@@ -643,7 +650,7 @@ class EmployeeUI:
         for index, row in enumerate(all_flight_attendants):
             for x in row:
                 flight_attendants += (x + ", ")
-            print("{}. {}".format(index+1, flight_attendants))
+            print("{}.  \t{}".format(index+1, flight_attendants))
             flight_attendants = ""
 
 
@@ -651,4 +658,4 @@ class EmployeeUI:
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.busy_employees()
+    a.list_all_flight_attendants()

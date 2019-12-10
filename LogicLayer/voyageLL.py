@@ -67,6 +67,12 @@ class VoyageLL:
 
 
 
+<<<<<<< HEAD
+=======
+            except:
+                pass
+
+>>>>>>> 557c996e4283d17230b1a3b8b98cc04bd3b300d5
 
     def list_unmanned_voyages(self):
         pass

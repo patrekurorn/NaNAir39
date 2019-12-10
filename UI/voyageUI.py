@@ -20,8 +20,11 @@ class VoyageUI:
 
     def register_voyage(self):  # Planning manager
         pass
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 557c996e4283d17230b1a3b8b98cc04bd3b300d5
 
 
     def register_voyage_PM(self):
