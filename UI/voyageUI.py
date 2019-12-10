@@ -10,7 +10,7 @@ class VoyageUI:
         pass
 
 
-    def register_voyage(self):
+    def register_voyage(self):  # Planning manager
 
         # setja header
 
@@ -28,10 +28,12 @@ class VoyageUI:
             print("\n{}\n".format(new_voyage))
 
             if input("Do you want to register this voyage? ").upper() == "Y":
-                self.__voyageLL.register_voyage(new_voyage)
+                self.__voyageLL.register_voyage_PM(new_voyage)
                 print("\nNew voyage registered!\n")
             else:
                 print("\nVoyage not registered.\n")
+
+
 
 
 if __name__ == "__main__":

@@ -340,10 +340,86 @@ class EmployeeUI:
 
 
     def available_pilots(self):
-        pass
+
+        self.header("All available pilots")
+
+        isValid = False
+        while isValid == False:
+            date = self.get_date()
+            if date == None:
+                break
+
+            try:
+                voyage = self.__voyage_LL.get_all_upcoming_voyages()
+                all_employees = self.__employee_LL.get_all_employees()
+                busy = []
+                available = []
+
+                for x in voyage:
+                    if x[3] == date or x[4] == date:
+                        busy.append(x[5])
+                        busy.append(x[6])
+                        busy.append(x[7])
+                        busy.append(x[8])
+                        busy.append(x[9])
+
+                for i in all_employees:
+                    if i[0] not in busy and i[2] == "Pilot":
+                        available.append(i)
+                    else:
+                        pass
+
+                if len(available) > 0:
+                    header = "\n   {:<5} {:>11} {:>23} {:>15}\n".format("SSN", "Name", "Position", "Rank")
+                    print(header)
+
+                for index, z in enumerate(available):
+                    print("{}. {:<5}\t{:<17}\t{:<17}\t{:<15}".format(index+1, z[0], z[1], z[2], z[3]))
+                print()
+
+            except:
+                print("No available pilots at this time.")
 
     def available_flight_attendants(self):
-        pass
+
+        self.header("All available flight attendants")
+
+        isValid = False
+        while isValid == False:
+            date = self.get_date()
+            if date == None:
+                break
+
+            try:
+                voyage = self.__voyage_LL.get_all_upcoming_voyages()
+                all_employees = self.__employee_LL.get_all_employees()
+                busy = []
+                available = []
+
+                for x in voyage:
+                    if x[3] == date or x[4] == date:
+                        busy.append(x[5])
+                        busy.append(x[6])
+                        busy.append(x[7])
+                        busy.append(x[8])
+                        busy.append(x[9])
+
+                for i in all_employees:
+                    if i[0] not in busy and i[2] == "Cabincrew":
+                        available.append(i)
+                    else:
+                        pass
+
+                if len(available) > 0:
+                    header = "\n   {:<5} {:>11} {:>23} {:>15}\n".format("SSN", "Name", "Position", "Rank")
+                    print(header)
+
+                for index, z in enumerate(available):
+                    print("{}. {:<5}\t{:<17}\t{:<17}\t{:<15}".format(index+1, z[0], z[1], z[2], z[3]))
+                print()
+
+            except:
+                print("No available flight attendants at this time.")
 
 
     def busy_employees(self):
@@ -572,4 +648,4 @@ class EmployeeUI:
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.busy_flight_attendants()
+    a.available_flight_attendants()
