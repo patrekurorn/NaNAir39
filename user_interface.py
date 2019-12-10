@@ -1,86 +1,171 @@
 import os
 from time import sleep
 from UI.destinationUI import DestinationUI
+import keyboard
+import string
 from UI.voyageUI import VoyageUI
 
 from LogicLayer.destinationsLL import DestinationsLL
 
 import string
 
-VALID_THREE= ["1","2","3"]
+class Page:
+    def Clear_screen(self):
+        if os.name == "nt":
+            os.system('cls')
+        else:
+            os.system('clear')
 
-class User:
-    def __init__(self,first_pick = None, second_pick = None):
+    def Last_input_valid_check(self):
+        if self.valid == False:
+            print("Please enter a valid number")
+            self.valid = True
+
+    def Print_header(self):
+        print("___________________________________________________________\n" +
+              "                        NaN Air                            \n" +
+              "___________________________________________________________\n" +
+              "-----------------------------------------------------------\n")
+
+    def Print_footer(self):
+        print("\n" +
+              "-----------------------------------------------------------\n" +
+              "___________________________________________________________\n" +
+              "\n" +
+              "                          _|_                              \n" +
+              "                   *---o--(_)--o---*                       \n" +
+              "___________________________________________________________")
+
+
+
+class User(Page):
+    def __init__(self, first_pick=None, second_pick=None, valid=True):
+        self.valid_inputs = []
         self.first_pick = first_pick
         self.second_pick = second_pick
+        self.valid = valid
 
     def __str__(self):
-        return "First pick:{}, second pick: {}".format(str(self.first_pick),str(self.second_pick))
+        return "First pick:{}, second pick: {}".format(str(self.first_pick), str(self.second_pick))
 
-    def os_virkni(self):
-        sleep(1.5)  # Freeze screen for n seconds
-        os.system('cls')  # For Windows
-        os.system('clear')  # For Linux/OS X
+    def Home(self):
 
+        self.valid_inputs = ["1", "2"]
 
-    def home_window(self):
-        user.get_header()
-        userInput = input("1.Staff manager\n2.Planning manager\nYour pick: ").strip() #strip spaces
+        self.Clear_screen()
+        self.Print_header()
+        print("1.Staff manager\n2.Planning manager")
+        self.Print_footer()
+        self.Last_input_valid_check()
 
-        def invalid():
-            print("Please enter a valid number ")
-            self.home_window()
+        user_input = keyboard.read_key()
+        keyboard.read_key()
+        print(user_input)
 
-        if userInput == "1" or userInput == "2".strip():
-            self.first_pick = userInput
-            user.get_footer()
+        print(user_input)
+
+        if user_input in self.valid_inputs:
+            escaped = False
+            self.first_pick = user_input
+            if user_input == "1":
+
+                while not escaped:
+                    escaped = self.Staff_manager()
+
+                return False
+            else:
+
+                while not escaped:
+                    escaped = self.Planning_manager()
+
+                return False
         else:
-            invalid()
+            if user_input == "esc":
+                # Return "True" to end the outside loop (in this case the loop in the main program) displaying the screen.
+                return True
+            else:
+                self.valid = False
+                return False
 
-    def second_window_staff_manager(self):
-        user.get_header()
+    def Staff_manager(self):
+        """
+        Displays the option screen for a staff manager.
 
-        def invalid():
-            print("Please enter a valid number ")
-            user.second_window_staff_manager()
+        Options: Man flights, lists of work force and manage work force
 
-        pick_input = input("1. Man flights \n2. List of work force\n3. Manage work force\nYour pick: ").strip()
+        """
+        self.valid_inputs = ["1", "2", "3"]
 
-        if pick_input not in VALID_THREE:
-            invalid()
+        self.Clear_screen()
+        self.Print_header()
+        print("1. Man flights \n2. Workforce_information\n3. Manage work force")
+        self.Print_footer()
+        self.Last_input_valid_check()
+
+        user_input = keyboard.read_key()
+        keyboard.read_key()
+        print(user_input)
+
+        if user_input not in self.valid_inputs:
+
+            if user_input == "esc":
+                # return "True" so the loop displaying the screen ends.
+                return True
+
+            else:
+                # set valid to false to display a "... valid input..." message
+                self.valid = False
+                # Return "False" to display the screen again
+                return False
 
         else:
-            if pick_input == "1":
+            if user_input == "1":
                 """Man flights"""
+
                 print("MAN FLIGHTS")
                 # svo man flights
 
 
             elif pick_input == "2":
+
+            elif user_input == "2":
                 """List of work force"""
+
                 print("List of work force".upper())
                 #svo list of work force
 
             elif pick_input == "3":
+            elif user_input == "3":
                 """Manage work force"""
+
                 print("Manage work force".upper())
                 #svo manage work force
-        user.get_footer()
 
+        
 
+    def Planning_manager(self):
 
-    def second_window_planning_manager(self):
-        user.get_header()
+        self.valid_inputs = ["1", "2", "3"]
 
-        def invalid():
-            print("Please enter a valid number ")
+        self.Clear_screen()
+        self.Print_header()
+        print("1. Manage voyages\n2. Workforce information\n3. Manage destinations")
+        self.Print_footer()
+        self.Last_input_valid_check()
+
+        user_input = keyboard.read_key()
+        keyboard.read_key()
+        print(user_input)
+        
 
         def manage_voyages():
-            user.get_header()
+            
+            self.Clear_screen
+            user.Print_header()
             voyage_pick = input("1.Register a new voyager\n2.Edit a voyage\n3.Cancel a voyage ").strip()
-
-            if voyage_pick not in VALID_THREE:
-                invalid()
+            self.Print_footer
+            if voyage_pick not in self.valid_inputs:
+                self.Last_input_valid_check
                 user.os_virkni()
                 manage_voyages()
 
@@ -110,12 +195,16 @@ class User:
 
 
 
+        if user_input not in self.valid_inputs:
 
-        pick_input = input("1. Manage voyages\n2. List of voyages\n3. Manage destinations\nYour pick: ")
-        
-        if pick_input not in VALID_THREE:
-            invalid()
-            user.second_window_planning_manager()
+            if user_input == "esc":
+                # return "True" so the loop displaying the screen ends.
+                return True
+            else:
+                # set valid to false to display a "... valid input..." message
+                self.valid = False
+                # Return "False" to display the screen again
+                return False
 
         else:
             if pick_input == "1":
@@ -126,19 +215,28 @@ class User:
 
 
             if pick_input == "2":
+            if user_input == "1":
+                print("MANAGE VOYAGES")
+            if user_input == "2":
                 print("List of voyages".upper())
-                user.get_footer()
-                user.os_virkni()
-
-            if pick_input == "3":
+            if user_input == "3":
                 print("Manage destinations".upper())
-                user.get_footer()
-                user.os_virkni()
+                DestinationUI()
 
 
-        user.get_footer()
-        user.os_virkni()
-
+    def Workforce_information(self):
+        
+        self.Clear_screen()
+        self.Print_header()
+        print(  "1. List of all airplanes\n" + \
+                "2. List of all employees\n" + \
+                "3. List of all flight attendants\n" + \
+                "4. List of all pilots\n" + \
+                "5. List of all available employees\n" + \
+                "6. List of all busy employees\n" + \
+                "7. find employee")
+        self.Print_footer()
+            
 
 
 
@@ -150,35 +248,33 @@ class User:
                "___________________________________________________________\n" + \
                "\n",end="")
 
-    def get_footer(self):
-        print("-----------------------------------------------------------\n" + \
-              "___________________________________________________________\n" + \
-              "\n" + \
-              "                          _|_                              \n" + \
-              "                   *---o--(_)--o---*                       \n" + \
-              "___________________________________________________________")
-"""
+
+
+
+
+
+
+
+
+
+
 user = User()
-user_selection = user.home_window()
-sleep(1) # Freeze screen for n seconds
-os.system('cls')  # For Windows
-os.system('clear')  # For Linux/OS X
+exit = False
+
+while(not exit):
+    user_selection = user.Home()
+    exit = user_selection
+
+# sleep(0.5) # Freeze screen for n seconds
 
 
-if user.first_pick == "1":
-    user.second_window_staff_manager()
+# if user.first_pick == "1":
+#     user.Staff_manager()
 
-elif user.first_pick== "2":
-    user.second_window_planning_manager()
+# elif user.first_pick== "2":
+#     user.Planning_manager()
 
 #print("home window: {} second_window: {}".format(user.first_pick,user.second_pick))
-"""
 
 
-
-
-
-
-
-
-
+# print(user)
