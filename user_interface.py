@@ -53,13 +53,18 @@ class User:
             if pick_input == "1":
                 """Man flights"""
                 print("MAN FLIGHTS")
-                pass
+                # svo man flights
+
+
             elif pick_input == "2":
                 """List of work force"""
                 print("List of work force".upper())
+                #svo list of work force
+
             elif pick_input == "3":
                 """Manage work force"""
                 print("Manage work force".upper())
+                #svo manage work force
         user.get_footer()
 
 
@@ -81,14 +86,17 @@ class User:
 
             elif voyage_pick =="1":
                 user.get_footer()
+                #Register a new voyager
                 pass
 
             elif voyage_pick =="2":
                 user.get_footer()
                 pass
+                # edit a voyage
 
             elif voyage_pick == "3":
                 user.get_footer()
+                #Cancel á voyage
                 pass
 
 
@@ -117,8 +125,6 @@ class User:
                 manage_voyages()
 
 
-
-
             if pick_input == "2":
                 print("List of voyages".upper())
                 user.get_footer()
@@ -132,9 +138,6 @@ class User:
 
         user.get_footer()
         user.os_virkni()
-
-
-
 
 
 
