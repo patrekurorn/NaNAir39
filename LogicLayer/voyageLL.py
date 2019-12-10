@@ -49,7 +49,8 @@ class VoyageLL:
 
     @staticmethod
     def register_voyage_SM(aded_voyage):
-        """ Þarf að bætta við til að leifa SM að appenda í nú þegar búinn til csv skrá frá PM"""
+        pass
+        """ Þarf að bætta við til að leifa SM að appenda í nú þegar búinn til csv skrá frá PM
         flightNumber = aded_voyage.get_captain()
         captain = added_voyage.get_copilot()
         fsm = aded_voyage.get_fsm()
@@ -59,10 +60,13 @@ class VoyageLL:
         path = "../Data/UpcomingFlightsSM.csv"
         with open(path,"a+") as file:
             try:
+                pass
                 writer = file.writer(file)
                 writer.writerow([aded_voyage.get_fli])
+        """
 
-        pass
+
+
 
     def list_unmanned_voyages(self):
         pass
@@ -92,6 +96,7 @@ class VoyageLL:
         pass
 
     def edit_voyage(self):
+
         pass
 
     def edit_time(self):
@@ -101,7 +106,7 @@ class VoyageLL:
         pass
 
     def cancel_voyage(self):
-        pass
+        """ UI """
 
     def list_voyages_day(self):
         pass

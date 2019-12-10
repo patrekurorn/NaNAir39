@@ -5,12 +5,7 @@ import keyboard
 import string
 from UI.voyageUI import VoyageUI
 from NaNAir39.UI.page import Page
-
 # from LogicLayer.destinationsLL import DestinationsLL
-
-import string
-
-
 
 
 class User(Page):
@@ -155,7 +150,7 @@ class User(Page):
 
             elif voyage_pick == "3":
                 user.get_footer()
-                #Cancel á voyage
+                #Cancel a voyage
                 pass
 
 

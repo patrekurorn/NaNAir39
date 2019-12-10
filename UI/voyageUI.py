@@ -1,6 +1,7 @@
 from LogicLayer.voyageLL import VoyageLL
 from Models.voyage import Voyage
 from Models.voyage_Sm import VoyageSm
+import os
 
 class VoyageUI:
 
@@ -18,6 +19,9 @@ class VoyageUI:
         print()
 
     def register_voyage(self):  # Planning manager
+        pass
+
+
 
 
     def register_voyage_PM(self):
@@ -35,13 +39,28 @@ class VoyageUI:
             arrival_str = input("Enter arrival time: ").strip()
 
             new_voyage = Voyage(flightNumber_int, departingFrom_str, arravingAt_str,departure_str, arrival_str)
-            print("\n{}\n".format(new_voyage))
+            print("\n{}\n".format (new_voyage))
 
             if input("Do you want to register this voyage? ").upper() == "Y":
                 self.__voyageLL.register_voyage_PM(new_voyage)
                 print("\nNew voyage registered!\n")
             else:
                 print("\nVoyage not registered.\n")
+
+    def cancel_voyage(self,flightNumber):
+        """ Removes an voyage from the csv file, by deleting all employees and all the employees baack withou the specific employee that is given by us in paramter
+        """
+        self.header(#Cancel voyage)
+
+        voyage = input("Please enter a flight number of voyage to be canceled ")
+
+
+        with open("./..UpcomingFlightsPM.csv")
+
+
+
+
+
 
     def continue_it(self):
         want_to_continue = input("Would you like to try again? ").strip().upper()
@@ -92,20 +111,6 @@ class VoyageUI:
             print("\nNew voyage registered!\n")
         else:
             print("\nVoyage not registered.\n")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
