@@ -47,7 +47,6 @@ class VoyageLL:
     def register_voyage_SM(new_voyage):
         pass
 
-
     def list_unmanned_voyages(self):
         pass
 

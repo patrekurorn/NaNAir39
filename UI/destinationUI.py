@@ -20,7 +20,9 @@ class DestinationUI(Page):
         self.__destinationLL = DestinationsLL()
 
     def header(self):
-        """ prints a header on the user interface """
+        """ prints a header on the user interface
+            :param head:
+        """
 
         print("-" * 50)
         print("|{:^48}|".format(head))

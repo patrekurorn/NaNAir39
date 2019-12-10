@@ -6,12 +6,11 @@ class AirplaneUI:
     def __init__(self):
         self.__airplaneLL = AirplaneLL()
 
-    def header(head):
+    def header(self,head):
+        """ prints a header on the user interface
+            param head:
         """
-               This is the header on the user interface. we user this format in the functions down below
-               :param head:
-               :return:
-               """
+
         print("-" * 50)
         print("|{:^48}|".format(head))
         print("-" * 50)
@@ -37,7 +36,9 @@ class AirplaneUI:
             new_airplane = Airplane(planeInsignia, planeTypeId, manufacturer, model, capacity)
             print("\n{}\n".format(new_airplane))
 
-            if input("Do you want to register this airplane? y/n: ").upper() == "Y".upper() or "yes".upper():
+            inputed = input("Do you want to register this airplane?").upper()
+
+            if inputed == "Y".upper()  or inputed == "YES":
                 self.__airplaneLL.register_airplane(new_airplane)
                 print("\nNew airplane registered!\n")
             else:
@@ -45,5 +46,5 @@ class AirplaneUI:
 
 if __name__ == "__main__":
     a = AirplaneUI()
-    a.register_airplane()
     a.header("Airplane")
+    a.register_airplane()

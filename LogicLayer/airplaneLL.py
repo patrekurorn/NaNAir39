@@ -35,7 +35,7 @@ class AirplaneLL:
 
     @staticmethod
     def register_airplane(new_airplane):
-        planeInsignia = new_airplane.get_plane_ins  ignia()
+        planeInsignia = new_airplane.get_plane_insignia()
         planeTypeId = new_airplane.get_plane_type_id()
         manufacturer = new_airplane.get_manufacturer()
         model = new_airplane.get_model()
@@ -44,7 +44,8 @@ class AirplaneLL:
         path = "../Data/Aircraft.csv"
         with open(path, "a+") as file:
             try:
-                file.write("{},{},{},{},{}".format(planeInsignia, planeTypeId, manufacturer, model, capacity))
+                writer = csv.writer(file)
+                writer.writerow([planeInsignia,planeTypeId,manufacturer,model,capacity])
             except:
                 return False
 
