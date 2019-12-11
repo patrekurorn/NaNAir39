@@ -14,7 +14,6 @@ class VoyageUI(Page):
         """ prints a header on the user interface
                    :param head:
                """
-
         print("-" * 50)
         print("|{:^48}|".format(head))
         print("-" * 50)
@@ -141,5 +140,3 @@ if __name__ == "__main__":
     #a.man_voyage_SM()
     a.print_list_voyage_by_day()
     a.print_list_voyage_by_week()
-
-
