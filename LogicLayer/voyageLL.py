@@ -166,7 +166,7 @@ class VoyageLL:
         return dateDictionary
 
     def list_voyages_day(self):
-        """ collects day of format and prints out each voyage for specific day """
+        """ collects date from csv  and prints out a dictionary with each day and information """
         day_dict = {}
         without_first= []
 
@@ -179,25 +179,51 @@ class VoyageLL:
                 without_first.append(row)
 
         for row in without_first:
-            day = row[3].split("T")[0].split("-")[2]
+            day = int(row[3].split("T")[0].split("-")[2])
 
             if day in day_dict:
                 day_dict[day] += [[row[0],row[1],row[2]]]
             else:
                 day_dict[day] = [[row[0],row[1],row[2]]]
 
-        for key,value in sorted(day_dict.items()):
-            print("day {}: {}".format(key,value))
 
+        return day_dict
 
-    # def list_voyages_week(self):
-    #     pass
+    def list_voyages_week(self):
+        week_dict = {}
+        without_first = []
+        week1 = 7
+        week2 = 14
+        week3 = 21
+        week4 = 28
+        week5 = 32
 
+        week1dict = {}
+        week2dict = {}
+        week3dict = {}
+        week4dict = {}
+        week5dict = {}
 
+        day_dict = self.list_voyages_day()
+
+        for key,value in day_dict.items():
+
+            if key in range(0,week1):
+                week1dict[key] = value
+            if key in range(week1,week2):
+                week2dict[key] = value
+            if key in range(week2,week3):
+                week3dict[key] = value
+            if key in range(week3,week4):
+                week4dict[key] = value
+            if key in range(week4,week5):
+                week5dict[key] = value
+
+        return "First Week: {}\nSecond week: {}\nThird week: {}\nFourth week: {}\nFifth week: {}".format(week1dict,week2dict,week3dict,week4dict,week5dict)
 
 
 
 if __name__ == "__main__":
     a = VoyageLL()
-    print(a.get_all_upcoming_voyages())
-    a.list_voyages_day()
+    #a.list_voyages_day()
+    #print(a.list_voyages_week())
