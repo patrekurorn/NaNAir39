@@ -8,8 +8,12 @@ from NaNAir39.UI.employeeUI import EmployeeUI
 import os
 import pathlib
 
-# from LogicLayer.destinationsLL import DestinationsLL
 
+VALID_THREE= ["1","2","3"]
+<<<<<<< HEAD
+=======
+
+>>>>>>> e989a6c7254b14e1b4b2e2863a8fd5de32d50955
 
 class User(Page):
     def __init__(self, first_pick=None, second_pick=None, valid=True):

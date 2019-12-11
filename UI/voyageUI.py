@@ -14,7 +14,6 @@ class VoyageUI(Page):
         """ prints a header on the user interface
                    :param head:
                """
-
         print("-" * 50)
         print("|{:^48}|".format(head))
         print("-" * 50)
@@ -56,7 +55,7 @@ class VoyageUI(Page):
         voyage = input("Enter a flight number of voyage to be canceled:").upper().strip()
 
         if voyage!= "Q":
-            if not self.__voyageLL.check_flight_number(voyage):
+            if not self.__voyageLL.check_flight_number(voyage.upper()):
                 print("--> Voyage: {} was not found.".format(voyage))
                 continue_process = self.continue_it()
 
@@ -122,9 +121,19 @@ class VoyageUI(Page):
         else:
             print("\nVoyage not registered.\n")
 
+    def print_list_voyage_by_day(self):
+        self.header("Voyage by day ")
+        dayDict = self.__voyageLL.list_voyages_day()
+
+        for key,value in dayDict.items():
+            print("{}: {}".format(key,value))
+
+    def print_list_voyage_by_week(self):
+        self.header("Voyage by week")
+        week_dict = self.__voyageLL.list_voyages_week()
+        print(week_dict)
+
 
 if __name__ == "__main__":
     a = VoyageUI()
-    a.header("Voyage")
-    a.cancel_voyage()
-
+    a.man_voyage_SM()

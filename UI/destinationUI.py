@@ -7,6 +7,7 @@ from NaNAir39.UI.page import Page
 
 
 class DestinationUI(Page):
+    """
     ID = 0
     DESTINATION = 1
     COUNTRY = 2
@@ -14,6 +15,7 @@ class DestinationUI(Page):
     DISTANCEFROMICELAND = 4
     CONTACTNAME = 5
     CONTACTNUMBER = 6
+    """
 
 
     def __init__(self):
@@ -54,6 +56,14 @@ class DestinationUI(Page):
                 print("\nNo destination registered.\n")
         
     def edit_destination(self):
+        ID = 0
+        DESTINATION = 1
+        COUNTRY = 2
+        FLIGHTDURATION = 3
+        DISTANCEFROMICELAND = 4
+        CONTACTNAME = 5
+        CONTACTNUMBER = 6
+
         destinationsList = self.__destinationLL.get_all_destinations()
         destinationsListLen = len(destinationsList)
                        

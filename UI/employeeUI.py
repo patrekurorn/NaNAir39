@@ -1,7 +1,7 @@
 from LogicLayer.employeeLL import EmployeeLL
 from Models.employee import Employee
 from LogicLayer.voyageLL import VoyageLL
-import datetime
+from datetime import datetime
 from NaNAir39.UI.page import Page
 import keyboard
 
@@ -93,8 +93,7 @@ class EmployeeUI(Page):
             try:
                 employee = self.__employee_LL.get_employee(ssn)
 
-                print("\nSSN: \t\t\t{}\nName: \t\t\t{}\nPosition: \t\t{}\nRank: \t\t\t{}\nLicence: \
-                    \t\t{}\nAddress: \t\t{}\nMobile: \t\t{}\nLandline nr: \t{}\nEmail: \t\t\t{}".format(\
+                print("\nSSN: \t\t\t{}\nName: \t\t\t{}\nPosition: \t\t{}\nRank: \t\t\t{}\nLicence: \t\t{}\nAddress: \t\t{}\nMobile: \t\t{}\nLandline nr: \t{}\nEmail: \t\t\t{}".format(\
                     employee[0], employee[1], employee[2], employee[3], employee[4], employee[5],
                     employee[6],employee[7], employee[8]))
             except:
@@ -133,6 +132,7 @@ class EmployeeUI(Page):
                 for x in email_list:
                     email += x
 
+                email = email.lower()
                 email += "@nanair.is"
 
                 new_employee = Employee(new_ssn, name, position, rank, licence, address, mobile, landlineNr, email)
@@ -296,7 +296,7 @@ class EmployeeUI(Page):
                         print("Landline nr. changed to {}".format(landlineNr))
 
                     elif action == "8":
-                        username = input("\nEnter new username: ")
+                        username = input("\nEnter new username: ").lower()
                         email = username + "@nanair.is"
                         employee_edit.set_email(email)
                         print("Email changed to {}".format(email))
@@ -316,40 +316,25 @@ class EmployeeUI(Page):
         isValid = False
         while isValid == False:
             print("Enter q anytime to quit.")
-            year = input("Enter a year: ").lower()
-            if year == "q":
-                break
-            month = input("Enter a month: ").lower()
-            if month == "q":
-                break
-            day = input("Enter a day: ").lower()
-            if day == "q":
-                break
-            hour = input("Enter an hour: ").lower()
-            if hour == "q":
-                break
-            minute = input("Enter a minute: ").lower()
-            if minute == "q":
-                break
-            second = 0
 
             try:
-                year = int(year)
-                month = int(month)
-                day = int(day)
-                hour = int(hour)
-                minute = int(minute)
+                datetime_str = input("Enter date  (i.e. 'mm/dd/yy'): ")
+                if datetime_str == "q":
+                    break
 
-                date = datetime.datetime(year,month,day,hour,minute,second).isoformat()
-                return date
+                datetime_object = datetime.strptime(datetime_str, '%m/%d/%y')
+                datetime_object = str(datetime_object)
+                datetime_object = datetime_object.split(" ")
+
+                return datetime_object[0]
 
             except ValueError:
-                print("\nPlease enter a valid number for each attribute.\n")
+                print("\nPlease enter a valid date.\n")
         return None
 
 
     def available_employees(self):
-        """ Lists all available employees on a given day/time. """
+        """ Lists all available employees on a given day. """
 
         self.header("All available employees")
 
@@ -365,8 +350,12 @@ class EmployeeUI(Page):
                 busy = []
                 available = []
 
+
                 for x in voyage:
-                    if x[3] == date or x[4] == date:
+                    busy_date = x[3]
+                    busy_date = busy_date.split("T")
+
+                    if busy_date[0] == date:
                         busy.append(x[5])
                         busy.append(x[6])
                         busy.append(x[7])
@@ -409,7 +398,10 @@ class EmployeeUI(Page):
                 available = []
 
                 for x in voyage:
-                    if x[3] == date or x[4] == date:
+                    busy_date = x[3]
+                    busy_date = busy_date.split("T")
+
+                    if busy_date[0] == date:
                         busy.append(x[5])
                         busy.append(x[6])
                         busy.append(x[7])
@@ -451,7 +443,10 @@ class EmployeeUI(Page):
                 available = []
 
                 for x in voyage:
-                    if x[3] == date or x[4] == date:
+                    busy_date = x[3]
+                    busy_date = busy_date.split("T")
+
+                    if busy_date[0] == date:
                         busy.append(x[5])
                         busy.append(x[6])
                         busy.append(x[7])
@@ -491,9 +486,14 @@ class EmployeeUI(Page):
                 voyage = self.__voyage_LL.get_all_upcoming_voyages()
 
                 for x in voyage:
-                    if x[3] == date or x[4] == date:
-                        employees = x[5:]
-                        destination = x[2]
+                    busy_date = x[3]
+                    busy_date = busy_date.split("T")
+
+                    if busy_date[0] == date:
+                        employees = x[5:10]
+                        destination = x[1]
+
+
 
                 if len(employees) > 0:
                     header = "\n   {:<5} {:>11} {:>23} {:>15}\n".format("SSN", "Name", "Position", "Rank")
@@ -527,9 +527,12 @@ class EmployeeUI(Page):
                 voyage = self.__voyage_LL.get_all_upcoming_voyages()
 
                 for x in voyage:
-                    if x[3] == date or x[4] == date:
+                    busy_date = x[3]
+                    busy_date = busy_date.split("T")
+
+                    if busy_date[0] == date:
                         pilots = x[5:7]
-                        destination = x[2]
+                        destination = x[1]
 
                 if len(pilots) > 0:
                     header = "\n   {:<5} {:>11} {:>19}\n".format("SSN", "Name", "Rank")
@@ -564,9 +567,12 @@ class EmployeeUI(Page):
                 voyage = self.__voyage_LL.get_all_upcoming_voyages()
 
                 for x in voyage:
-                    if x[3] == date or x[4] == date:
-                        flight_attendants = x[7:]
-                        destination = x[2]
+                    busy_date = x[3]
+                    busy_date = busy_date.split("T")
+
+                    if busy_date[0] == date:
+                        flight_attendants = x[7:10]
+                        destination = x[1]
 
                 if len(flight_attendants) > 0:
                     header = "\n   {:<5} {:>11} {:>19}\n".format("SSN", "Name", "Rank")
@@ -703,4 +709,4 @@ class EmployeeUI(Page):
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.list_all_flight_attendants()
+    a.employeeUI_page()

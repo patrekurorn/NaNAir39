@@ -49,7 +49,7 @@ class EmployeeLL:
                 if row[0] == ssn:
                     return row
 
-        return "hi"
+        return False
 
     def print_employee(self, ssn):
         data = self.get_all_employees()
@@ -85,41 +85,13 @@ class EmployeeLL:
         email = new_employee.get_email()
 
         path = "../Data/employee.csv"
-        with open(path, "") as file:
+        with open(path, "a") as file:
             try:
                 writer = csv.writer(file)
                 writer.writerow([ssn, name, position, rank, licence, address, mobile, landlineNr, email])
             except:
                 return False
 
-
-    """ Available """
-    def available_employees(self):  # list of all available employees on a specific day
-        pass
-        # kannski bara í UI?
-
-    def available_pilots(self):
-        pass
-        # kannski bara í UI?
-
-    def available_flight_attendants(self):
-        pass
-        # kannski bara í UI?
-
-    """ ef ekki available þá busy.."""
-
-    def busy_employees(self):   # list of all employees who are working on a specific day and which destination they are going
-        pass
-        # kannski bara í UI?
-
-    def busy_pilots(self):
-       pass
-       # kannski bara í UI?
-
-
-    def busy_flight_attendants(self):
-        pass
-        # kannski bara í UI?
 
     def list_all_pilots(self):
         """
@@ -174,7 +146,7 @@ class EmployeeLL:
         selected_employee = employee[0]
 
         os.remove("../Data/employee.csv")
-        header = "ssn,name,position,rank,licence,address,mobile,landlineNr,email"
+        header = "ssn,name,position,rank,licence,address,mobile,landlineNr,email\n"
         with open("../Data/employee.csv", "a+", encoding="utf-8") as file:
             file.write(header)
 
