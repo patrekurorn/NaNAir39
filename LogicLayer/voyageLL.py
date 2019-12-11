@@ -124,7 +124,10 @@ class VoyageLL:
 
 
     def cancel_voyage(self,flightNumber):
-        """ til að fjarlægja línu í csv þurfum við að lesa inn allt csv sem var gert fyrir ofan, fjarlægja línuna og skrifa svo endurgerða csvið"""
+        """ to remove a specific line in csv we need to read in all the data from csv,
+        remove specific line and that write the new updated csv
+        return: dict
+        """
         voyage = self.get_voyage(flightNumber)
         voyages = self.get_all_upcoming_voyages()
 
@@ -142,57 +145,96 @@ class VoyageLL:
                 newVoyage = Voyage(index[0],index[1],index[2],index[3],index[4])
                 self.register_voyage_PM(newVoyage)
 
+    def csv_dictionary(self):
+        dateDictionary = {}
+        without_first= []
+        path = "../Data/UpcomingFlightsPM.csv"
+        with open(path,encoding="utf-8") as file:
+            reader = csv.reader(file)
+            next(reader)
+
+            for row in reader:
+                without_first.append(row)
+
+        for row in without_first:
+            day = row[3].split("T")[0]
+
+            if day in dateDictionary:
+                dateDictionary[day] += [[row[0],row[1],row[2]]]
+            else:
+                dateDictionary[day] = [[row[0],row[1],row[2]]]
+
+        for key,items in dateDictionary.items():
+            print(items)
+
+        return dateDictionary
+
+
     def list_voyages_day(self):
-        """ collects day of format and prints out each voyage for specific day """
-        day = self.day_format()[2]
+        """ collects date from csv  and prints out a dictionary with each day and information  UI has to print out the dictionary
+            return:dict
+           """
+        day_dict = {}
+        without_first= []
 
-   #     for items in self.get_all_upcoming_voyages():
-    #        if items[3]
+        path = "../Data/UpcomingFlightsPM.csv"
+        with open(path,encoding="utf-8") as file:
+            reader = csv.reader(file)
+            next(reader)
 
+            for row in reader:
+                without_first.append(row)
 
+        for row in without_first:
+            day = int(row[3].split("T")[0].split("-")[2])
 
+            if day in day_dict:
+                day_dict[day] += [[row[0],row[1],row[2]]]
+            else:
+                day_dict[day] = [[row[0],row[1],row[2]]]
 
+        """ printar út en þarf að prenta út í UI ekki hér 
+        for key,items in day_dict.items():
+            print("{}: {}".format(key,items))
+        """
+        return day_dict
 
+    def list_voyages_week(self):
+        week_dict = {}
+        without_first = []
+        week1 = 7
+        week2 = 14
+        week3 = 21
+        week4 = 28
+        week5 = 32
 
+        week1dict = {}
+        week2dict = {}
+        week3dict = {}
+        week4dict = {}
+        week5dict = {}
 
-    def day_format(self):
-        """ list voyages by departure
-            returns a tuple of year, month, list
-            remember to accept index of tuple """
-        departure = []
-        yearMonthDay = []
-        time = []
+        day_dict = self.list_voyages_day()
 
-        year_list = []
-        month_list = []
-        day_list = []
+        for key,value in day_dict.items():
 
-        voyages = self.get_all_upcoming_voyages()
+            if key in range(0,week1):
+                week1dict[key] = value
+            if key in range(week1,week2):
+                week2dict[key] = value
+            if key in range(week2,week3):
+                week3dict[key] = value
+            if key in range(week3,week4):
+                week4dict[key] = value
+            if key in range(week4,week5):
+                week5dict[key] = value
 
-        for each_voyage in voyages:
-            departure.append(each_voyage[3])
-
-        for item in departure:
-            a = item.split("T")
-            yearMonthDay.append(a[0])
-            time.append(a[1])
-
-        for items in yearMonthDay:
-            year,month,day = items.split("-")
-            year_list.append(year)
-            month_list.append(month)
-            day_list.append(day)
-
-
-        return (year_list,month_list,day_list)
-
-    # def list_voyages_week(self):
-    #     pass
-
-
+        """ þetta fall á ekki að prenta heldur á UI að prenta dictinarinu"""
+        return "First Week: {}\nSecond week: {}\nThird week: {}\nFourth week: {}\nFifth week: {}".format(week1dict,week2dict,week3dict,week4dict,week5dict)
 
 
 
 if __name__ == "__main__":
     a = VoyageLL()
-    print(a.get_all_upcoming_voyages())
+    print(a.list_voyages_day())
+    print(a.list_voyages_week())
