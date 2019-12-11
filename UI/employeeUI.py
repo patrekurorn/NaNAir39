@@ -2,13 +2,59 @@ from LogicLayer.employeeLL import EmployeeLL
 from Models.employee import Employee
 from LogicLayer.voyageLL import VoyageLL
 import datetime
+from NaNAir39.UI.page import Page
+import keyboard
 
 
-class EmployeeUI:
+class EmployeeUI(Page):
 
     def __init__(self):
         self.__employee_LL = EmployeeLL()
         self.__voyage_LL = VoyageLL()
+
+    def employeeUI_page(self):
+        
+        self.clear_screen()
+        self.print_header()
+        print(  "1. List of all airplanes\n" + \
+                "2. List of all employees\n" + \
+                "3. List of all flight attendants\n" + \
+                "4. List of all pilots\n" + \
+                "5. List of all available employees at a given time\n" + \
+                "6. List of all busy employees at a given time\n" + \
+                "7. Find an employee")
+        self.print_footer()
+        self.last_input_valid_check()
+
+        user_input = keyboard.read_key()
+        keyboard.read_key()
+
+        escaped = False
+        while not escaped:
+
+            if user_input == "esc":
+                return True
+
+            elif user_input == "1":
+                
+                pass
+
+
+            elif user_input == "2":
+                pass
+            elif user_input == "3":
+                pass
+            elif user_input == "4":
+                pass
+            elif user_input == "5":
+                pass
+            elif user_input == "6":
+                pass
+            elif user_input == "7":
+                pass
+            else: 
+                self.valid = False
+                return False
 
 
     def header(self, i):
@@ -47,11 +93,10 @@ class EmployeeUI:
             try:
                 employee = self.__employee_LL.get_employee(ssn)
 
-                print("\nSSN: \t\t\t{}\nName: \t\t\t{}\nPosition: \t\t{}\nRank: \t\t\t{}\nLicence: \t\t{}\nAddress: \t\t{}\nMobile: \t\t{}\nLandline nr: \t{}\nEmail: \t\t\t{}".format(employee[0],employee[1],
-                                                                                                                                             employee[2],employee[3],
-                                                                                                                                             employee[4],employee[5],
-                                                                                                                                             employee[6],employee[7],
-                                                                                                                                             employee[8]))
+                print("\nSSN: \t\t\t{}\nName: \t\t\t{}\nPosition: \t\t{}\nRank: \t\t\t{}\nLicence: \
+                    \t\t{}\nAddress: \t\t{}\nMobile: \t\t{}\nLandline nr: \t{}\nEmail: \t\t\t{}".format(\
+                    employee[0], employee[1], employee[2], employee[3], employee[4], employee[5],
+                    employee[6],employee[7], employee[8]))
             except:
                 print("\nSocial security number not in system.")
 

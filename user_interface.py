@@ -1,11 +1,12 @@
-import os
-from time import sleep
-from NaNAir39.UI.destinationUI import DestinationUI
+
+from UI.destinationUI import DestinationUI
 import keyboard
 import string
 from UI.voyageUI import VoyageUI
 from NaNAir39.UI.page import Page
-# from LogicLayer.destinationsLL import DestinationsLL
+from NaNAir39.UI.employeeUI import EmployeeUI
+import os
+import pathlib
 
 
 VALID_THREE= ["1","2","3"]
@@ -18,6 +19,10 @@ class User(Page):
         self.second_pick = second_pick
         self.valid = valid
 
+        self.employeeUI = EmployeeUI()
+        self.destinationUI = DestinationUI()
+        self.voyageUI = VoyageUI()
+
     def __str__(self):
         return "First pick:{}, second pick: {}".format(str(self.first_pick), str(self.second_pick))
 
@@ -25,17 +30,17 @@ class User(Page):
 
         self.valid_inputs = ["1", "2"]
 
-        self.Clear_screen()
-        self.Print_header()
+        self.header()
         print("1.Staff manager\n2.Planning manager")
-        self.Print_footer()
-        self.Last_input_valid_check()
+        self.footer()
 
-        # Read_key() reads key_down and key_up seperately. Since there's no use for the "key_up" 
-        # I don't assign it to a variable but I write it here to keep it from interfering with
-        # the program and for clarifications.
+        # Read_key() reads key_down and key_up events seperately. Since there's no use for the 
+        # "key_up" I don't assign it to a variable but I write it here to keep it from interfering
+        # with the program and for clarifications.
         user_input = keyboard.read_key()
         keyboard.read_key()
+
+        # Debug, remove before turn in
         print(user_input)
 
 
@@ -71,11 +76,11 @@ class User(Page):
         """
         self.valid_inputs = ["1", "2", "3"]
 
-        self.Clear_screen()
-        self.Print_header()
-        print("1. Man flights \n2. Workforce_information\n3. Manage work force")
-        self.Print_footer()
-        self.Last_input_valid_check()
+        
+        self.header()
+        print("1. Man flights \n2. Workforce information\n3. Manage work force")
+        self.footer()
+        
 
         user_input = keyboard.read_key()
         keyboard.read_key()
@@ -95,8 +100,13 @@ class User(Page):
 
         else:
             if user_input == "1":
+                escaped = False
                 """Man flights"""
+                while not escaped:
 
+                    escaped = self.voyageUI.man_voyage_SM()
+
+                return False
                 print("MAN FLIGHTS")
                 # svo man flights
 
@@ -119,11 +129,11 @@ class User(Page):
 
         self.valid_inputs = ["1", "2", "3"]
 
-        self.Clear_screen()
-        self.Print_header()
-        print("1. Manage voyages\n2. Workforce information\n3. Manage destinations")
-        self.Print_footer()
-        self.Last_input_valid_check()
+        
+        self.header()
+        print("1. Manage voyages\n2. Voyage informations\n3. Manage destinations")
+        self.footer()
+        
 
         user_input = keyboard.read_key()
         keyboard.read_key()
@@ -132,27 +142,26 @@ class User(Page):
 
         def manage_voyages():
             
-            self.Clear_screen
-            user.Print_header()
+            self.header()
             voyage_pick = input("1.Register a new voyager\n2.Edit a voyage\n3.Cancel a voyage ").strip()
-            self.Print_footer
+            self.footer()
             if voyage_pick not in self.valid_inputs:
-                self.Last_input_valid_check
-                self.Clear_screen()
+                
+                
                 manage_voyages()
 
             elif voyage_pick =="1":
-                user.get_footer()
+                self.footer()
                 #Register a new voyager
                 pass
 
             elif voyage_pick =="2":
-                user.get_footer()
+                self.footer()
                 pass
                 # edit a voyage
 
             elif voyage_pick == "3":
-                user.get_footer()
+                self.footer()
                 #Cancel a voyage
                 pass
 
@@ -191,8 +200,8 @@ class User(Page):
 
     def Workforce_information(self):
         
-        self.Clear_screen()
-        self.Print_header()
+        
+        self.header()
         print(  "1. List of all airplanes\n" + \
                 "2. List of all employees\n" + \
                 "3. List of all flight attendants\n" + \
@@ -200,7 +209,7 @@ class User(Page):
                 "5. List of all available employees\n" + \
                 "6. List of all busy employees\n" + \
                 "7. find employee")
-        self.Print_footer()
+        self.footer()
 
 
 
@@ -208,7 +217,9 @@ class User(Page):
 
 
 
+# user = VoyageUI()
 
+# user.man_voyage_SM()
 
 user = User()
 exit = False
@@ -217,7 +228,6 @@ while(not exit):
     user_selection = user.Home()
     exit = user_selection
 
-# sleep(0.5) # Freeze screen for n seconds
 
 
 # if user.first_pick == "1":
@@ -230,3 +240,4 @@ while(not exit):
 
 
 # print(user)
+

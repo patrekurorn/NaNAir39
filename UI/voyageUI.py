@@ -1,10 +1,11 @@
 from LogicLayer.voyageLL import VoyageLL
 from Models.voyage import Voyage
 from Models.voyage_Sm import VoyageSm
+from NaNAir39.UI.page import Page
 from LogicLayer import voyageLL
 import os
 
-class VoyageUI:
+class VoyageUI(Page):
 
     def __init__(self):
         self.__voyageLL = VoyageLL()

@@ -2,6 +2,8 @@ import csv
 from Models.voyage import Voyage
 from Models.voyage_Sm import VoyageSm
 import os
+import pathlib
+
 
 
 class VoyageLL:
@@ -26,7 +28,7 @@ class VoyageLL:
         : Returns a list of voyages
         """
         voyages = []
-        path = "../Data/UpcomingFlightsPM.csv"
+        path = os.path.join("Data", "UpcomingFlightsPM.csv")
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)
@@ -85,14 +87,14 @@ class VoyageLL:
         """
 
 
-    def list_unmanned_voyages(self):
-        pass
+    # def list_unmanned_voyages(self):
+    #     pass
 
-    def list_available_dates(self):
-        pass
+    # def list_available_dates(self):
+    #     pass
 
-    def list_available_times(self):
-        pass
+    # def list_available_times(self):
+    #     pass
 
     def list_all_destinations(self):
         pass
@@ -104,21 +106,21 @@ class VoyageLL:
             for row in reader:
                 destinations.append(row[1])
 
-        return destinations
+    #     return destinations
 
 
-    def voyage_repetition(self):
-        pass
+    # def voyage_repetition(self):
+    #     pass
 
-    def edit_voyage(self):
+    # def edit_voyage(self):
 
-        pass
+    #     pass
 
-    def edit_time(self):
-        pass
+    # def edit_time(self):
+    #     pass
 
-    def edit_date(self):
-        pass
+    # def edit_date(self):
+    #     pass
 
 
     def cancel_voyage(self,flightNumber):
@@ -184,8 +186,8 @@ class VoyageLL:
 
         return (year_list,month_list,day_list)
 
-    def list_voyages_week(self):
-        pass
+    # def list_voyages_week(self):
+    #     pass
 
 
 
