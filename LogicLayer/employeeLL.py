@@ -85,7 +85,7 @@ class EmployeeLL:
         email = new_employee.get_email()
 
         path = "../Data/employee.csv"
-        with open(path, "") as file:
+        with open(path, "a") as file:
             try:
                 writer = csv.writer(file)
                 writer.writerow([ssn, name, position, rank, licence, address, mobile, landlineNr, email])
@@ -146,7 +146,7 @@ class EmployeeLL:
         selected_employee = employee[0]
 
         os.remove("../Data/employee.csv")
-        header = "ssn,name,position,rank,licence,address,mobile,landlineNr,email"
+        header = "ssn,name,position,rank,licence,address,mobile,landlineNr,email\n"
         with open("../Data/employee.csv", "a+", encoding="utf-8") as file:
             file.write(header)
 

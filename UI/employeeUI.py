@@ -93,8 +93,7 @@ class EmployeeUI(Page):
             try:
                 employee = self.__employee_LL.get_employee(ssn)
 
-                print("\nSSN: \t\t\t{}\nName: \t\t\t{}\nPosition: \t\t{}\nRank: \t\t\t{}\nLicence: \
-                    \t\t{}\nAddress: \t\t{}\nMobile: \t\t{}\nLandline nr: \t{}\nEmail: \t\t\t{}".format(\
+                print("\nSSN: \t\t\t{}\nName: \t\t\t{}\nPosition: \t\t{}\nRank: \t\t\t{}\nLicence: \t\t{}\nAddress: \t\t{}\nMobile: \t\t{}\nLandline nr: \t{}\nEmail: \t\t\t{}".format(\
                     employee[0], employee[1], employee[2], employee[3], employee[4], employee[5],
                     employee[6],employee[7], employee[8]))
             except:
@@ -133,6 +132,7 @@ class EmployeeUI(Page):
                 for x in email_list:
                     email += x
 
+                email = email.lower()
                 email += "@nanair.is"
 
                 new_employee = Employee(new_ssn, name, position, rank, licence, address, mobile, landlineNr, email)
@@ -296,7 +296,7 @@ class EmployeeUI(Page):
                         print("Landline nr. changed to {}".format(landlineNr))
 
                     elif action == "8":
-                        username = input("\nEnter new username: ")
+                        username = input("\nEnter new username: ").lower()
                         email = username + "@nanair.is"
                         employee_edit.set_email(email)
                         print("Email changed to {}".format(email))
@@ -490,7 +490,7 @@ class EmployeeUI(Page):
                     busy_date = busy_date.split("T")
 
                     if busy_date[0] == date:
-                        employees = x[5:]
+                        employees = x[5:10]
                         destination = x[1]
 
 
@@ -571,7 +571,7 @@ class EmployeeUI(Page):
                     busy_date = busy_date.split("T")
 
                     if busy_date[0] == date:
-                        flight_attendants = x[7:]
+                        flight_attendants = x[7:10]
                         destination = x[1]
 
                 if len(flight_attendants) > 0:
@@ -709,4 +709,4 @@ class EmployeeUI(Page):
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.list_airplane_by_pilot()
+    a.employeeUI_page()
