@@ -125,5 +125,5 @@ class VoyageUI:
 if __name__ == "__main__":
     a = VoyageUI()
     a.header("Voyage")
-    a.cancel_voyage()
+    a.man_voyage_SM()
 

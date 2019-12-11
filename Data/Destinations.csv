@@ -1,6 +1,4 @@
-id,destination,country,FlightDuration,distanceFromIceland,ContactName,ContactNumber
-LYR,Longyearbyean,Norway,3h-01m,1993.07km,SvalbardAirport,+4-767-03-54-00
-GOH,Nuuk,Greenland,02h-00,1404.74km,NuukInternationalAirport,+299-32-60-05
+id,destination,country,FlightDuration,distanceFromIceland,ContactName,ContactNumberGOH,Nuuk,Greenland,02h-00,1404.74km,NuukInternationalAirport,+299-32-60-05
 KUS,Kulusuk,Greenland,01h-40m,710km,KulusukAirport,+299986988
 FAE,Thorshavn,FaroeIslands,01h-25m,797.80km,VágarAirport,+298354400
 LWK,Tingwall,UnitedKingdom,02h-13m,1621.67km,TingwallAirport,+441595840246
