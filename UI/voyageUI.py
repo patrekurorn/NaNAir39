@@ -53,12 +53,14 @@ class VoyageUI:
     def cancel_voyage(self,flightNumber):
         """ Removes an voyage from the csv file, by deleting all employees and all the employees baack withou the specific employee that is given by us in paramter
         """
+        pass
         self.header(#Cancel voyage)
 
         voyage = input("Please enter a flight number of voyage to be canceled ")
 
 
         with open("./..UpcomingFlightsPM.csv")
+
 
 
 
