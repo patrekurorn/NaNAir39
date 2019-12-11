@@ -1,7 +1,7 @@
 from LogicLayer.employeeLL import EmployeeLL
 from Models.employee import Employee
 from LogicLayer.voyageLL import VoyageLL
-import datetime
+from datetime import datetime
 from NaNAir39.UI.page import Page
 import keyboard
 
@@ -316,6 +316,7 @@ class EmployeeUI(Page):
         isValid = False
         while isValid == False:
             print("Enter q anytime to quit.")
+            """
             year = input("Enter a year: ").lower()
             if year == "q":
                 break
@@ -325,6 +326,7 @@ class EmployeeUI(Page):
             day = input("Enter a day: ").lower()
             if day == "q":
                 break
+            
             hour = input("Enter an hour: ").lower()
             if hour == "q":
                 break
@@ -332,15 +334,23 @@ class EmployeeUI(Page):
             if minute == "q":
                 break
             second = 0
+            """
+            date_entry = input('Enter a date (i.e. 2017,7,1)')
+
 
             try:
+                year, month, day = map(int, date_entry.split(','))
+                date = datetime(year, month, day)
+                """
                 year = int(year)
                 month = int(month)
                 day = int(day)
                 hour = int(hour)
                 minute = int(minute)
+                """
 
-                date = datetime.datetime(year,month,day,hour,minute,second).isoformat()
+                #date = datetime.datetime(year,month,day,hour,minute,second).isoformat()
+
                 return date
 
             except ValueError:
@@ -703,4 +713,4 @@ class EmployeeUI(Page):
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.list_all_flight_attendants()
+    a.busy_employees()
