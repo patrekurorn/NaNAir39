@@ -80,16 +80,9 @@ class VoyageLL:
                 writer = file.writer(file)
                 writer.writerow([aded_voyage.get_fli])
 
-<<<<<<< HEAD
-
-
-    #         except:
-    #             pass
-=======
             except:
                 pass
         """
->>>>>>> e638c1a24fe95d2a4d5cae450871663caddfaaa9
 
 
     # def list_unmanned_voyages(self):
@@ -101,19 +94,6 @@ class VoyageLL:
     # def list_available_times(self):
     #     pass
 
-<<<<<<< HEAD
-    # def list_all_destinations(self):
-    #     pass
-
-
-    #     destinations = []
-    #     path = "../Data/Destinations.csv"
-    #     with open(path, encoding="utf-8") as file:
-    #         reader = csv.reader(file)
-    #         next(reader)
-    #         for row in reader:
-    #             destinations.append(row[1])
-=======
     def list_all_destinations(self):
         pass
         destinations = []
@@ -123,7 +103,6 @@ class VoyageLL:
             next(reader)
             for row in reader:
                 destinations.append(row[1])
->>>>>>> e638c1a24fe95d2a4d5cae450871663caddfaaa9
 
     #     return destinations
 
@@ -141,10 +120,6 @@ class VoyageLL:
     # def edit_date(self):
     #     pass
 
-<<<<<<< HEAD
-    # def cancel_voyage(self):
-    #     """ UI """
-=======
     def cancel_voyage(self,flightNumber):
         """ til að fjarlægja línu í csv þurfum við að lesa inn allt csv sem var gert fyrir ofan, fjarlægja línuna og skrifa svo endurgerða csvið"""
         voyage = self.get_voyage(flightNumber)
@@ -164,7 +139,6 @@ class VoyageLL:
                 newVoyage = Voyage(index[0],index[1],index[2],index[3],index[4])
                 self.register_voyage_PM(newVoyage)
 
->>>>>>> e638c1a24fe95d2a4d5cae450871663caddfaaa9
 
     # def list_voyages_day(self):
     #     pass

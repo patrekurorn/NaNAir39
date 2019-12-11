@@ -1,12 +1,9 @@
 from LogicLayer.voyageLL import VoyageLL
 from Models.voyage import Voyage
 from Models.voyage_Sm import VoyageSm
-<<<<<<< HEAD
 from NaNAir39.UI.page import Page
-=======
 from LogicLayer import voyageLL
 import os
->>>>>>> e638c1a24fe95d2a4d5cae450871663caddfaaa9
 
 class VoyageUI(Page):
 
@@ -23,14 +20,6 @@ class VoyageUI(Page):
         print("-" * 50)
         print()
 
-<<<<<<< HEAD
-    def register_voyage(self):  # Planning manager
-        pass
-
-
-
-=======
->>>>>>> e638c1a24fe95d2a4d5cae450871663caddfaaa9
 
     def register_voyage_PM(self):
         """ Header """
@@ -55,16 +44,6 @@ class VoyageUI(Page):
             else:
                 print("\nVoyage not registered.\n")
 
-<<<<<<< HEAD
-    # def cancel_voyage(self, flightNumber):
-    #     """ Removes an voyage from the csv file, by deleting all employees and all the employees baack withou the 
-    #         specific employee that is given by us in paramter
-    #     """
-    #     self.header(#Cancel voyage)
-
-    #     voyage = input("Please enter a flight number of voyage to be canceled ")
-=======
->>>>>>> e638c1a24fe95d2a4d5cae450871663caddfaaa9
 
     def cancel_voyage(self):
         """ Removes an voyage from the csv file,
@@ -74,23 +53,13 @@ class VoyageUI(Page):
         self.header("Cancel voyage")
         print("To quit press q at any time.")
 
-<<<<<<< HEAD
-    #     with open("./..UpcomingFlightsPM.csv")
-
-=======
         voyage = input("Enter a flight number of voyage to be canceled:").lower().strip()
->>>>>>> e638c1a24fe95d2a4d5cae450871663caddfaaa9
 
         if voyage!= "q":
             if not self.__voyageLL.check_flight_number(voyage):
                 print("--> Voyage: {} was not found.".format(voyage))
                 continue_process = self.continue_it()
 
-<<<<<<< HEAD
-    # def continue_it(self):
-    #     want_to_continue = input("Would you like to try again? ").strip().upper()
-    #     return want_to_continue
-=======
                 if continue_process == "Y" or continue_process == "YES":
                     self.cancel_voyage()
                 else:
@@ -106,7 +75,6 @@ class VoyageUI(Page):
     def continue_it(self):
         want_to_continue = input("Would you like to try again? ").strip().upper()
         return want_to_continue
->>>>>>> e638c1a24fe95d2a4d5cae450871663caddfaaa9
 
 
     def man_voyage_SM(self):
