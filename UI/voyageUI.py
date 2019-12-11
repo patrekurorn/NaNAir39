@@ -1,6 +1,7 @@
 from LogicLayer.voyageLL import VoyageLL
 from Models.voyage import Voyage
 from Models.voyage_Sm import VoyageSm
+from LogicLayer import voyageLL
 import os
 
 class VoyageUI:
@@ -17,14 +18,6 @@ class VoyageUI:
         print("|{:^48}|".format(head))
         print("-" * 50)
         print()
-
-    def register_voyage(self):  # Planning manager
-        pass
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 557c996e4283d17230b1a3b8b98cc04bd3b300d5
 
 
     def register_voyage_PM(self):
@@ -50,21 +43,20 @@ class VoyageUI:
             else:
                 print("\nVoyage not registered.\n")
 
-    def cancel_voyage(self,flightNumber):
-        """ Removes an voyage from the csv file, by deleting all employees and all the employees baack withou the specific employee that is given by us in paramter
+    def cancel_voyage(self):
+        """ Removes an voyage from the csv file,
+            sends voyage fligt number to a function already made in voyageLL to delete specific flight Number
         """
-        pass
-        self.header(#Cancel voyage)
+        self.header("Cancel voyage")
+        print("Press q at any time to exit ")
+        voyage = input("Enter a flight number of voyage to be canceled ")
 
-        voyage = input("Please enter a flight number of voyage to be canceled ")
+        if not self.__voyageLL.check_flight_number(voyage):
+            print("voyage not found")
 
-
-        with open("./..UpcomingFlightsPM.csv")
-
-
-
-
-
+        else:
+            VoyageLL.cancel_voyage(voyage)
+            print("Voyage has been canceled")
 
 
     def continue_it(self):
@@ -72,7 +64,7 @@ class VoyageUI:
         return want_to_continue
 
 
-    def register_voyage_SM(self):
+    def man_voyage_SM(self):
         """ checkar líka á villumeldingum """
         """ Header """
         self.header("Shift manager: register voyage")
@@ -83,7 +75,7 @@ class VoyageUI:
             print("Voyage does not exist ")
             want_2_continue = self.continue_it()
             if want_2_continue == "YES" or want_2_continue == "Y":
-                self.register_voyage_SM()
+                self.man_voyage_SM()
             return None
 
         """ my_list """
@@ -102,7 +94,7 @@ class VoyageUI:
             want_2_continue = self.continue_it()
 
             if want_2_continue == "Yes" or "Y":
-                self.register_voyage_SM()
+                self.man_voyage_SM()
             else:
                 return None
 
@@ -121,5 +113,5 @@ class VoyageUI:
 if __name__ == "__main__":
     a = VoyageUI()
     a.header("Voyage")
-    a.register_voyage_SM()
+    a.cancel_voyage()
 

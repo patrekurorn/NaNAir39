@@ -51,17 +51,17 @@ class VoyageLL:
         flightNumber = new_voyage.get_flight_number()
         departingFrom = new_voyage.get_departing_from()
         arrivingAt = new_voyage.get_arriving_at()
-        departure_time = new_voyage.get_departure_time()
-        arrival_time = new_voyage.get_arrival_time()
+        departureTime = new_voyage.get_departure_time()
+        arrivalTime = new_voyage.get_arrival_time()
 
         path = "../Data/UpcomingFlightsPM.csv"
-        with open(path, "a+") as file:
+        with open(path, "a+",encoding="utf-8") as file:
             try:
-                writer = csv.writer(file)
-                writer.writerow([flightNumber, departingFrom, arrivingAt, departure_time, arrival_time])
+                if os.stat(path).st_size == 0:
+                    file.write("{},{},{},{},{},".format("flightNumber","departingFrom","arrivingAt", "departure_time", "arrival_time"))
+                file.write("\n{},{},{},{},{}".format(flightNumber,departingFrom,arrivingAt,departureTime,arrivalTime))
             except:
                 return False
-
 
     @staticmethod
     def register_voyage_SM(aded_voyage):
@@ -138,7 +138,6 @@ class VoyageLL:
             else:
                 newVoyage = Voyage(index[0],index[1],index[2],index[3],index[4])
                 self.register_voyage_PM(newVoyage)
-
 
 
     def list_voyages_day(self):
