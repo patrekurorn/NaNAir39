@@ -2,6 +2,8 @@ import csv
 from Models.voyage import Voyage
 from Models.voyage_Sm import VoyageSm
 import os
+import pathlib
+
 
 
 class VoyageLL:
@@ -26,7 +28,7 @@ class VoyageLL:
         : Returns a list of voyages
         """
         voyages = []
-        path = "../Data/UpcomingFlightsPM.csv"
+        path = os.path.join("Data", "UpcomingFlightsPM.csv")
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)

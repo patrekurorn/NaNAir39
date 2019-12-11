@@ -5,6 +5,8 @@ import string
 from UI.voyageUI import VoyageUI
 from NaNAir39.UI.page import Page
 from NaNAir39.UI.employeeUI import EmployeeUI
+import os
+import pathlib
 
 # from LogicLayer.destinationsLL import DestinationsLL
 
@@ -101,7 +103,7 @@ class User(Page):
                 """Man flights"""
                 while not escaped:
 
-                    escaped = self.voyageUI.register_voyage_SM()
+                    escaped = self.voyageUI.man_voyage_SM()
 
                 return False
                 print("MAN FLIGHTS")
@@ -214,7 +216,9 @@ class User(Page):
 
 
 
+# user = VoyageUI()
 
+# user.man_voyage_SM()
 
 user = User()
 exit = False
@@ -235,3 +239,4 @@ while(not exit):
 
 
 # print(user)
+
