@@ -120,6 +120,7 @@ class VoyageLL:
     def edit_date(self):
         pass
 
+
     def cancel_voyage(self,flightNumber):
         """ til að fjarlægja línu í csv þurfum við að lesa inn allt csv sem var gert fyrir ofan, fjarlægja línuna og skrifa svo endurgerða csvið"""
         voyage = self.get_voyage(flightNumber)
@@ -139,9 +140,49 @@ class VoyageLL:
                 newVoyage = Voyage(index[0],index[1],index[2],index[3],index[4])
                 self.register_voyage_PM(newVoyage)
 
-
     def list_voyages_day(self):
-        pass
+        """ collects day of format and prints out each voyage for specific day """
+        day = self.day_format()[2]
+
+   #     for items in self.get_all_upcoming_voyages():
+    #        if items[3]
+
+
+
+
+
+
+
+    def day_format(self):
+        """ list voyages by departure
+            returns a tuple of year, month, list
+            remember to accept index of tuple """
+        departure = []
+        yearMonthDay = []
+        time = []
+
+        year_list = []
+        month_list = []
+        day_list = []
+
+        voyages = self.get_all_upcoming_voyages()
+
+        for each_voyage in voyages:
+            departure.append(each_voyage[3])
+
+        for item in departure:
+            a = item.split("T")
+            yearMonthDay.append(a[0])
+            time.append(a[1])
+
+        for items in yearMonthDay:
+            year,month,day = items.split("-")
+            year_list.append(year)
+            month_list.append(month)
+            day_list.append(day)
+
+
+        return (year_list,month_list,day_list)
 
     def list_voyages_week(self):
         pass
@@ -153,3 +194,6 @@ class VoyageLL:
 if __name__ == "__main__":
     a = VoyageLL()
     print(a.list_all_destinations())
+    a.list_voyages_day()
+
+
