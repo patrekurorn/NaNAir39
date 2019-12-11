@@ -3,3 +3,4 @@
 *.pyc
 /venn
 /venv
+__pycache__/
