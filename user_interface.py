@@ -7,11 +7,8 @@ from UI.voyageUI import VoyageUI
 from NaNAir39.UI.page import Page
 # from LogicLayer.destinationsLL import DestinationsLL
 
-<<<<<<< HEAD
 
 VALID_THREE= ["1","2","3"]
-=======
->>>>>>> 0f74083f4368027761886ad8f12a77a769584d90
 
 class User(Page):
     def __init__(self, first_pick=None, second_pick=None, valid=True):

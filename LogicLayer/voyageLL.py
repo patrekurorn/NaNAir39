@@ -140,49 +140,53 @@ class VoyageLL:
                 newVoyage = Voyage(index[0],index[1],index[2],index[3],index[4])
                 self.register_voyage_PM(newVoyage)
 
+    def csv_dictionary(self):
+        dateDictionary = {}
+
+
+        without_first= []
+        path = "../Data/UpcomingFlightsPM.csv"
+        with open(path,encoding="utf-8") as file:
+            reader = csv.reader(file)
+            next(reader)
+
+            for row in reader:
+                without_first.append(row)
+
+        for row in without_first:
+            day = row[3].split("T")[0]
+
+            if day in dateDictionary:
+                dateDictionary[day] += [[row[0],row[1],row[2]]]
+            else:
+                dateDictionary[day] = [[row[0],row[1],row[2]]]
+
+        return dateDictionary
+
     def list_voyages_day(self):
         """ collects day of format and prints out each voyage for specific day """
-        day = self.day_format()[2]
+        day_dict = {}
+        without_first= []
 
-   #     for items in self.get_all_upcoming_voyages():
-    #        if items[3]
+        path = "../Data/UpcomingFlightsPM.csv"
+        with open(path,encoding="utf-8") as file:
+            reader = csv.reader(file)
+            next(reader)
 
+            for row in reader:
+                without_first.append(row)
 
+        for row in without_first:
+            day = row[3].split("T")[0].split("-")[2]
 
+            if day in day_dict:
+                day_dict[day] += [[row[0],row[1],row[2]]]
+            else:
+                day_dict[day] = [[row[0],row[1],row[2]]]
 
+        for key,value in sorted(day_dict.items()):
+            print("day {}: {}".format(key,value))
 
-
-
-    def day_format(self):
-        """ list voyages by departure
-            returns a tuple of year, month, list
-            remember to accept index of tuple """
-        departure = []
-        yearMonthDay = []
-        time = []
-
-        year_list = []
-        month_list = []
-        day_list = []
-
-        voyages = self.get_all_upcoming_voyages()
-
-        for each_voyage in voyages:
-            departure.append(each_voyage[3])
-
-        for item in departure:
-            a = item.split("T")
-            yearMonthDay.append(a[0])
-            time.append(a[1])
-
-        for items in yearMonthDay:
-            year,month,day = items.split("-")
-            year_list.append(year)
-            month_list.append(month)
-            day_list.append(day)
-
-
-        return (year_list,month_list,day_list)
 
     def list_voyages_week(self):
         pass

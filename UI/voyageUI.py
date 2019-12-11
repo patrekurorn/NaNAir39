@@ -55,7 +55,7 @@ class VoyageUI:
         voyage = input("Enter a flight number of voyage to be canceled:").upper().strip()
 
         if voyage!= "Q":
-            if not self.__voyageLL.check_flight_number(voyage):
+            if not self.__voyageLL.check_flight_number(voyage.upper()):
                 print("--> Voyage: {} was not found.".format(voyage))
                 continue_process = self.continue_it()
 
