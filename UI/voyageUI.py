@@ -136,7 +136,4 @@ class VoyageUI(Page):
 
 if __name__ == "__main__":
     a = VoyageUI()
-    a.header("Voyage")
-    #a.man_voyage_SM()
-    a.print_list_voyage_by_day()
-    a.print_list_voyage_by_week()
+    a.man_voyage_SM()
