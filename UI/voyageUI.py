@@ -53,9 +53,9 @@ class VoyageUI(Page):
         self.header("Cancel voyage")
         print("To quit press q at any time.")
 
-        voyage = input("Enter a flight number of voyage to be canceled:").lower().strip()
+        voyage = input("Enter a flight number of voyage to be canceled:").upper().strip()
 
-        if voyage!= "q":
+        if voyage!= "Q":
             if not self.__voyageLL.check_flight_number(voyage):
                 print("--> Voyage: {} was not found.".format(voyage))
                 continue_process = self.continue_it()
