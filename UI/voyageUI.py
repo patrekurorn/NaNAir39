@@ -1,7 +1,12 @@
 from LogicLayer.voyageLL import VoyageLL
 from Models.voyage import Voyage
 from Models.voyage_Sm import VoyageSm
+<<<<<<< HEAD
 from NaNAir39.UI.page import Page
+=======
+from LogicLayer import voyageLL
+import os
+>>>>>>> e638c1a24fe95d2a4d5cae450871663caddfaaa9
 
 class VoyageUI(Page):
 
@@ -18,11 +23,14 @@ class VoyageUI(Page):
         print("-" * 50)
         print()
 
+<<<<<<< HEAD
     def register_voyage(self):  # Planning manager
         pass
 
 
 
+=======
+>>>>>>> e638c1a24fe95d2a4d5cae450871663caddfaaa9
 
     def register_voyage_PM(self):
         """ Header """
@@ -47,6 +55,7 @@ class VoyageUI(Page):
             else:
                 print("\nVoyage not registered.\n")
 
+<<<<<<< HEAD
     # def cancel_voyage(self, flightNumber):
     #     """ Removes an voyage from the csv file, by deleting all employees and all the employees baack withou the 
     #         specific employee that is given by us in paramter
@@ -54,18 +63,53 @@ class VoyageUI(Page):
     #     self.header(#Cancel voyage)
 
     #     voyage = input("Please enter a flight number of voyage to be canceled ")
+=======
+>>>>>>> e638c1a24fe95d2a4d5cae450871663caddfaaa9
 
+    def cancel_voyage(self):
+        """ Removes an voyage from the csv file,
+            sends voyage fligt number to a function already made in voyageLL to delete specific flight Number
+        """
+        # væri best að setja self.header("Cancel voyage") í kall fallið svo það repeati sig ekki endalaust
+        self.header("Cancel voyage")
+        print("To quit press q at any time.")
 
+<<<<<<< HEAD
     #     with open("./..UpcomingFlightsPM.csv")
 
+=======
+        voyage = input("Enter a flight number of voyage to be canceled:").lower().strip()
+>>>>>>> e638c1a24fe95d2a4d5cae450871663caddfaaa9
 
+        if voyage!= "q":
+            if not self.__voyageLL.check_flight_number(voyage):
+                print("--> Voyage: {} was not found.".format(voyage))
+                continue_process = self.continue_it()
 
+<<<<<<< HEAD
     # def continue_it(self):
     #     want_to_continue = input("Would you like to try again? ").strip().upper()
     #     return want_to_continue
+=======
+                if continue_process == "Y" or continue_process == "YES":
+                    self.cancel_voyage()
+                else:
+                    return None
+
+            else:
+                self.__voyageLL.cancel_voyage(voyage)
+                print("Voyage: {} has been canceled.".format(voyage))
+        else:
+            return None
 
 
-    def register_voyage_SM(self):
+    def continue_it(self):
+        want_to_continue = input("Would you like to try again? ").strip().upper()
+        return want_to_continue
+>>>>>>> e638c1a24fe95d2a4d5cae450871663caddfaaa9
+
+
+    def man_voyage_SM(self):
         """ checkar líka á villumeldingum """
         """ Header """
         self.header("Shift manager: register voyage")
@@ -76,7 +120,7 @@ class VoyageUI(Page):
             print("Voyage does not exist ")
             want_2_continue = self.continue_it()
             if want_2_continue == "YES" or want_2_continue == "Y":
-                self.register_voyage_SM()
+                self.man_voyage_SM()
             return None
 
         """ my_list """
@@ -95,7 +139,7 @@ class VoyageUI(Page):
             want_2_continue = self.continue_it()
 
             if want_2_continue == "Yes" or "Y":
-                self.register_voyage_SM()
+                self.man_voyage_SM()
             else:
                 return None
 
@@ -114,5 +158,5 @@ class VoyageUI(Page):
 if __name__ == "__main__":
     a = VoyageUI()
     a.header("Voyage")
-    a.register_voyage_SM()
+    a.cancel_voyage()
 
