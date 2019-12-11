@@ -43,20 +43,32 @@ class VoyageUI:
             else:
                 print("\nVoyage not registered.\n")
 
+
     def cancel_voyage(self):
         """ Removes an voyage from the csv file,
             sends voyage fligt number to a function already made in voyageLL to delete specific flight Number
         """
+        # væri best að setja self.header("Cancel voyage") í kall fallið svo það repeati sig ekki endalaust
         self.header("Cancel voyage")
-        print("Press q at any time to exit ")
-        voyage = input("Enter a flight number of voyage to be canceled ")
+        print("To quit press q at any time.")
 
-        if not self.__voyageLL.check_flight_number(voyage):
-            print("voyage not found")
+        voyage = input("Enter a flight number of voyage to be canceled:").lower().strip()
 
+        if voyage!= "q":
+            if not self.__voyageLL.check_flight_number(voyage):
+                print("--> Voyage: {} was not found.".format(voyage))
+                continue_process = self.continue_it()
+
+                if continue_process == "Y" or continue_process == "YES":
+                    self.cancel_voyage()
+                else:
+                    return None
+
+            else:
+                self.__voyageLL.cancel_voyage(voyage)
+                print("Voyage: {} has been canceled.".format(voyage))
         else:
-            VoyageLL.cancel_voyage(voyage)
-            print("Voyage has been canceled")
+            return None
 
 
     def continue_it(self):

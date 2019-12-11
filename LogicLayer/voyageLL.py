@@ -153,4 +153,3 @@ class VoyageLL:
 if __name__ == "__main__":
     a = VoyageLL()
     print(a.list_all_destinations())
-    a.cancel_voyage("bla")
