@@ -122,9 +122,24 @@ class VoyageUI(Page):
         else:
             print("\nVoyage not registered.\n")
 
+    def print_list_voyage_by_day(self):
+        self.header("Voyage by day ")
+        dayDict = self.__voyageLL.list_voyages_day()
+
+        for key,value in dayDict.items():
+            print("{}: {}".format(key,value))
+
+    def print_list_voyage_by_week(self):
+        self.header("Voyage by week")
+        week_dict = self.__voyageLL.list_voyages_week()
+        print(week_dict)
+
 
 if __name__ == "__main__":
     a = VoyageUI()
     a.header("Voyage")
-    a.man_voyage_SM()
+    #a.man_voyage_SM()
+    a.print_list_voyage_by_day()
+    a.print_list_voyage_by_week()
+
 
