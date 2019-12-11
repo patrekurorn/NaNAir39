@@ -1,9 +1,9 @@
 from LogicLayer.voyageLL import VoyageLL
 from Models.voyage import Voyage
 from Models.voyage_Sm import VoyageSm
-import os
+from NaNAir39.UI.page import Page
 
-class VoyageUI:
+class VoyageUI(Page):
 
     def __init__(self):
         self.__voyageLL = VoyageLL()
@@ -20,11 +20,8 @@ class VoyageUI:
 
     def register_voyage(self):  # Planning manager
         pass
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 557c996e4283d17230b1a3b8b98cc04bd3b300d5
 
 
     def register_voyage_PM(self):
@@ -50,24 +47,22 @@ class VoyageUI:
             else:
                 print("\nVoyage not registered.\n")
 
-    def cancel_voyage(self,flightNumber):
-        """ Removes an voyage from the csv file, by deleting all employees and all the employees baack withou the specific employee that is given by us in paramter
-        """
-        self.header(#Cancel voyage)
+    # def cancel_voyage(self, flightNumber):
+    #     """ Removes an voyage from the csv file, by deleting all employees and all the employees baack withou the 
+    #         specific employee that is given by us in paramter
+    #     """
+    #     self.header(#Cancel voyage)
 
-        voyage = input("Please enter a flight number of voyage to be canceled ")
-
-
-        with open("./..UpcomingFlightsPM.csv")
+    #     voyage = input("Please enter a flight number of voyage to be canceled ")
 
 
-
+    #     with open("./..UpcomingFlightsPM.csv")
 
 
 
-    def continue_it(self):
-        want_to_continue = input("Would you like to try again? ").strip().upper()
-        return want_to_continue
+    # def continue_it(self):
+    #     want_to_continue = input("Would you like to try again? ").strip().upper()
+    #     return want_to_continue
 
 
     def register_voyage_SM(self):

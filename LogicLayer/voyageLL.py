@@ -67,58 +67,55 @@ class VoyageLL:
 
 
 
-<<<<<<< HEAD
-=======
-            except:
-                pass
-
->>>>>>> 557c996e4283d17230b1a3b8b98cc04bd3b300d5
-
-    def list_unmanned_voyages(self):
-        pass
-
-    def list_available_dates(self):
-        pass
-
-    def list_available_times(self):
-        pass
-
-    def list_all_destinations(self):
-        pass
+    #         except:
+    #             pass
 
 
-        destinations = []
-        path = "../Data/Destinations.csv"
-        with open(path, encoding="utf-8") as file:
-            reader = csv.reader(file)
-            next(reader)
-            for row in reader:
-                destinations.append(row[1])
+    # def list_unmanned_voyages(self):
+    #     pass
 
-        return destinations
+    # def list_available_dates(self):
+    #     pass
+
+    # def list_available_times(self):
+    #     pass
+
+    # def list_all_destinations(self):
+    #     pass
 
 
-    def voyage_repetition(self):
-        pass
+    #     destinations = []
+    #     path = "../Data/Destinations.csv"
+    #     with open(path, encoding="utf-8") as file:
+    #         reader = csv.reader(file)
+    #         next(reader)
+    #         for row in reader:
+    #             destinations.append(row[1])
 
-    def edit_voyage(self):
+    #     return destinations
 
-        pass
 
-    def edit_time(self):
-        pass
+    # def voyage_repetition(self):
+    #     pass
 
-    def edit_date(self):
-        pass
+    # def edit_voyage(self):
 
-    def cancel_voyage(self):
-        """ UI """
+    #     pass
 
-    def list_voyages_day(self):
-        pass
+    # def edit_time(self):
+    #     pass
 
-    def list_voyages_week(self):
-        pass
+    # def edit_date(self):
+    #     pass
+
+    # def cancel_voyage(self):
+    #     """ UI """
+
+    # def list_voyages_day(self):
+    #     pass
+
+    # def list_voyages_week(self):
+    #     pass
 
 
 

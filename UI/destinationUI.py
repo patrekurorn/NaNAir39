@@ -31,8 +31,8 @@ class DestinationUI(Page):
 
 
     def register_destination(self):
-        self.Clear_screen()
-        self.Print_header()
+        self.clear_screen()
+        self.print_header()
         print("Registering a new destination")
         id = input("Enter a destination ID: ")
         if self.__destinationLL.check_destination(id):
@@ -143,12 +143,6 @@ class DestinationUI(Page):
 
                 else:
                     pass
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 0f74083f4368027761886ad8f12a77a769584d90
-
 
 if __name__ == "__main__":
     a = DestinationUI()
