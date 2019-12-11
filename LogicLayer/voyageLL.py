@@ -124,7 +124,10 @@ class VoyageLL:
 
 
     def cancel_voyage(self,flightNumber):
-        """ til að fjarlægja línu í csv þurfum við að lesa inn allt csv sem var gert fyrir ofan, fjarlægja línuna og skrifa svo endurgerða csvið"""
+        """ to remove a specific line in csv we need to read in all the data from csv,
+        remove specific line and that write the new updated csv
+        return: dict
+        """
         voyage = self.get_voyage(flightNumber)
         voyages = self.get_all_upcoming_voyages()
 
@@ -144,8 +147,6 @@ class VoyageLL:
 
     def csv_dictionary(self):
         dateDictionary = {}
-
-
         without_first= []
         path = "../Data/UpcomingFlightsPM.csv"
         with open(path,encoding="utf-8") as file:
@@ -163,10 +164,16 @@ class VoyageLL:
             else:
                 dateDictionary[day] = [[row[0],row[1],row[2]]]
 
+        for key,items in dateDictionary.items():
+            print(items)
+
         return dateDictionary
 
+
     def list_voyages_day(self):
-        """ collects date from csv  and prints out a dictionary with each day and information """
+        """ collects date from csv  and prints out a dictionary with each day and information  UI has to print out the dictionary
+            return:dict
+           """
         day_dict = {}
         without_first= []
 
@@ -186,7 +193,10 @@ class VoyageLL:
             else:
                 day_dict[day] = [[row[0],row[1],row[2]]]
 
-
+        """ printar út en þarf að prenta út í UI ekki hér 
+        for key,items in day_dict.items():
+            print("{}: {}".format(key,items))
+        """
         return day_dict
 
     def list_voyages_week(self):
@@ -219,11 +229,12 @@ class VoyageLL:
             if key in range(week4,week5):
                 week5dict[key] = value
 
+        """ þetta fall á ekki að prenta heldur á UI að prenta dictinarinu"""
         return "First Week: {}\nSecond week: {}\nThird week: {}\nFourth week: {}\nFifth week: {}".format(week1dict,week2dict,week3dict,week4dict,week5dict)
 
 
 
 if __name__ == "__main__":
     a = VoyageLL()
-    #a.list_voyages_day()
-    #print(a.list_voyages_week())
+    print(a.list_voyages_day())
+    print(a.list_voyages_week())
