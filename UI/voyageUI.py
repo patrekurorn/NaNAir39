@@ -23,26 +23,40 @@ class VoyageUI(Page):
 
     def register_voyage_PM(self):
         """ Header """
-        self.header("Plan manager: register voyage")
+        again = True
 
-        print("Registering a new voyage\n")
-        flightNumber_int = input("Enter flight number: ")
-        if self.__voyageLL.check_flight_number(flightNumber_int):
-            print("\nVoyage already exists.")
-        else:
-            departingFrom_str = input("Enter departure city: ").strip()
-            arravingAt_str = input("Enter arrival city: ").strip()
-            departure_str = input("Enter departure time: ").strip()
-            arrival_str = input("Enter arrival time: ").strip()
+        self.header("Register new voyage")
+        flightNumber_str = input("Enter flight number: ")
 
-            new_voyage = Voyage(flightNumber_int, departingFrom_str, arravingAt_str,departure_str, arrival_str)
-            print("\n{}\n".format (new_voyage))
+        while again == True:
 
-            if input("Do you want to register this voyage? ").upper() == "Y":
-                self.__voyageLL.register_voyage_PM(new_voyage)
-                print("\nNew voyage registered!\n")
+            if self.__voyageLL.check_flight_number(flightNumber_str):
+                print("\nVoyage already exists.")
+
             else:
-                print("\nVoyage not registered.\n")
+                departingFrom_str = input("Enter departure city: ").strip()
+                arravingAt_str = input("Enter arrival city: ").strip()
+                departure_str = input("Enter departure time: ").strip()
+                arrival_str = input("Enter arrival time: ").strip()
+
+                new_voyage = Voyage(flightNumber_str, departingFrom_str, arravingAt_str,departure_str, arrival_str)
+                print("\n{}\n".format (new_voyage))
+                continue_it = input("Do quit enter q\nDo you want to register this voyage? ")
+
+                if continue_it.upper() == "Y" or continue_it.upper() == "YES":
+                    self.__voyageLL.register_voyage_PM(new_voyage)
+                    print("\nNew voyage registered!\n")
+                elif continue_it =="q":
+                    return True
+                else:
+                    print("\nVoyage not registered.\n")
+                again = input("Would you like to register another voyage? ").lower()
+
+                if again != "yes" or again != "y":
+                    return True
+
+
+
 
 
     def cancel_voyage(self):
@@ -69,13 +83,13 @@ class VoyageUI(Page):
                 self.__voyageLL.cancel_voyage(voyage)
                 print("Voyage: {} has been canceled.".format(voyage))
         else:
-            return None
+            os.clea
+            return True
 
 
     def continue_it(self):
         want_to_continue = input("Would you like to try again? ").strip().upper()
         return want_to_continue
-
 
     def man_voyage_SM(self):
         """ checkar líka á villumeldingum """
@@ -122,6 +136,8 @@ class VoyageUI(Page):
         else:
             print("\nVoyage not registered.\n")
 
+
+
     def print_list_voyage_by_day(self):
         self.header("Voyage by day ")
         dayDict = self.__voyageLL.list_voyages_day()
@@ -137,4 +153,5 @@ class VoyageUI(Page):
 
 if __name__ == "__main__":
     a = VoyageUI()
+    #a.register_voyage_PM()
     a.register_voyage_PM()
