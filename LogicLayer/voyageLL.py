@@ -5,7 +5,6 @@ import os
 import pathlib
 
 
-
 class VoyageLL:
 
     def __init__(self):
@@ -236,5 +235,3 @@ class VoyageLL:
 
 if __name__ == "__main__":
     a = VoyageLL()
-    print(a.list_voyages_day())
-    print(a.list_voyages_week())

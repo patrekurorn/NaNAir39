@@ -14,6 +14,7 @@ class VoyageUI(Page):
         """ prints a header on the user interface
                    :param head:
                """
+
         print("-" * 50)
         print("|{:^48}|".format(head))
         print("-" * 50)
