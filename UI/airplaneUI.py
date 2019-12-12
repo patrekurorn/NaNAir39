@@ -2,37 +2,34 @@ from Models.airplane import Airplane
 from LogicLayer.airplaneLL import AirplaneLL
 from UI.employeeUI import EmployeeUI
 from LogicLayer.voyageLL import VoyageLL
+from UI.page import Page
 
-class AirplaneUI:
+class AirplaneUI(Page):
 
     def __init__(self):
         self.__airplaneLL = AirplaneLL()
         self.__employeeUI = EmployeeUI()
         self.__voyageLL = VoyageLL()
-
-    def header(self,head):
-        """ prints a header on the user interface
-            param head:
-        """
-
-        print("-" * 50)
-        print("|{:^48}|".format(head))
-        print("-" * 50)
-        print()
+        super().__init__()
 
 
     def list_all_airplanes(self):
         """ List of all airplanes """
-
-        self.header("All airplanes")
-
+        
+        header = "All airplanes"
+        self._print_header(header)
         airplanes = self.__airplaneLL.get_all_airplanes()
+
         header = "\n{:<5} {:>12} {:>28} {:>8} {:>10}\n".format("Plane insignia", "Type ID", "Manufacturer", "Model", "Capacity")
+
         print(header)
 
         for x in airplanes:
             print("{:<16}\t{:<20}\t{:<15}\t{:<5}\t{:<5}".format(x[0], x[1], x[2], x[3], x[4]))
 
+        plane = input().strip()
+
+        return True
 
     def register_airplane(self):
         """ Registers a new airplane in csv file """
