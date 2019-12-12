@@ -74,16 +74,22 @@ class VoyageUI(Page):
 
     def register_voyage_PM(self):
         """ Header """
-        again = True
 
         self.header("Register new voyage")
-        flightNumber_str = input("Enter flight number: ")
 
-        while again == True:
+        again = True
+
+        while again:
+
+            flightNumber_str = input("Enter flight number: ")
 
             if self.__voyageLL.check_flight_number(flightNumber_str):
                 print("\nVoyage already exists.")
-                return
+                choice = input("Do you want to try again? (Y/N) ").upper()
+                if choice == "Y":
+                    continue
+                else:
+                    break
 
             else:
                 departingFrom_str = input("Enter departure city: ").strip()
@@ -93,19 +99,24 @@ class VoyageUI(Page):
 
                 new_voyage = Voyage(flightNumber_str, departingFrom_str, arravingAt_str,departure_str, arrival_str)
                 print("\n{}\n".format (new_voyage))
-                continue_it = input("Do quit enter q\nDo you want to register this voyage? ")
+                continue_it = input("To quit enter q\nDo you want to register this voyage? (Y/N) ").upper()
 
-                if continue_it.upper() == "Y" or continue_it.upper() == "YES":
+                if continue_it == "Y":
                     self.__voyageLL.register_voyage_PM(new_voyage)
                     print("\nNew voyage registered!\n")
-                elif continue_it =="q":
-                    return True
+                elif continue_it == "Q":
+                    break
                 else:
                     print("\nVoyage not registered.\n")
-                again = input("Would you like to register another voyage? Yes/No").lower()
 
-                if again != "yes" or again != "y":
-                    return True
+                again = input("Would you like to register another voyage? (Y/N) ").upper()
+
+                if again == "Y":
+                    continue
+                else:
+                    break
+
+
 
 
 
@@ -118,7 +129,7 @@ class VoyageUI(Page):
 
         print("To quit press q at any time.")
 
-        voyage = input("Enter a flight number of voyage to be canceled:").strip()
+        voyage = input("Enter a flight number of voyage to be canceled: ").strip()
 
         if voyage!= "q":
             if not self.__voyageLL.check_flight_number(voyage):
@@ -133,6 +144,7 @@ class VoyageUI(Page):
 
             else:
                 self.__voyageLL.cancel_voyage(voyage)
+
                 print("Voyage: {} has been canceled.".format(voyage))
 
                 continue_process = self.continue_it()
@@ -146,34 +158,48 @@ class VoyageUI(Page):
 
 
     def continue_it(self):
-        want_to_continue = input("Would you like to try again? ").strip().upper()
+        want_to_continue = input("Would you like to try again? (Y/N) ").strip().upper()
         return want_to_continue
 
 
     def man_voyage_SM(self):
-        """ checkar líka á villumeldingum """
-        """ Header """
+        pass
+
+
+    """def man_voyage_SM(self):
+
         self.header("Staff manager: register voyage")
 
         fligtNumber_int = input("Enter flight number: ").strip()
 
-        if not self.__voyageLL.check_flight_number(fligtNumber_int):
+        if self.__voyageLL.check_flight_number(fligtNumber_int):
             print("Voyage does not exist ")
             want_2_continue = self.continue_it()
             if want_2_continue == "YES" or want_2_continue == "Y":
                 self.man_voyage_SM()
             return None
 
-        """ my_list """
+        
         copilot = input("Enter copilot ID: ")
         captain = input("Enter Captain ID: ")
         fsm = input("Enter flight service manager ID: ")
         fa1 = input("Enter first flight attendant ID: ")
         fa2 = input("Enter second flight attendant ID: ")
-        """ end of my_list"""
+        
 
         try:
             int(copilot),int(captain),int(fsm),int(fa1),int(fa2)
+
+            add_to_voyage = copilot, captain, fsm, fa1, fa2
+            print("\n{}\n".format(add_to_voyage))
+
+            register = input("Do you want to register this voyage? ").upper()
+            if register == "Y" or register == "YES":
+
+                self.__voyageLL.register_voyage_PM(add_to_voyage)
+                print("\nNew voyage registered!\n")
+            else:
+                print("\nVoyage not registered.\n")
 
         except:
             print("Invalid: please enter valid numbers")
@@ -182,18 +208,7 @@ class VoyageUI(Page):
             if want_2_continue == "Yes" or "Y":
                 self.man_voyage_SM()
             else:
-                return None
-
-        add_to_voyage = copilot,captain,fsm,fa1,fa2
-        print("\n{}\n".format(add_to_voyage))
-
-        register = input("Do you want to register this voyage? ").upper()
-        if register == "Y" or  register == "YES":
-
-            self.__voyageLL.register_voyage_PM(add_to_voyage)
-            print("\nNew voyage registered!\n")
-        else:
-            print("\nVoyage not registered.\n")
+                return None"""
 
 
     def print_all_voyages(self):
@@ -212,6 +227,8 @@ class VoyageUI(Page):
         for key,value in dayDict.items():
             print("{}: {}".format(key,value))
 
+
+
     def print_list_voyage_by_week(self):
         self.header("Voyage by week")
         week_dict = self.__voyageLL.list_voyages_week()
@@ -220,6 +237,10 @@ class VoyageUI(Page):
 
 if __name__ == "__main__":
     a = VoyageUI()
+<<<<<<< HEAD
     #a.print_list_voyage_by_week()
     a.edit_voyage_date()
+=======
+    a.register_voyage_PM()
+>>>>>>> 04246b1b77c01d3d229e2c39b46508b4acdcef4b
 

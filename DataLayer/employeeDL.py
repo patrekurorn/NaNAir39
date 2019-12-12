@@ -13,7 +13,7 @@ class EmployeeDL:
         :return: A list of all the employees
         """
         employees = []
-        path = os.path.join("../Data", "employee.csv")
+        path = os.path.join("Data", "employee.csv")
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)
@@ -139,6 +139,10 @@ class EmployeeDL:
             else:
                 new_employee = Employee(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8])
                 self.register_employee(new_employee)
+
+
+    def busy_employees(self):
+
 
 
     def print_week_of_employee(self, date):  # A printable work summary can be displayed showing all employee work trips in a given week.

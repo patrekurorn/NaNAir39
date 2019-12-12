@@ -31,6 +31,10 @@ class VoyageLL:
         return self.__voyageDL.register_voyage_PM(new_voyage)
 
 
+    def register_voyage_PM2(self, new_voyage):  # Þarf að vera 2 svona svo cancel_voyage fokkist ekki upp
+        return self.__voyageDL.register_voyage_PM2(new_voyage)
+
+
     def list_unmanned_voyages(self):
          pass
 
