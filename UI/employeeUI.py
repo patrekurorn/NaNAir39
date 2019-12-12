@@ -3,7 +3,7 @@ from Models.employee import Employee
 from LogicLayer.voyageLL import VoyageLL
 from datetime import datetime
 from NaNAir39.UI.page import Page
-import keyboard
+
 
 
 class EmployeeUI(Page):
@@ -14,25 +14,23 @@ class EmployeeUI(Page):
 
     def employeeUI_page(self):
         
-        self.clear_screen()
-        self.print_header()
+        self.header()
         print(  "1. List of all airplanes\n" + \
                 "2. List of all employees\n" + \
                 "3. List of all flight attendants\n" + \
                 "4. List of all pilots\n" + \
                 "5. List of all available employees at a given time\n" + \
                 "6. List of all busy employees at a given time\n" + \
-                "7. Find an employee")
-        self.print_footer()
-        self.last_input_valid_check()
+                "7. Find an employee\n" + \
+                "8. Back")
+        self.footer()
 
-        user_input = keyboard.read_key()
-        keyboard.read_key()
+        user_input = input().strip()
 
         escaped = False
         while not escaped:
 
-            if user_input == "esc":
+            if user_input == "8":
                 return True
 
             elif user_input == "1":
