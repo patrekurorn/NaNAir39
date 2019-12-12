@@ -44,7 +44,7 @@ class Page:
               "|                   *---o--(_)--o---*                       |\n" +
               "|___________________________________________________________|")
 
-    def _header(self, header):
+    def _header(self, header = None):
         self._clear_screen()
         self._print_header(header)
     
