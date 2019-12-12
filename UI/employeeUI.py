@@ -2,8 +2,7 @@ from LogicLayer.employeeLL import EmployeeLL
 from Models.employee import Employee
 from LogicLayer.voyageLL import VoyageLL
 from datetime import datetime
-from datetime import timedelta
-from NaNAir39.UI.page import Page
+from UI.page import Page
 
 
 
@@ -12,49 +11,6 @@ class EmployeeUI(Page):
     def __init__(self):
         self.__employee_LL = EmployeeLL()
         self.__voyage_LL = VoyageLL()
-
-    def employeeUI_page(self):
-        
-        self.header()
-        print(  "1. List of all airplanes\n" + \
-                "2. List of all employees\n" + \
-                "3. List of all flight attendants\n" + \
-                "4. List of all pilots\n" + \
-                "5. List of all available employees at a given time\n" + \
-                "6. List of all busy employees at a given time\n" + \
-                "7. Find an employee\n" + \
-                "8. Back")
-        self.footer()
-
-        user_input = input().strip()
-
-        escaped = False
-        while not escaped:
-
-            if user_input == "8":
-                return True
-
-            elif user_input == "1":
-                
-                pass
-
-
-            elif user_input == "2":
-                pass
-            elif user_input == "3":
-                pass
-            elif user_input == "4":
-                pass
-            elif user_input == "5":
-                pass
-            elif user_input == "6":
-                pass
-            elif user_input == "7":
-                pass
-            else: 
-                self.valid = False
-                return False
-
 
     def header(self, i):
 
@@ -348,6 +304,7 @@ class EmployeeUI(Page):
                 all_employees = self.__employee_LL.get_all_employees()
                 busy = []
                 available = []
+
 
                 for x in voyage:
                     busy_date = x[3]
@@ -702,7 +659,7 @@ class EmployeeUI(Page):
             print("{}.  \t{}".format(index+1, flight_attendants))
             flight_attendants = ""
 
-    def print_week_of_employee(self):
+def print_week_of_employee(self):
         pass
 
 

@@ -3,8 +3,8 @@ from UI.destinationUI import DestinationUI
 
 import string
 from UI.voyageUI import VoyageUI
-from NaNAir39.UI.page import Page
-from NaNAir39.UI.employeeUI import EmployeeUI
+from UI.page import Page
+from UI.employeeUI import EmployeeUI
 from UI.airplaneUI import AirplaneUI
 import os
 import pathlib
@@ -32,7 +32,7 @@ class User(Page):
         self.valid_inputs = ["1", "2"]
 
         self.header()
-        print("1.Staff manager\n2.Planning manager\n3. Exit")
+        print("1. Staff manager\n2. Planning manager\n3. Exit")
         self.footer()
 
         # Read_key() reads key_down and key_up events seperately. Since there's no use for the 
@@ -137,65 +137,66 @@ class User(Page):
         user_input = input().strip()
         print(user_input)
         
-
-        
-
-        if user_input not in self.valid_inputs:
+        chose_back = False
+        while not chose_back:
+            
 
             if user_input == "4":
                 # return "True" so the loop displaying the screen ends.
                 return True
+            
+            
+            elif user_input == "1":
+
+                chose_back = self.manage_voyages()
+
+            elif user_input == "2":
+                
+                chose_back = self.list_of_voyages()
+
+            elif user_input == "3":
+                
+                chose_back = self.manage_destinations()
+
             else:
                 # set valid to false to display a "... valid input..." message
                 self.valid = False
                 # Return "False" to display the screen again
                 return False
 
-        else:
-            
-            if user_input == "1":
-                print("MANAGE VOYAGES")
-            if user_input == "2":
-                print("List of voyages".upper())
-            if user_input == "3":
-                print("Manage destinations".upper())
-                DestinationUI()
+        return False
 
+    def manage_voyages(self):
 
+        self.header()
+        voyage_pick = input("1. Register a new voyage\n2. Edit a voyage\n3. Cancel a voyage\n4. Back ").strip()
+        self.footer()
 
-        def manage_voyages():
-            
-            self.header()
-            voyage_pick = input("1.Register a new voyager\n2.Edit a voyage\n3.Cancel a voyage\n4. Back ").strip()
-            self.footer()
-            if voyage_pick not in self.valid_inputs:
+        chose_back = False
+        while not chose_back:
+
+            if voyage_pick == "4":
                 
-                
-                manage_voyages()
+                return True
 
             elif voyage_pick =="1":
-                self.footer()
-                #Register a new voyager
-                pass
+                chose_back = self.voyageUI.register_new_voyage_PM()
 
             elif voyage_pick =="2":
-                self.footer()
                 pass
+                # chose_back = self.voyageUI.edit_voyage()
                 # edit a voyage
 
             elif voyage_pick == "3":
-                self.footer()
+                chose_back = self.voyageUI.cancel_voyage()
                 #Cancel a voyage
-                pass
+        return False            
 
+    def list_of_voyages(self):
+        pass
 
-
-
-        def list_of_voyages():
-            pass
-
-        def manage_destinations():
-            pass
+    def manage_destinations(self):
+        pass
 
 
     def Workforce_information(self):

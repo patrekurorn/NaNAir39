@@ -1,7 +1,6 @@
 import csv
 import os
-import pandas as pd
-from NaNAir39.Models.employee import Employee
+from Models.employee import Employee
 from datetime import timedelta, datetime, date
 
 

@@ -62,7 +62,7 @@ class VoyageUI(Page):
                 if continue_process == "Y" or continue_process == "YES":
                     self.cancel_voyage()
                 else:
-                    return None
+                    return True
 
             else:
                 self.__voyageLL.cancel_voyage(voyage)
@@ -79,7 +79,7 @@ class VoyageUI(Page):
     def man_voyage_SM(self):
         """ checkar líka á villumeldingum """
         """ Header """
-        self.header("Shift manager: register voyage")
+        self.header("Staff manager: register voyage")
 
         fligtNumber_int = input("Enter flight number: ").strip()
 
