@@ -1,10 +1,12 @@
 import csv
-from NaNAir39.Models.airplane import Airplane
+from Models.airplane import Airplane
+from LogicLayer.voyageLL import VoyageLL
+
 
 class AirplaneLL:
 
     def __init__(self):
-        pass
+        self.__voyageLL = VoyageLL()
 
 
 
@@ -51,15 +53,42 @@ class AirplaneLL:
 
 
 
-    def available_airplanes(self):
-        """ örruglega gert í UI """
-        pass
+    def available_airplanes(self, date):
+        """ List of all busy airplanes """
+
+        busy_airplanes = []
+        all_airplanes_info = self.get_all_airplanes()
+        all_airplanes_insignia = []
+        all_airplanes_manufacturer = []
+
+        for row in all_airplanes_info:
+            all_airplanes_insignia.append(row[0])
+
+        for row in all_airplanes_info:
+            all_airplanes_manufacturer.append(row[1])
+
+        voyage = self.__voyageLL.get_all_upcoming_voyages()
+
+        for x in voyage:
+            busy_date = x[3]
+            busy_date = busy_date.split("T")
+
+            if busy_date[0] == date:
+                busy_airplanes.append(x[10])
+
+        available_airplanes = []
+
+        for row in all_airplanes_insignia:
+            if row not in busy_airplanes:
+                available_airplanes.append(row)
+
+
+        return available_airplanes
 
 
 
 
 if __name__ == "__main__":
     a = AirplaneLL()
-    print(a.register_airplane())
-    print(a.get_all_airplanes())
+    print(a.available_airplanes("12"))
 

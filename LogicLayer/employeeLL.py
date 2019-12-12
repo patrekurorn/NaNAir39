@@ -1,6 +1,8 @@
 import csv
 import os
-from NaNAir39.Models.employee import Employee
+from Models.employee import Employee
+from datetime import timedelta, datetime, date
+
 
 class EmployeeLL:
 
@@ -65,9 +67,6 @@ class EmployeeLL:
         else:
             return False
 
-    def print_week_of_employee(self):   # A printable work summary can be displayed showing all employee work trips in a given week.
-        pass
-
 
     @staticmethod
     def register_employee(new_employee):
@@ -85,7 +84,7 @@ class EmployeeLL:
         email = new_employee.get_email()
 
         path = "../Data/employee.csv"
-        with open(path, "") as file:
+        with open(path, "a") as file:
             try:
                 writer = csv.writer(file)
                 writer.writerow([ssn, name, position, rank, licence, address, mobile, landlineNr, email])
@@ -146,7 +145,7 @@ class EmployeeLL:
         selected_employee = employee[0]
 
         os.remove("../Data/employee.csv")
-        header = "ssn,name,position,rank,licence,address,mobile,landlineNr,email"
+        header = "ssn,name,position,rank,licence,address,mobile,landlineNr,email\n"
         with open("../Data/employee.csv", "a+", encoding="utf-8") as file:
             file.write(header)
 
@@ -154,13 +153,27 @@ class EmployeeLL:
             if x[0] == selected_employee:
                 pass
             else:
-                new_employee = Employee(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],)
+                new_employee = Employee(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8])
                 self.register_employee(new_employee)
+
+
+    def print_week_of_employee(self, date):  # A printable work summary can be displayed showing all employee work trips in a given week.
+        pass
+
+
+    def get_week_list(self):
+
+        pass
+
+
+
+
+
 
 
 
 if __name__ == "__main__":
     a = EmployeeLL()
-    print(a.get_all_employees())
+    a.get_week_list()
 
 

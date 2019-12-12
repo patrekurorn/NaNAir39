@@ -3,7 +3,7 @@ import os
 import string
 from LogicLayer.destinationsLL import DestinationsLL
 from Models.destination import Destination
-from NaNAir39.UI.page import Page
+from UI.page import Page
 
 
 class DestinationUI(Page):
@@ -33,8 +33,7 @@ class DestinationUI(Page):
 
 
     def register_destination(self):
-        self.clear_screen()
-        self.print_header()
+        self.header()
         print("Registering a new destination")
         id = input("Enter a destination ID: ")
         if self.__destinationLL.check_destination(id):
