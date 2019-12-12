@@ -665,12 +665,11 @@ class EmployeeUI(Page):
             print("{}.  \t{}".format(index+1, flight_attendants))
             flight_attendants = ""
 
-def print_week_of_employee(self):
-        pass
-
-
+    def print_week_of_employee(self):
+        self.get_all_employees()
+        
 
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.list_pilots_by_airplane()
+    a.print_week_of_employee()
