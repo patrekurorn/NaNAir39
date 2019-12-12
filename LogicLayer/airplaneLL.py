@@ -1,6 +1,7 @@
 import csv
 from Models.airplane import Airplane
 from LogicLayer.voyageLL import VoyageLL
+import os
 
 
 class AirplaneLL:
@@ -15,7 +16,7 @@ class AirplaneLL:
         :return: A list of all the airplanes
         """
         airplanes = []
-        path = "../Data/Aircraft.csv"
+        path = os.path.join("Data", "Aircraft.csv")
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)

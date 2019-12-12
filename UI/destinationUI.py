@@ -21,19 +21,19 @@ class DestinationUI(Page):
     def __init__(self):
         self.__destinationLL = DestinationsLL()
 
-    def header(self):
+    def header(self, i):
         """ prints a header on the user interface
             :param head:
         """
 
         print("-" * 50)
-        print("|{:^48}|".format(head))
+        print("|{:^48}|".format(i))
         print("-" * 50)
         print()
 
 
     def register_destination(self):
-        self.header()
+        self.header("Register destination")
         print("Registering a new destination")
         id = input("Enter a destination ID: ")
         if self.__destinationLL.check_destination(id):
@@ -153,7 +153,21 @@ class DestinationUI(Page):
                 else:
                     pass
 
+
+    def get_all_destinations(self):
+
+        self.header("All destinations")
+        destinations = self.__destinationLL.get_all_destinations()
+
+        header = "{:<5} {:<12} {:<16} {:<17} {:<25} {:<30} {}".format("ID","Destination","Country","Flight Duration","Distance from Iceland","Contact Name","Contact Number")
+        print(header)
+        print()
+        for row in destinations:
+            print("{:<5} {:<12} {:<16} {:<17} {:<25} {:<30} {:<20}".format(row[0],row[1],row[2],row[3],row[4],row[5],row[6]))
+
+
+
+
 if __name__ == "__main__":
     a = DestinationUI()
-    #a.register_destination()
     a.edit_destination()

@@ -8,14 +8,20 @@ from UI.page import Page
 
 class EmployeeUI(Page):
 
+
     def __init__(self):
         self.__employee_LL = EmployeeLL()
         self.__voyage_LL = VoyageLL()
+        super().__init__()
 
     def header(self, i):
+        
+        length = 50
+
+        line = "|{:^" + str(length) + "}|"
 
         print("-" * 50)
-        print("|{:^48}|".format(i))
+        print(line.format(i))
         print("-" * 50)
         print()
 
@@ -667,4 +673,4 @@ def print_week_of_employee(self):
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.edit_employee()
+    a.list_pilots_by_airplane()

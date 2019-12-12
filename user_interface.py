@@ -13,58 +13,36 @@ import pathlib
 VALID_THREE= ["1","2","3"]
 
 class User(Page):
-    def __init__(self, first_pick=None, second_pick=None, valid=True):
-        self.valid_inputs = []
-        self.first_pick = first_pick
-        self.second_pick = second_pick
-        self.valid = valid
-
+    def __init__(self):
         self.employeeUI = EmployeeUI()
         self.destinationUI = DestinationUI()
         self.voyageUI = VoyageUI()
         self.airplaneUI = AirplaneUI()
+        super().__init__()
 
-    def __str__(self):
-        return "First pick:{}, second pick: {}".format(str(self.first_pick), str(self.second_pick))
 
     def Home(self):
 
-        self.valid_inputs = ["1", "2"]
-        self.header()
-        print("1. Staff manager\n2. Planning manager\n3. Exit")
-        self.footer()
+        options = ["1. Staff manager", "2. Planning manager", "3. Exit"]
 
-        # Read_key() reads key_down and key_up events seperately. Since there's no use for the 
-        # "key_up" I don't assign it to a variable but I write it here to keep it from interfering
-        # with the program and for clarifications.
+        self.show_page(options)
+
         user_input = input().strip()
-
-        # Debug, remove before turn in
-        print(user_input)
-
-
-        if user_input in self.valid_inputs:
-            chose_back = False
+      
+        chose_back = False
+        while not chose_back:
             self.first_pick = user_input
-            if user_input == "1":
-
-                while not chose_back:
-                    chose_back = self.Staff_manager()
-
-                return False
-            else:
-
-                while not chose_back:
-                    chose_back = self.Planning_manager()
-
-                return False
-        else:
-            if user_input == "4":
-                # Return "True" to end the outside loop (in this case the loop in the main program) displaying the screen.
-                return True
-            else:
+            if user_input == "1":   # Staff manager
+                chose_back = self.Staff_manager()
+            elif user_input == "2": # Planning manager
+                chose_back = self.Planning_manager()
+            elif user_input == "3": # Exit
+                # Return "True" to end the outside loop (in this case the loop in the main program)
+                return True                 
+            else:                   # Invalid input
                 self.valid = False
-                return False
+        
+        return False    #Continue outside loop
 
     def Staff_manager(self):
         """
@@ -73,122 +51,116 @@ class User(Page):
         Options: Man flights, lists of work force and manage work force
 
         """
-        self.valid_inputs = ["1", "2", "3"]
 
-        
-        self.header()
-        print("1. Man flights \n2. Workforce information\n3. Manage work force\n4. Back")
-        self.footer()
-        
+        header = "Staff manager"
+        options = ["1. Man flights", "2. Workforce information", "3. Manage workforce", "4. Back"]
 
+        self.show_page(options, header)
+        
         user_input = input().strip()
-        print(user_input)
 
-        if user_input not in self.valid_inputs:
+        chose_back = False
+        while not chose_back:
 
-            if user_input == "4":
+            if user_input == "4":       # Back
                 # return "True" so the loop displaying the screen ends.
                 return True
-
-            else:
-                # set valid to false to display a "... valid input..." message
+            elif user_input == "1":     # Man flights
+                chose_back = self.voyageUI.man_voyage_SM()
+            elif user_input == "2":     # Workforce information
+                chose_back = self.Workforce_information()
+            elif user_input == "3":     # Manage workforce
+                chose_back = self.manage_workforce()
+            else:                       # Invalid input
+                # set valid to false to display an error message
                 self.valid = False
-                # Return "False" to display the screen again
-                return False
-
-        else:
-            if user_input == "1":
-                chose_back = False
-                """Man flights"""
-                while not chose_back:
-
-                    chose_back = self.voyageUI.man_voyage_SM()
-
-                return False
-                print("MAN FLIGHTS")
-                # svo man flights
-
-            elif user_input == "2":
-                """List of work force"""
-
-                print("List of work force".upper())
-                #svo list of work force
-
-
-            elif user_input == "3":
-                """Manage work force"""
-
-                print("Manage work force".upper())
-                #svo manage work force
-
+                
+        # Return "False" to display this screen again
+        return False
+    
+    def manage_workforce(self):
         
+        header = "Manage workforce"
+        options = [ "1. Register a new airplane",
+                    "2. Register a new employee",
+                    "3. Edit employee",
+                    "4. Back"]
+
+        self.show_page(options, header)
+
+        user_input = input().strip()
+
+        chose_back = False
+        while not chose_back:
+
+            if user_input == "4":       # Back
+                return True
+            elif user_input == "1":     # Register new airplane
+                chose_back == self.airplaneUI.register_airplane()
+            elif user_input == "2":     # Register a new employee
+                chose_back == self.employeeUI.register_employee()
+            elif user_input == "3":     # Edit employee
+                chose_back == self.employeeUI.edit_employee()
+            else:                       # Invalid input
+                self.valid = False
+            
+        return False
 
     def Planning_manager(self):
-
-        self.valid_inputs = ["1", "2", "3"]
-
         
-        self.header()
-        print("1. Manage voyages\n2. Voyage informations\n3. Manage destinations\n4. Back")
-        self.footer()
+        header = "Planning manager"
+        options = ["1. Manage voyages", "2. Voyage informations", "3. Manage destinations", "4. Back"]
+        self.show_page(options, header)
         
 
         user_input = input().strip()
-        print(user_input)
-        
+
         chose_back = False
         while not chose_back:
             
-
-            if user_input == "4":
-                # return "True" so the loop displaying the screen ends.
+            if user_input == "4":       # Back
                 return True
-            
-            
-            elif user_input == "1":
-
+            elif user_input == "1":     # Manage voyages
                 chose_back = self.manage_voyages()
-
-            elif user_input == "2":
-                
+            elif user_input == "2":     # Voyage information
                 chose_back = self.list_of_voyages()
-
-            elif user_input == "3":
-                
+            elif user_input == "3":     # Manage destinations
                 chose_back = self.manage_destinations()
-
-            else:
+            else:                       # Invalid input
                 # set valid to false to display a "... valid input..." message
                 self.valid = False
-                # Return "False" to display the screen again
-                return False
 
         return False
 
     def manage_voyages(self):
 
-        self.header()
-        voyage_pick = input("1. Register a new voyage\n2. Edit a voyage\n3. Cancel a voyage\n4. Back ").strip()
-        self.footer()
+        header = "Manage voyages"
+        options = ["1. Register a new voyage", "2. Edit a voyage", "3. Cancel a voyage", "4. Back"]
+        self.show_page(options, header)
+
+        voyage_pick = input().strip()
 
         chose_back = False
         while not chose_back:
 
-            if voyage_pick == "4":
-                
+            if voyage_pick == "4":      # Back
                 return True
-
-            elif voyage_pick =="1":
+            elif voyage_pick =="1":     # Register a new voyage
                 chose_back = self.voyageUI.register_voyage_PM()
-
-            elif voyage_pick =="2":
+            elif voyage_pick =="2":     # Edit a voyage
                 pass
-                # chose_back = self.voyageUI.edit_voyage()
+            #######################################################################################################################
+            ######################################                                           ######################################
+            ######################################           Needs implementation            ######################################
+            ######################################                                           ######################################
+            #######################################################################################################################
+                # chose_back = self.voyageUI.edit_voyage()         
                 # edit a voyage
-
-            elif voyage_pick == "3":
+            elif voyage_pick == "3":    # Cancel a voyage
                 chose_back = self.voyageUI.cancel_voyage()
-                #Cancel a voyage
+            else:
+                self.valid = False
+
         return False            
 
     def list_of_voyages(self):
@@ -200,16 +172,17 @@ class User(Page):
 
     def Workforce_information(self):
         
-        self.header()
-        print(  "1. List of all airplanes\n" + \
-                "2. List of all employees\n" + \
-                "3. List of all flight attendants\n" + \
-                "4. List of all pilots\n" + \
-                "5. List of all available employees at a given time\n" + \
-                "6. List of all busy employees at a given time\n" + \
-                "7. Find an employee\n" + \
-                "8. Back")
-        self.footer()
+        header = "Workforce information"
+        options = [ "1. List of all airplanes",
+                "2. List of all employees",
+                "3. List of all flight attendants",
+                "4. List of all pilots",
+                "5. List of all available employees at a given time",
+                "6. List of all busy employees at a given time",
+                "7. Find an employee",
+                "8. Back"]
+        
+        self.show_page(options, header)
 
         user_input = input().strip()
 
@@ -218,37 +191,24 @@ class User(Page):
 
             if user_input == "8":
                 return True
-
             elif user_input == "1":
-                
                 chose_back = self.airplaneUI.list_all_airplanes()
-
-
             elif user_input == "2":
-                
                 chose_back = self.employeeUI.get_all_employees()
-
             elif user_input == "3":
-                
                 chose_back = self.employeeUI.list_all_flight_attendants()
             elif user_input == "4":
-                
                 chose_back = self.employeeUI.list_all_pilots()
-
             elif user_input == "5":
-                
                 chose_back = self.employeeUI.available_employees()
-
             elif user_input == "6":
-                
                 chose_back = self.employeeUI.busy_employees()
-
             elif user_input == "7":
-                
                 chose_back = self.employeeUI.get_employee()
             else: 
                 self.valid = False
-                return False
+        
+        return False
 
 
 
