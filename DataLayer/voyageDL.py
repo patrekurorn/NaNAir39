@@ -27,7 +27,7 @@ class VoyageDL:
         : Returns a list of voyages
         """
         voyages = []
-        path = os.path.join("../Data", "UpcomingFlightsSM.csv")
+        path = os.path.join("Data", "UpcomingFlightsSM.csv")
 
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
@@ -56,7 +56,7 @@ class VoyageDL:
         departureTime = new_voyage.get_departure_time()
         arrivalTime = new_voyage.get_arrival_time()
 
-        path = os.path.join("../Data","UpcomingFlightsPM.csv")
+        path = os.path.join("Data","UpcomingFlightsPM.csv")
         with open(path, "a+",encoding="utf-8") as file:
             try:
                 if os.stat(path).st_size == 0:
@@ -71,7 +71,7 @@ class VoyageDL:
         voyages = self.get_all_upcoming_voyages()
 
         selectedVoyage = voyage[0]
-        path = os.path.join("../Data", "UpcomingFlightsPM.csv")
+        path = os.path.join("Data", "UpcomingFlightsPM.csv")
         os.remove(path)
         header = "flightNumber,departingFrom,arrivingAt,departure,arrival,captain,copilot,fsm,fa1,fa2,planeInsignia"
 
@@ -112,7 +112,7 @@ class VoyageDL:
            """
         day_dict = {}
         without_first = []
-        path = os.path.join("../Data", "UpcomingFlightsPM.csv")
+        path = os.path.join("Data", "UpcomingFlightsPM.csv")
 
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
