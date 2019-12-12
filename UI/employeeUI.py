@@ -8,14 +8,20 @@ from UI.page import Page
 
 class EmployeeUI(Page):
 
+
     def __init__(self):
         self.__employee_LL = EmployeeLL()
         self.__voyage_LL = VoyageLL()
+        super().__init__()
 
     def header(self, i):
+        
+        length = 50
+
+        line = "|{:^" + str(length) + "}|"
 
         print("-" * 50)
-        print("|{:^48}|".format(i))
+        print(line.format(i))
         print("-" * 50)
         print()
 
@@ -300,7 +306,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
                 all_employees = self.__employee_LL.get_all_employees()
                 busy = []
                 available = []
@@ -347,7 +353,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
                 all_employees = self.__employee_LL.get_all_employees()
                 busy = []
                 available = []
@@ -392,7 +398,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
                 all_employees = self.__employee_LL.get_all_employees()
                 busy = []
                 available = []
@@ -438,7 +444,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
 
                 for x in voyage:
                     busy_date = x[3]
@@ -479,7 +485,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
 
                 for x in voyage:
                     busy_date = x[3]
@@ -519,7 +525,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
 
                 for x in voyage:
                     busy_date = x[3]
@@ -659,12 +665,11 @@ class EmployeeUI(Page):
             print("{}.  \t{}".format(index+1, flight_attendants))
             flight_attendants = ""
 
-def print_week_of_employee(self):
-        pass
-
-
+    def print_week_of_employee(self):
+        self.get_all_employees()
+        
 
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.edit_employee()
+    a.print_week_of_employee()

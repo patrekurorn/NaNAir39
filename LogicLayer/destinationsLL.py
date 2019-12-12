@@ -76,7 +76,7 @@ class DestinationsLL(object):
         selected_destination = destination[0]
 
         os.remove("../Data/Destinations.csv")
-        header = "id,destination,country,FlightDuration,distanceFromIceland,ContactName,ContactNumber"
+        header = "id,destination,country,FlightDuration,distanceFromIceland,ContactName,ContactNumber\n"
         with open("../Data/Destinations.csv", "a+", encoding="utf-8") as file:
             file.write(header)
 
@@ -87,7 +87,21 @@ class DestinationsLL(object):
                 new_destination = Destination(x[0],x[1],x[2],x[3],x[4],x[5],x[6])
                 self.register_destination(new_destination)
 
+    """def list_all_destinations(self):
+        destinations = []
+        path = "../Data/Destinations.csv"
+        with open(path, encoding="utf-8") as file:
+            reader = csv.reader(file)
+            next(reader)
+            for row in reader:
+                destinations.append(row[1])
+
+        return destinations"""
+
+
+
 
 if __name__ == "__main__":
     a = DestinationsLL()
+    print(a.get_all_destinations())
 
