@@ -2,6 +2,7 @@ from LogicLayer.employeeLL import EmployeeLL
 from Models.employee import Employee
 from LogicLayer.voyageLL import VoyageLL
 from datetime import datetime
+from datetime import timedelta
 from NaNAir39.UI.page import Page
 import keyboard
 
@@ -349,7 +350,6 @@ class EmployeeUI(Page):
                 all_employees = self.__employee_LL.get_all_employees()
                 busy = []
                 available = []
-
 
                 for x in voyage:
                     busy_date = x[3]
@@ -712,4 +712,4 @@ class EmployeeUI(Page):
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.register_employee()
+    a.edit_employee()
