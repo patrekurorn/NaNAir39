@@ -22,12 +22,15 @@ class VoyageLL:
                 if row[0] == flightNumber:
                     return row
 
+
+
     def get_all_upcoming_voyages(self):  # display voyages
         """
         : Returns a list of voyages
         """
         voyages = []
-        path = os.path.join("Data", "UpcomingFlightsSM.csv")
+        path = os.path.join("../Data", "UpcomingFlightsSM.csv")
+
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)
@@ -35,6 +38,7 @@ class VoyageLL:
             for row in reader:
                 voyages.append(row)
         return voyages
+
 
 
     def check_flight_number(self, flightNumber):
@@ -64,28 +68,6 @@ class VoyageLL:
             except:
                 return False
 
-    @staticmethod
-    def register_voyage_SM(aded_voyage):
-        pass
-        """ Þarf að bætta við til að leifa SM að appenda í nú þegar búinn til csv skrá frá PM
-        flightNumber = aded_voyage.get_captain()
-        captain = added_voyage.get_copilot()
-        fsm = aded_voyage.get_fsm()
-        fa1 = added_voyage.get_fa1()
-        fa2 = added_voyage.get_fa2()
-
-        path = "../Data/UpcomingFlightsSM.csv"
-        with open(path,"a+") as file:
-            try:
-                pass
-                writer = file.writer(file)
-                writer.writerow([aded_voyage.get_fli])
-
-            except:
-                pass
-        """
-
-
     # def list_unmanned_voyages(self):
     #     pass
 
@@ -102,8 +84,6 @@ class VoyageLL:
 
     """ þurfum að klára!"""
     # def edit_voyage(self):
-
-
     #     pass
 
     # def edit_time(self):
@@ -113,28 +93,28 @@ class VoyageLL:
     #     pass
 
 
+
+
     def cancel_voyage(self,flightNumber):
-        """ to remove a specific line in csv we need to read in all the data from csv,
-        remove specific line and that write the new updated csv
-        return: dict
-        """
+        """ Does the same as cancel_voyage_PM but instead it cancels SM """
         voyage = self.get_voyage(flightNumber)
         voyages = self.get_all_upcoming_voyages()
 
         selectedVoyage = voyage[0]
         path = os.path.join("Data", "UpcomingFlightsPM.csv")
         os.remove(path)
-        header = "flightNumber,departingFrom,arrivingAt,departure,arrival"
+        header = "flightNumber,departingFrom,arrivingAt,departure,arrival,captain,copilot,fsm,fa1,fa2,planeInsignia"
 
-        with open(path,"a+",encoding="utf-8") as file:
+        with open(path, "a+", encoding="utf-8") as file:
             file.write(header)
-
         for index in voyages:
             if index[0] == selectedVoyage:
                 pass
             else:
-                newVoyage = Voyage(index[0],index[1],index[2],index[3],index[4])
+                newVoyage = Voyage(index[0], index[1], index[2], index[3], index[4])
                 self.register_voyage_PM(newVoyage)
+
+
 
     def csv_dictionary(self):
         dateDictionary = {}
@@ -226,3 +206,4 @@ class VoyageLL:
 
 if __name__ == "__main__":
     a = VoyageLL()
+    print(a.get_all_upcoming_voyages())

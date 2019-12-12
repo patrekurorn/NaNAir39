@@ -68,7 +68,7 @@ class AirplaneLL:
         for row in all_airplanes_info:
             all_airplanes_manufacturer.append(row[1])
 
-        voyage = self.__voyageLL.get_all_upcoming_voyages()
+        voyage = self.__voyageLL.get_all_upcoming_voyages_SM()
 
         for x in voyage:
             busy_date = x[3]

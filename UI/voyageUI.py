@@ -1,6 +1,7 @@
 from LogicLayer.voyageLL import VoyageLL
 from Models.voyage import Voyage
 from Models.voyage_Sm import VoyageSm
+
 from UI.page import Page
 from LogicLayer import voyageLL
 import os
@@ -65,16 +66,18 @@ class VoyageUI(Page):
         """
         # væri best að setja self.header("Cancel voyage") í kall fallið svo það repeati sig ekki endalaust
         self.header("Cancel voyage")
+
         print("To quit press q at any time.")
 
-        voyage = input("Enter a flight number of voyage to be canceled:").upper().strip()
+        voyage = input("Enter a flight number of voyage to be canceled:").strip()
 
-        if voyage!= "Q":
-            if not self.__voyageLL.check_flight_number(voyage.upper()):
+        if voyage!= "q":
+            if not self.__voyageLL.check_flight_number(voyage):
                 print("--> Voyage: {} was not found.".format(voyage))
+
                 continue_process = self.continue_it()
 
-                if continue_process == "Y" or continue_process == "YES":
+                if continue_process.upper() == "Y" or continue_process.upper() == "YES":
                     self.cancel_voyage()
                 else:
                     return True
@@ -82,8 +85,14 @@ class VoyageUI(Page):
             else:
                 self.__voyageLL.cancel_voyage(voyage)
                 print("Voyage: {} has been canceled.".format(voyage))
+
+                continue_process = self.continue_it()
+                if continue_process != "YES" or continue_process != "Y":
+                    return True
+                else:
+                    self.cancel_voyage()
+
         else:
-            os.clea
             return True
 
 
@@ -153,5 +162,4 @@ class VoyageUI(Page):
 
 if __name__ == "__main__":
     a = VoyageUI()
-    #a.register_voyage_PM()
-    a.register_voyage_PM()
+

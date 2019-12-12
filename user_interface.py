@@ -195,17 +195,17 @@ class User(Page):
             elif user_input == "1":
                 chose_back = self.airplaneUI.list_all_airplanes()
             elif user_input == "2":
-                chose_back = self.employeeUI.get_all_employees()
+                chose_back = self.employeeUI.get_all_employees()    # Endalaus loopa
             elif user_input == "3":
-                chose_back = self.employeeUI.list_all_flight_attendants()
+                chose_back = self.employeeUI.list_all_flight_attendants()   # Endalaus loopa
             elif user_input == "4":
-                chose_back = self.employeeUI.list_all_pilots()
+                chose_back = self.employeeUI.list_all_pilots()  # Endalaus loopa
             elif user_input == "5":
-                chose_back = self.employeeUI.available_employees()
+                chose_back = self.employeeUI.available_employees()  # Festist inní
             elif user_input == "6":
-                chose_back = self.employeeUI.busy_employees()
+                chose_back = self.employeeUI.busy_employees()   # Festist inní
             elif user_input == "7":
-                chose_back = self.employeeUI.get_employee()
+                chose_back = self.employeeUI.get_employee()     # Festist hérna inni, ekki hægt að fara til baka
             else: 
                 self.valid = False
         
