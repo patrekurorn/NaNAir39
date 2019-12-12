@@ -65,9 +65,6 @@ class EmployeeLL:
         else:
             return False
 
-    def print_week_of_employee(self):   # A printable work summary can be displayed showing all employee work trips in a given week.
-        pass
-
 
     @staticmethod
     def register_employee(new_employee):
@@ -156,6 +153,9 @@ class EmployeeLL:
             else:
                 new_employee = Employee(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],)
                 self.register_employee(new_employee)
+
+    def print_week_of_employee(self, week):  # A printable work summary can be displayed showing all employee work trips in a given week.
+        pass
 
 
 

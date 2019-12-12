@@ -64,10 +64,25 @@ class AirplaneUI:
                     if inputed == "Y".upper()  or inputed == "YES":
                         self.__airplaneLL.register_airplane(new_airplane)
                         print("\nNew airplane registered!\n")
+                        choice = input("Y: Yes\nAnything else: No\nDo you want to continue? ").upper()
+                        if choice == "Y":
+                            continue
+                        else:
+                            break
                     else:
                         print("\nAirplane not registered.\n")
+                        choice = input("Y: Yes\nAnything else: No\nDo you want to continue? ").upper()
+                        if choice == "Y":
+                            continue
+                        else:
+                            break
                 except:
-                    print("\nInvalid input. Please try again.")
+                    print("\nInvalid input.\n")
+                    choice = input("Y: Yes\nAnything else: No\nDo you want to continue? ").upper()
+                    if choice == "Y":
+                        continue
+                    else:
+                        break
 
     def available_airplanes(self):
         """ Lists available airplanes for a given date. """
@@ -81,8 +96,9 @@ class AirplaneUI:
 
             available = self.__airplaneLL.available_airplanes(date)
 
+            print("\nAvailable airplanes on {}".format(date))
             header = "{:<5}".format("Airplane insignia")
-            print("\n{}\n".format(header))
+            print("{}\n".format(header))
 
             for i, row in enumerate(available):
                 print("{}.\t{}".format(i+1, row))
@@ -96,4 +112,4 @@ class AirplaneUI:
 
 if __name__ == "__main__":
     a = AirplaneUI()
-    a.available_airplanes()
+    a.register_airplane()

@@ -58,10 +58,14 @@ class AirplaneLL:
 
         busy_airplanes = []
         all_airplanes_info = self.get_all_airplanes()
-        all_airplanes = []
+        all_airplanes_insignia = []
+        all_airplanes_manufacturer = []
 
         for row in all_airplanes_info:
-            all_airplanes.append(row[0])
+            all_airplanes_insignia.append(row[0])
+
+        for row in all_airplanes_info:
+            all_airplanes_manufacturer.append(row[1])
 
         voyage = self.__voyageLL.get_all_upcoming_voyages()
 
@@ -74,9 +78,10 @@ class AirplaneLL:
 
         available_airplanes = []
 
-        for row in all_airplanes:
+        for row in all_airplanes_insignia:
             if row not in busy_airplanes:
                 available_airplanes.append(row)
+
 
         return available_airplanes
 
@@ -85,5 +90,5 @@ class AirplaneLL:
 
 if __name__ == "__main__":
     a = AirplaneLL()
-
+    print(a.available_airplanes("12"))
 

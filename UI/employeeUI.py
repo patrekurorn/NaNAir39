@@ -704,9 +704,12 @@ class EmployeeUI(Page):
             print("{}.  \t{}".format(index+1, flight_attendants))
             flight_attendants = ""
 
+    def print_week_of_employee(self):
+        pass
+
 
 
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.employeeUI_page()
+    a.register_employee()
