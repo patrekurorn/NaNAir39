@@ -37,7 +37,7 @@ class AirplaneUI(Page):
         for x in airplanes:
             print("{:<16}\t{:<20}\t{:<15}\t{:<5}\t{:<5}".format(x[0], x[1], x[2], x[3], x[4]))
 
-
+        input()
 
     def register_airplane(self):
         """ Registers a new airplane in csv file """
