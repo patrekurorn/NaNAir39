@@ -30,7 +30,6 @@ class User(Page):
     def Home(self):
 
         self.valid_inputs = ["1", "2"]
-
         self.header()
         print("1. Staff manager\n2. Planning manager\n3. Exit")
         self.footer()
@@ -180,7 +179,7 @@ class User(Page):
                 return True
 
             elif voyage_pick =="1":
-                chose_back = self.voyageUI.register_new_voyage_PM()
+                chose_back = self.voyageUI.register_voyage_PM()
 
             elif voyage_pick =="2":
                 pass

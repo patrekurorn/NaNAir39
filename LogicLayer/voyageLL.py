@@ -27,7 +27,7 @@ class VoyageLL:
         : Returns a list of voyages
         """
         voyages = []
-        path = os.path.join("../Data", "UpcomingFlightsSM.csv")
+        path = os.path.join("Data", "UpcomingFlightsSM.csv")
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)
@@ -55,7 +55,7 @@ class VoyageLL:
         departureTime = new_voyage.get_departure_time()
         arrivalTime = new_voyage.get_arrival_time()
 
-        path = "../Data/UpcomingFlightsPM.csv"
+        path = os.path.join("Data","UpcomingFlightsPM.csv")
         with open(path, "a+",encoding="utf-8") as file:
             try:
                 if os.stat(path).st_size == 0:
@@ -100,7 +100,9 @@ class VoyageLL:
     # def voyage_repetition(self):
     #     pass
 
+    """ þurfum að klára!"""
     # def edit_voyage(self):
+
 
     #     pass
 
@@ -120,10 +122,11 @@ class VoyageLL:
         voyages = self.get_all_upcoming_voyages()
 
         selectedVoyage = voyage[0]
-        os.remove("../Data/UpcomingFlightsPM.csv")
+        path = os.path.join("Data", "UpcomingFlightsPM.csv")
+        os.remove(path)
         header = "flightNumber,departingFrom,arrivingAt,departure,arrival"
 
-        with open ("../Data/UpcomingFlightsPM.csv","a+",encoding="utf-8") as file:
+        with open(path,"a+",encoding="utf-8") as file:
             file.write(header)
 
         for index in voyages:
@@ -136,7 +139,7 @@ class VoyageLL:
     def csv_dictionary(self):
         dateDictionary = {}
         without_first= []
-        path = "../Data/UpcomingFlightsPM.csv"
+        path = os.path.join("Data", "UpcomingFlightsPM.csv")
         with open(path,encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)
@@ -164,8 +167,7 @@ class VoyageLL:
            """
         day_dict = {}
         without_first= []
-
-        path = "../Data/UpcomingFlightsPM.csv"
+        path = os.path.join("Data", "UpcomingFlightsPM.csv")
         with open(path,encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)
