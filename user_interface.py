@@ -130,7 +130,7 @@ class User(Page):
 
         
         self.header()
-        print("1. Manage voyages\n2. Voyage informations\n3. Manage destinations\n4. Back")
+        print("1. Manage voyages\n2. List of voyages\n3. Manage destinations\n4. Back")
         self.footer()
         
 
@@ -169,11 +169,11 @@ class User(Page):
     def manage_voyages(self):
 
         self.header()
-        voyage_pick = input("1. Register a new voyage\n2. Edit a voyage\n3. Cancel a voyage\n4. Back ").strip()
+        voyage_pick = input("1. Register a new voyage\n2. Edit a voyage\n3. Cancel a voyage\n4. Back\n").strip()
         self.footer()
 
         chose_back = False
-        while not chose_back:
+        if not chose_back:
 
             if voyage_pick == "4":
                 
@@ -193,7 +193,36 @@ class User(Page):
         return False            
 
     def list_of_voyages(self):
-        pass
+        self.header()
+        print(  "1. List all voyages\n" + \
+                "2. List by day\n" + \
+                "3. List by week\n" + \
+                "4. Back")
+        self.footer()
+
+        user_input = input().strip()
+
+        chose_back = False
+        while chose_back == False:
+
+            if user_input == "4":
+                return True
+
+            elif user_input == "1":
+                
+                chose_back = self.voyageUI.print_all_voyages()
+
+            elif user_input == "2":
+                
+                chose_back = self.voyageUI.print_list_voyage_by_day()
+
+            elif user_input == "3":
+                
+                chose_back = self.voyageUI.print_list_voyage_by_week()
+            else: 
+                self.valid = False
+                return False
+
 
     def manage_destinations(self):
         pass

@@ -27,7 +27,7 @@ class VoyageLL:
         : Returns a list of voyages
         """
         voyages = []
-        path = os.path.join("../Data", "UpcomingFlightsSM.csv")
+        path = os.path.join("Data", "UpcomingFlightsPM.csv")
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)
@@ -176,7 +176,7 @@ class VoyageLL:
         day_dict = {}
         without_first= []
 
-        path = "../Data/UpcomingFlightsPM.csv"
+        path = os.path.join("../Data", "UpcomingFlightsPM.csv")
         with open(path,encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)
@@ -192,10 +192,11 @@ class VoyageLL:
             else:
                 day_dict[day] = [[row[0],row[1],row[2]]]
 
-        """ printar út en þarf að prenta út í UI ekki hér 
+        """ printar út en þarf að prenta út í UI ekki hér
         for key,items in day_dict.items():
             print("{}: {}".format(key,items))
         """
+        
         return day_dict
 
     def list_voyages_week(self):
@@ -235,3 +236,5 @@ class VoyageLL:
 
 if __name__ == "__main__":
     a = VoyageLL()
+    a.list_voyages_day()
+    print(a.list_voyages_week())

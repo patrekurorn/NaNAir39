@@ -122,8 +122,16 @@ class VoyageUI(Page):
         else:
             print("\nVoyage not registered.\n")
 
+    def print_all_voyages(self):
+        self.header("All voyages")
+        allDict = self.__voyageLL.get_all_upcoming_voyages()
+        
+        for index,v in enumerate(allDict):
+            print("{},{}".format(index,v))
+        
+
     def print_list_voyage_by_day(self):
-        self.header("Voyage by day ")
+        self.header("Voyage by day")
         dayDict = self.__voyageLL.list_voyages_day()
 
         for key,value in dayDict.items():
