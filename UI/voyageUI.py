@@ -51,7 +51,7 @@ class VoyageUI(Page):
                     return True
                 else:
                     print("\nVoyage not registered.\n")
-                again = input("Would you like to register another voyage? ").lower()
+                again = input("Would you like to register another voyage? Yes/No").lower()
 
                 if again != "yes" or again != "y":
                     return True

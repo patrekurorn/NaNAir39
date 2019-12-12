@@ -91,7 +91,8 @@ class User(Page):
         user_input = input().strip()
 
         chose_back = False
-        while not chose_back:
+
+        if not chose_back:
 
             if user_input == "4":       # Back
                 return True
