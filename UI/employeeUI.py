@@ -2,6 +2,7 @@ from LogicLayer.employeeLL import EmployeeLL
 from Models.employee import Employee
 from LogicLayer.voyageLL import VoyageLL
 from datetime import datetime
+from datetime import timedelta
 from NaNAir39.UI.page import Page
 
 
@@ -347,7 +348,6 @@ class EmployeeUI(Page):
                 all_employees = self.__employee_LL.get_all_employees()
                 busy = []
                 available = []
-
 
                 for x in voyage:
                     busy_date = x[3]
@@ -702,9 +702,12 @@ class EmployeeUI(Page):
             print("{}.  \t{}".format(index+1, flight_attendants))
             flight_attendants = ""
 
+    def print_week_of_employee(self):
+        pass
+
 
 
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.employeeUI_page()
+    a.edit_employee()

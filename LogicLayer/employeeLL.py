@@ -1,6 +1,9 @@
 import csv
 import os
+import pandas as pd
 from NaNAir39.Models.employee import Employee
+from datetime import timedelta, datetime, date
+
 
 class EmployeeLL:
 
@@ -64,9 +67,6 @@ class EmployeeLL:
                                                                                                                                                                                             row[8])
         else:
             return False
-
-    def print_week_of_employee(self):   # A printable work summary can be displayed showing all employee work trips in a given week.
-        pass
 
 
     @staticmethod
@@ -154,13 +154,27 @@ class EmployeeLL:
             if x[0] == selected_employee:
                 pass
             else:
-                new_employee = Employee(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],)
+                new_employee = Employee(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8])
                 self.register_employee(new_employee)
+
+
+    def print_week_of_employee(self, date):  # A printable work summary can be displayed showing all employee work trips in a given week.
+        pass
+
+
+    def get_week_list(self):
+
+        pass
+
+
+
+
+
 
 
 
 if __name__ == "__main__":
     a = EmployeeLL()
-    print(a.get_all_employees())
+    a.get_week_list()
 
 
