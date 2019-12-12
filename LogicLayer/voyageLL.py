@@ -95,17 +95,6 @@ class VoyageLL:
     # def list_available_times(self):
     #     pass
 
-    def list_all_destinations(self):
-        pass
-        destinations = []
-        path = "../Data/Destinations.csv"
-        with open(path, encoding="utf-8") as file:
-            reader = csv.reader(file)
-            next(reader)
-            for row in reader:
-                destinations.append(row[1])
-
-    #     return destinations
 
 
     # def voyage_repetition(self):

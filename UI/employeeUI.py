@@ -667,4 +667,4 @@ def print_week_of_employee(self):
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.edit_employee()
+    a.list_pilots_by_airplane()
