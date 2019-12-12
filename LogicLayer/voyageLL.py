@@ -48,6 +48,7 @@ class VoyageLL:
 
 
     def edit_voyage(self):
+
          pass
 
 

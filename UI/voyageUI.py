@@ -2,6 +2,7 @@ from LogicLayer.voyageLL import VoyageLL
 from Models.voyage import Voyage
 from Models.voyage_Sm import VoyageSm
 from UI.page import Page
+from datetime import datetime
 from LogicLayer import voyageLL
 import os
 
@@ -9,6 +10,7 @@ class VoyageUI(Page):
 
     def __init__(self):
         self.__voyageLL = VoyageLL()
+        self.__voyage = Voyage
 
 
     def header(self,head):
@@ -20,6 +22,54 @@ class VoyageUI(Page):
         print("|{:^48}|".format(head))
         print("-" * 50)
         print()
+
+    def edit_voyage_date(self):
+        self.header("Edit voyage data")
+        print("Enter q an any time to quit")
+
+        while True:
+            try:
+                voyage_int = int(input("1. edit voyage arrival\n2. edit voyage departure\nEdit number: "))
+            except:
+                print("-> Invalid input, please enter 1 or 2")
+            else:
+                break
+
+        if voyage_int != "q":
+            user_voyage_input = input("Enter voyage id: ").strip()
+            if not self.__voyageLL.check_flight_number(user_voyage_input):
+                print("--> Voyage does not exist")
+                wantToContinue_str = input("Do you want to try again?\n(Yes) to continue, anything else to exit: ").strip().upper()
+
+                if wantToContinue_str == "YES" or wantToContinue_str == "Y":
+                    self.edit_voyage_date()
+
+            correctFormat = False
+
+            while correctFormat == False:
+                try:
+                    datetime_str = input("Enter date  (i.e. 'mm/dd/yy'): ").strip()
+                    if datetime_str == "q":
+                        return None
+                    datetime_object = datetime.strptime(datetime_str, '%m/%d/%y')
+                except:
+                    print("Error: please enter a valid number ")
+                    continue
+                else:
+                    correctFormat = True
+
+        if voyage_int == 1:
+            voyage_object = self.__voyageLL.get_voyage(user_voyage_input)
+            voyage_arrival_edit = VoyageSm(voyage_object[0],voyage_object[1],voyage_object[2],voyage_object[0],voyage_object[1],voyage_object[2])
+
+        if voyage_int == 2:
+            pass
+
+        print(datetime_object)
+
+        print(self.__voyageLL.get_voyage(user_voyage_input))
+
+
 
 
     def register_voyage_PM(self):
@@ -170,5 +220,6 @@ class VoyageUI(Page):
 
 if __name__ == "__main__":
     a = VoyageUI()
-    a.print_list_voyage_by_week()
+    #a.print_list_voyage_by_week()
+    a.edit_voyage_date()
 
