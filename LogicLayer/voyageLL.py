@@ -27,7 +27,7 @@ class VoyageLL:
         : Returns a list of voyages
         """
         voyages = []
-        path = os.path.join("Data", "UpcomingFlightsSM.csv")
+        path = os.path.join("../Data", "UpcomingFlightsSM.csv")
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)
@@ -226,3 +226,4 @@ class VoyageLL:
 
 if __name__ == "__main__":
     a = VoyageLL()
+    print(a.get_all_upcoming_voyages())
