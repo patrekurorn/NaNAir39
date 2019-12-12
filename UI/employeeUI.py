@@ -279,7 +279,7 @@ class EmployeeUI(Page):
             print("Enter q anytime to quit.")
 
             try:
-                datetime_str = input("Enter date  (i.e. 'mm/dd/yy'): ")
+                datetime_str = input("Enter date  (i.e. 'mm/dd/yy'): ").strip()
                 if datetime_str == "q":
                     break
 
@@ -306,7 +306,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages()
                 all_employees = self.__employee_LL.get_all_employees()
                 busy = []
                 available = []
@@ -353,7 +353,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages()
                 all_employees = self.__employee_LL.get_all_employees()
                 busy = []
                 available = []
@@ -398,7 +398,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages()
                 all_employees = self.__employee_LL.get_all_employees()
                 busy = []
                 available = []
@@ -444,7 +444,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages()
 
                 for x in voyage:
                     busy_date = x[3]
@@ -485,7 +485,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages()
 
                 for x in voyage:
                     busy_date = x[3]
@@ -525,7 +525,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages()
 
                 for x in voyage:
                     busy_date = x[3]
@@ -672,4 +672,4 @@ class EmployeeUI(Page):
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.print_week_of_employee()
+    a.available_employees()

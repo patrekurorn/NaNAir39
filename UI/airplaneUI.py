@@ -12,6 +12,16 @@ class AirplaneUI(Page):
         self.__voyageLL = VoyageLL()
         super().__init__()
 
+    def header(self, i):
+        """ prints a header on the user interface
+            :param head:
+        """
+
+        print("-" * 50)
+        print("|{:^48}|".format(i))
+        print("-" * 50)
+        print()
+
 
     def list_all_airplanes(self):
         """ List of all airplanes """
@@ -27,9 +37,7 @@ class AirplaneUI(Page):
         for x in airplanes:
             print("{:<16}\t{:<20}\t{:<15}\t{:<5}\t{:<5}".format(x[0], x[1], x[2], x[3], x[4]))
 
-        plane = input().strip()
 
-        return True
 
     def register_airplane(self):
         """ Registers a new airplane in csv file """
@@ -56,9 +64,9 @@ class AirplaneUI(Page):
 
                     new_airplane = Airplane(planeInsignia, planeTypeId, manufacturer, model, capacity)
                     print("\n{}\n".format(new_airplane))
-                    inputed = input("Do you want to register this airplane?").upper()
+                    inputed = input("Do you want to register this airplane? (Y/N) ").upper()
 
-                    if inputed == "Y".upper()  or inputed == "YES":
+                    if inputed == "Y"  or inputed == "YES":
                         self.__airplaneLL.register_airplane(new_airplane)
                         print("\nNew airplane registered!\n")
                         choice = input("Y: Yes\nAnything else: No\nDo you want to continue? ").upper()
@@ -109,4 +117,4 @@ class AirplaneUI(Page):
 
 if __name__ == "__main__":
     a = AirplaneUI()
-    a.register_airplane()
+    a.available_airplanes()

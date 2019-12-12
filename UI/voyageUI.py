@@ -1,7 +1,6 @@
 from LogicLayer.voyageLL import VoyageLL
 from Models.voyage import Voyage
 from Models.voyage_Sm import VoyageSm
-
 from UI.page import Page
 from LogicLayer import voyageLL
 import os
@@ -10,6 +9,7 @@ class VoyageUI(Page):
 
     def __init__(self):
         self.__voyageLL = VoyageLL()
+
 
     def header(self,head):
         """ prints a header on the user interface
@@ -33,6 +33,7 @@ class VoyageUI(Page):
 
             if self.__voyageLL.check_flight_number(flightNumber_str):
                 print("\nVoyage already exists.")
+                return
 
             else:
                 departingFrom_str = input("Enter departure city: ").strip()
@@ -55,8 +56,6 @@ class VoyageUI(Page):
 
                 if again != "yes" or again != "y":
                     return True
-
-
 
 
 
@@ -100,6 +99,7 @@ class VoyageUI(Page):
         want_to_continue = input("Would you like to try again? ").strip().upper()
         return want_to_continue
 
+
     def man_voyage_SM(self):
         """ checkar líka á villumeldingum """
         """ Header """
@@ -140,22 +140,20 @@ class VoyageUI(Page):
         register = input("Do you want to register this voyage? ").upper()
         if register == "Y" or  register == "YES":
 
-            self.__voyageLL.register_voyage_SM(add_to_voyage)
+            self.__voyageLL.register_voyage_PM(add_to_voyage)
             print("\nNew voyage registered!\n")
         else:
             print("\nVoyage not registered.\n")
 
-<<<<<<< HEAD
+
     def print_all_voyages(self):
         self.header("All voyages")
-        allDict = self.__voyageLL.get_all_upcoming_voyages()
+        voyages = self.__voyageLL.get_all_upcoming_voyages()
         
-        for index,v in enumerate(allDict):
-            print("{},{}".format(index,v))
+        for index, x in enumerate(voyages):
+            print("{},{}".format(index+1, x))
         
-=======
 
->>>>>>> 35d2a9ef03da4339d61d038040247f145acc3bce
 
     def print_list_voyage_by_day(self):
         self.header("Voyage by day")
@@ -172,4 +170,5 @@ class VoyageUI(Page):
 
 if __name__ == "__main__":
     a = VoyageUI()
+    a.print_list_voyage_by_week()
 

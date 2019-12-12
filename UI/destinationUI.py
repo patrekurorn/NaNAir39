@@ -7,15 +7,6 @@ from UI.page import Page
 
 
 class DestinationUI(Page):
-    """
-    ID = 0
-    DESTINATION = 1
-    COUNTRY = 2
-    FLIGHTDURATION = 3
-    DISTANCEFROMICELAND = 4
-    CONTACTNAME = 5
-    CONTACTNUMBER = 6
-    """
 
 
     def __init__(self):
@@ -170,4 +161,4 @@ class DestinationUI(Page):
 
 if __name__ == "__main__":
     a = DestinationUI()
-    a.edit_destination()
+    a.get_all_destinations()

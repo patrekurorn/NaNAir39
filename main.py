@@ -110,15 +110,15 @@ class User(Page):
 
     def Planning_manager(self):
         
-<<<<<<< HEAD
+
         self.header()
         print("1. Manage voyages\n2. List of voyages\n3. Manage destinations\n4. Back")
         self.footer()
-=======
+
         header = "Planning manager"
         options = ["1. Manage voyages", "2. Voyage informations", "3. Manage destinations", "4. Back"]
         self.show_page(options, header)
->>>>>>> 35d2a9ef03da4339d61d038040247f145acc3bce
+
         
 
         user_input = input().strip()
@@ -142,17 +142,17 @@ class User(Page):
 
     def manage_voyages(self):
 
-<<<<<<< HEAD
+
         self.header()
         voyage_pick = input("1. Register a new voyage\n2. Edit a voyage\n3. Cancel a voyage\n4. Back\n").strip()
         self.footer()
-=======
+
         header = "Manage voyages"
         options = ["1. Register a new voyage", "2. Edit a voyage", "3. Cancel a voyage", "4. Back"]
         self.show_page(options, header)
 
         voyage_pick = input().strip()
->>>>>>> 35d2a9ef03da4339d61d038040247f145acc3bce
+
 
         chose_back = False
         if not chose_back:

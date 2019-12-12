@@ -1,57 +1,27 @@
 import csv
 import os
 from Models.employee import Employee
+from DataLayer.employeeDL import EmployeeDL
 from datetime import timedelta, datetime, date
 
 
 class EmployeeLL:
 
     def __init__(self):
-        pass
+        self.__employeeDL = EmployeeDL()
+
 
     def get_all_employees(self):
-        """
-        :return: A list of all the employees
-        """
-        employees = []
-        path = os.path.join("Data", "employee.csv")
-        with open(path, encoding="utf-8") as file:
-            reader = csv.reader(file)
-            next(reader)
-
-            for row in reader:
-                employees.append(row)
-
-        return employees
+        return self.__employeeDL.get_all_employees()
 
 
     def ssn_valid(self, ssn):
-        """
-        :param ssn: string, social security number
-        :return: returns True if valid, False otherwise
-        """
-        data = self.get_all_employees()
-
-        for row in data:
-            if row[0] == ssn:
-                return True
-
-        return False
+        return self.__employeeDL.ssn_valid(ssn)
 
 
     def get_employee(self, ssn):    # list information about a specific employee.
-        """
-        :param ssn: string, social security number
-        :return: a list of information about a specific employee
-        """
-        data = self.get_all_employees()
+        return self.__employeeDL.get_employee(ssn)
 
-        if self.ssn_valid(ssn):
-            for row in data:
-                if row[0] == ssn:
-                    return row
-
-        return False
 
     def print_employee(self, ssn):
         data = self.get_all_employees()
@@ -68,93 +38,29 @@ class EmployeeLL:
             return False
 
 
-    @staticmethod
-    def register_employee(new_employee):
-        """
-        :return: Adds a new employee to the cvs file
-        """
-        ssn = new_employee.get_ssn()
-        name = new_employee.get_name()
-        position = new_employee.get_position()
-        rank = new_employee.get_rank()
-        licence = new_employee.get_licence()
-        address = new_employee.get_address()
-        mobile = new_employee.get_mobile()
-        landlineNr = new_employee.get_landlineNr()
-        email = new_employee.get_email()
 
-        path = "../Data/employee.csv"
-        with open(path, "a") as file:
-            try:
-                writer = csv.writer(file)
-                writer.writerow([ssn, name, position, rank, licence, address, mobile, landlineNr, email])
-            except:
-                return False
+    def register_employee(self, new_employee):
+        return self.__employeeDL.register_employee(new_employee)
 
 
     def list_all_pilots(self):
-        """
-        :return: A list of all the pilots
-        """
-        data = self.get_all_employees()
-        pilots = []
-
-        for x in data:
-            if x[2] == "Pilot":
-                pilots.append(x)
-
-        return pilots
+        return self.__employeeDL.list_all_pilots()
 
 
     def list_airplane_by_pilot(self, ssn):
-        data = self.get_employee(ssn)
-
-        return data[4]
+        return self.__employeeDL.list_airplane_by_pilot(ssn)
 
 
     def list_pilots_by_airplane(self, licence):
-        data = self.get_all_employees()
-        pilots = []
-        try:
-            for x in data:
-                if x[4] == licence:
-                    pilots.append(x)
-
-            return pilots
-        except Exception:
-            return False
+        return self.__employeeDL.list_pilots_by_airplane(licence)
 
 
     def list_all_flight_attendants(self):
-        """
-        :return: A list of all the flight attendants
-        """
-        data = self.get_all_employees()
-        flightAttendants = []
+        return self.__employeeDL.list_all_flight_attendants()
 
-        for x in data:
-            if x[2] == "Cabincrew":
-                flightAttendants.append(x)
-
-        return flightAttendants
 
     def remove_employee(self, ssn):
-        employee = self.get_employee(ssn)
-        employees = self.get_all_employees()
-
-        selected_employee = employee[0]
-
-        os.remove("../Data/employee.csv")
-        header = "ssn,name,position,rank,licence,address,mobile,landlineNr,email\n"
-        with open("../Data/employee.csv", "a+", encoding="utf-8") as file:
-            file.write(header)
-
-        for x in employees:
-            if x[0] == selected_employee:
-                pass
-            else:
-                new_employee = Employee(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8])
-                self.register_employee(new_employee)
+        return self.__employeeDL.remove_employee(ssn)
 
 
     def print_week_of_employee(self, date):  # A printable work summary can be displayed showing all employee work trips in a given week.
