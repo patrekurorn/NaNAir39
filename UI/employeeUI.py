@@ -300,7 +300,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
                 all_employees = self.__employee_LL.get_all_employees()
                 busy = []
                 available = []
@@ -347,7 +347,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
                 all_employees = self.__employee_LL.get_all_employees()
                 busy = []
                 available = []
@@ -392,7 +392,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
                 all_employees = self.__employee_LL.get_all_employees()
                 busy = []
                 available = []
@@ -438,7 +438,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
 
                 for x in voyage:
                     busy_date = x[3]
@@ -479,7 +479,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
 
                 for x in voyage:
                     busy_date = x[3]
@@ -519,7 +519,7 @@ class EmployeeUI(Page):
                 break
 
             try:
-                voyage = self.__voyage_LL.get_all_upcoming_voyages()
+                voyage = self.__voyage_LL.get_all_upcoming_voyages_SM()
 
                 for x in voyage:
                     busy_date = x[3]
