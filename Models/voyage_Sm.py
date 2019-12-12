@@ -1,7 +1,7 @@
 from Models.voyage import Voyage
 
 class VoyageSm(Voyage):
-    def __init__(self, flightNumber, departingFrom, arrivingAt, departure, arrival,captain,copilot,fsm,fa1,fa2,planeInsignia):
+    def __init__(self,flightNumber,departingFrom,arrivingAt,departure,arrival,captain,copilot,fsm,fa1,fa2,planeInsignia):
         self.flightNumber = flightNumber
         self.departingFrom = departingFrom
         self.arrivingAt = arrivingAt
