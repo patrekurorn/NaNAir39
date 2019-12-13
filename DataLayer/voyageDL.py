@@ -68,6 +68,12 @@ class VoyageDL:
         arrivingAt = new_voyage.get_arriving_at()
         departureTime = new_voyage.get_departure_time()
         arrivalTime = new_voyage.get_arrival_time()
+        copilot = "-"
+        fsm = "-"
+        fa1 = "-"
+        fa2 = "-"
+        planeInsiglia = "-"
+
 
         path2 = os.path.join("Data", "UpcomingFlightsSM.csv")
 
@@ -85,16 +91,21 @@ class VoyageDL:
         1. Changes arrival
         2. Changes departures
         """
+        print(voyageName)
+        print()
+        print(selectedVoyageData)
+        print()
+        print(editNumber)
 
         if editNumber == 1:
             selectedVoyageData.set_arrival_time(date + "T" + time)
             self.cancel_voyage(voyageName)
-            self.register_voyage_PM2(selectedVoyageData)
+            self.register_voyage_PM(selectedVoyageData)
 
         elif editNumber == 2:
             selectedVoyageData.set_departure_time(date + "T" + time)
             self.cancel_voyage(voyageName)
-            self.register_voyage_PM2(selectedVoyageData)
+            self.register_voyage_PM(selectedVoyageData)
 
 
 
