@@ -9,10 +9,6 @@ from UI.airplaneUI import AirplaneUI
 import os
 import pathlib
 
-# #####
-# a = EmployeeUI()
-# a.print_week_of_employee()
-#####
 
 
 # VALID_THREE= ["1","2","3"]
