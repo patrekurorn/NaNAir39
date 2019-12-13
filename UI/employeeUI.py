@@ -15,31 +15,32 @@ class EmployeeUI(Page):
         super().__init__()
 
     def header(self, i):
-        
-        length = 50
-
-        line = "|{:^" + str(length) + "}|"
-
-        print("-" * 50)
-        print(line.format(i))
-        print("-" * 50)
-        print()
-
+        return " "
 
     def get_all_employees(self):
         """ Lists information about all employees. """
+        # ssn,name,position,rank,licence,address,mobile,landlineNr,email
+
+        page_width = 90
 
         self.header("All employees")
+        self._print_header("All employees", page_width)
+
+        # self.show_page()
 
         all_employees = self.__employee_LL.get_all_employees()
+        print(all_employees)
 
-        employees = ""
-        for index, row in enumerate(all_employees):
-            for x in row:
-                employees += (x + ", ")
-            print("{}. {}".format(index+1, employees))
-            employees = ""
+        employee_header =   "| {:<12} {:<19} {:<14} {:<24} {:<19} {:<14} {:<9} {:<9} {:<28} |\n".format("SSN", "Name", "Position", "Rank", "Licence", \
+                            "Address", "Mobile", "Landline", "email") + \
+                            "| " + "-" * (page_width-2) + " |"
 
+        print(employee_header)
+
+        for x in all_employees:
+            print("| {:<13}{:<20}{:<15}{:<25}{:<20}{:<15}{:<10}{:<10}{:<29} |".format(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8]))
+        input()
+        return True
 
     def get_employee(self):
         """ Lists information about a specific employee. """
@@ -596,61 +597,20 @@ class EmployeeUI(Page):
                 print("\nPlease enter a valid social security number.\n")
 
 
-    def list_pilots_by_airplane(self):
+    def list_pilots_by_airplane(self, licence):
         """ Lists which pilots have licence to given airplanes. """
-
-        NABAE146 = 1
-        NAFokkerF28 = 2
-        NAFokkerF100 = 3
 
         self.header("List pilots by airplane")
 
         isValid = False
         while isValid == False:
-            print("\n1. NABAE146\n2. NAFokkerF28\n3. NAFokkerF100\n")
-            licence = input("Enter q to quit.\nEnter a licence: ")
             header = "\n{:<5} {:>10} {:>19}\n".format("SSN", "Name", "Rank")
-            if licence == "q":
-                break
-            try:
-                licence = int(licence)
-                if licence == NABAE146:
-                    airplanes = self.__employee_LL.list_pilots_by_airplane("NABAE146")
-                    print(header)
-                    for x in airplanes:
-                        print("{:<5}\t{:<17}\t{:<15}".format(x[0], x[1], x[3]))
-                    if input("\nY: Yes\nAnything else: No\nDo you want to enter another licence: ").upper() == "Y":
-                        continue
-                    else:
-                        break
-
-                elif licence == NAFokkerF28:
-                    airplanes = self.__employee_LL.list_pilots_by_airplane("NAFokkerF28")
-                    print(header)
-                    for x in airplanes:
-                        print("{:<5}\t{:<17}\t{:<15}".format(x[0], x[1], x[3]))
-                    if input("\nY: Yes\nAnything else: No\nDo you want to enter another licence: ").upper() == "Y":
-                        continue
-                    else:
-                        break
-
-                elif licence == NAFokkerF100:
-                    airplanes = self.__employee_LL.list_pilots_by_airplane("NAFokkerF100")
-                    print(header)
-                    for x in airplanes:
-                        print("{:<5}\t{:<17}\t{:<15}".format(x[0], x[1], x[3]))
-                    if input("\nY: Yes\nAnything else: No\nDo you want to enter another licence: ").upper() == "Y":
-                        continue
-                    else:
-                        break
-
-                else:
-                    print("\nPlease enter 1, 2 or 3.")
-                    continue
-            except ValueError:
-                print("\nPlease enter 1, 2 or 3.")
-                continue
-
+        
+            airplanes = self.__employee_LL.list_pilots_by_airplane(licence)
+            print(header)
+            for x in airplanes:
+                print("{:<5}\t{:<17}\t{:<15}".format(x[0], x[1], x[3]))
+            
 
     def list_all_flight_attendants(self):
         """ Lists all flight attendants (Cabincrew) in employee.csv file. """

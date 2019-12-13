@@ -1,5 +1,6 @@
 import csv
 import os
+from Models.airplane import Airplane
 
 
 class AirplaneDL:
