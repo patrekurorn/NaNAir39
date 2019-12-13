@@ -17,11 +17,9 @@ class Page:
         if self.valid == False:
             print("Please enter a valid number")
             self.valid = True
-
-
-
+        
     def _print_header(self, header, length):
-
+        
 
         nan_air_header = self.get_formatable_line_center(length).format("NaN Air")
 

@@ -9,8 +9,11 @@ from UI.airplaneUI import AirplaneUI
 import os
 import pathlib
 
+<<<<<<< HEAD
 a = VoyageUI()
 a.get_all_voyages_after_current_date()
+=======
+>>>>>>> ced349371d35773b908faf6e6afabf64d141bde1
 
 # VALID_THREE= ["1","2","3"]
 
@@ -276,8 +279,13 @@ class User(Page):
 # user = VoyageUI()
 
 # user.man_voyage_SM()
+<<<<<<< HEAD
 """
 user = User()
+=======
+
+"""user = User()
+>>>>>>> ced349371d35773b908faf6e6afabf64d141bde1
 exit = False
 
 while(not exit):
@@ -294,5 +302,5 @@ while(not exit):
 #print("home window: {} second_window: {}".format(user.first_pick,user.second_pick))
 
 
-# print(user)
+# print(user)"""
 

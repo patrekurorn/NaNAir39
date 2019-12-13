@@ -58,7 +58,7 @@ class VoyageUI(Page):
 
     def edit_voyage_date(self):
 
-        self.header("Edit voyage data")
+        self.voyage_screen_header("Edit voyage date")
         print("Enter q an any time to quit")
 
         editNumber = self.edit_voyage_input()
@@ -66,8 +66,8 @@ class VoyageUI(Page):
             return True
 
         voyageName= self.edit_voyage_secondInput()
-        if voyageName =="q":
-                return True
+        if voyageName == "q":
+            return True
 
         isValid = False
         while not isValid:
@@ -89,114 +89,135 @@ class VoyageUI(Page):
                                        voyage_object[8], voyage_object[9], voyage_object[10])
 
         self.__voyageLL.edit_voyage(voyageName,date,time,selectedVoyageData,editNumber)
+        self.voyage_screen_header("Edit voyage date")
 
         print()
         print ("Voyage {} has been changed to:\n{}".format(voyageName,selectedVoyageData))
         print()
         again = input("Would you like to edit another voyage? (Yes) to continue \nAnything else to exit: ").upper()
+
         if again == "YES" or again == "Y":
             self.edit_voyage_date()
 
         else:
             return True
 
+    def voyage_screen_header(self,headerString):
+
+        pageWidth = 136
+        self._header(headerString, pageWidth)
+        all_voyages = self.__voyageLL.get_all_upcoming_voyages()
+
+        employeeHeader = "|{:<8} {:>3} {:>3} {:>12} {:>19} {:>17} {:>16} {:>8} {:>12} {:>12} {:>14} |\n".format(
+            "Flight", "From", "To", "Departure", "Arrival", "Cpt", "Copilot", "FSM", "FA1", "FA2",
+            "Plane") + "| " + "-" * (pageWidth - 2) + " |"
+        print(employeeHeader)
 
 
+        for x in all_voyages:
+            try:
+                print("|{:<8} {:<5} {:<5} {:<4} {:>21} {:>12} {:>12} {:>12} {:>12} {:>12} {:>8}|".format(x[0], x[1], x[2],
+                                                                                                     x[3], x[4], x[5],
+                                                                                                     x[6], x[7], x[8], x[9],
+                                                                                                     x[10]))
+            except:
+                print("|{:<8} {:<5} {:<5} {:<4} {:>21} {:>12} {:>12} {:>12} {:>12} {:>12} {:>8}|".format(x[0], x[1], x[2],
+                                                                                                     x[3], x[4], "",
+                                                                                                     "", "", "", "",
+                                                                                                     ""))
 
+        self._footer(pageWidth, None)
+        return None
 
     def register_voyage_PM(self):
-        """ Header """
-
-        self.header("Register new voyage")
+        self.voyage_screen_header("Register voyage")
 
         again = True
-
         while again:
-
-            flightNumber_str = input("Enter flight number: ")
+            flightNumber_str = input("Enter flight number: ").upper()
 
             if self.__voyageLL.check_flight_number(flightNumber_str):
                 print("\nVoyage already exists.")
-                choice = input("Do you want to try again? (Y/N) ").upper()
-                if choice == "Y":
+                choice = input('"Yes" to continue (anything else) to exit\n Do you want to try again? ').upper()
+                if choice == "YES":
                     continue
                 else:
                     break
 
             else:
-                departingFrom_str = input("Enter departure city: ").strip()
-                arravingAt_str = input("Enter arrival city: ").strip()
-                departure_str = input("Enter departure time: ").strip()
-                arrival_str = input("Enter arrival time: ").strip()
+                departingFromStr = input("Enter departure city: ").strip().upper()
+                arravingAtStr    = input("Enter arrival city: ").strip().upper()
+                departueDateStr  = input("Enter departure date (i.e YEAR-MM-DD): ").strip()
+                departureTimeStr = input("Enter departure time (i.e HH:MM:SS): ").strip()
+                arrivalDateStr   = input("Enter arrival date date (i.e YEAR-MM-DD): ").strip()
+                arrivalTimeStr   = input("Enter arrival time (i.e HH:MM:SS): ").strip()
 
-                new_voyage = Voyage(flightNumber_str, departingFrom_str, arravingAt_str,departure_str, arrival_str)
-                print("\n{}\n".format (new_voyage))
-                continue_it = input("To quit enter q\nDo you want to register this voyage? (Y/N) ").upper()
-
-                if continue_it == "Y":
-                    self.__voyageLL.register_voyage_PM(new_voyage)
-                    print("\nNew voyage registered!\n")
-                elif continue_it == "Q":
+                new_voyage = Voyage(flightNumber_str, departingFromStr, arravingAtStr, departueDateStr+"T"+departureTimeStr, arrivalDateStr+"T"+arrivalTimeStr)
+                #print("\n{}\n".format (new_voyage))
+                continue_it = input('To quit enter "q"\n "Yes" to register, (anyting else to cancel)\nDo you want to register this voyage? ').upper()
+                if continue_it == "Q":
                     break
+                elif continue_it == "YES":
+                    self.__voyageLL.register_voyage_PM(new_voyage)
+                    self.voyage_screen_header("Register voyage")
+                    print("\nNew voyage registered!\n")
+                    if input("(Yes) to continue, anything else to exit\nWould you like to register another voyage? ").upper() != "YES":
+                        break
+                    else:
+                        continue
+
                 else:
                     print("\nVoyage not registered.\n")
+                    again = input("(Yes) to continue, anything else to exit\nWould you like to register another voyage? ").upper()
 
-                again = input("Would you like to register another voyage? (Y/N) ").upper()
+                    if again == "YES":
+                        continue
 
-                if again == "Y":
-                    continue
-                else:
-                    break
-
+                    else:
+                        break
 
 
     def cancel_voyage(self):
         """ Removes an voyage from the csv file,
             sends voyage fligt number to a function already made in voyageLL to delete specific flight Number
         """
-        pageWidth = 136
-        self._header("All voyages", pageWidth)
-        all_voyages = self.__voyageLL.get_all_upcoming_voyages()
-
-        employeeHeader = "|{:<8} {:>3} {:>3} {:>12} {:>19} {:>17} {:>16} {:>8} {:>12} {:>12} {:>14} |\n".format("Flight", "From", "To", "Departure", "Arrival", "Cpt", "Copilot", "FSM", "FA1", "FA2", "Plane") + "| " + "-" * (pageWidth - 2) + " |"
-        print(employeeHeader)
-
-        for x in all_voyages:
-            print("|{:<8} {:<5} {:<5} {:4} {:>21} {:>12} {:>12} {:>12} {:>12} {:>12} {:>8}|".format( x[0], x[1], x[2], x[3],
-                                                                                      x[4], x[5], x[6], x[7], x[8], x[9], x[10]))
-
-        self._footer(pageWidth, None)
+        self.voyage_screen_header("Cancel voyage")
         print("To quit press q at any time.")
         voyage = input("Enter a flight number of voyage to be canceled: ").strip()
 
         if voyage!= "q":
             if not self.__voyageLL.check_flight_number(voyage):
                 print("Error: voyage: {} was not found.".format(voyage))
-                continue_process = self.continue_it()
 
-                if continue_process.upper() == "Y" or continue_process.upper() == "YES":
+                continue_process = self.continue_it()
+                if continue_process == "YES":
                     self.cancel_voyage()
+
                 else:
                     return True
 
             else:
                 self.__voyageLL.cancel_voyage(voyage)
-
+                self.voyage_screen_header("Cancel voyage")
                 print("Voyage: {} has been canceled.".format(voyage))
 
                 continue_process = self.continue_it()
-                if continue_process != "YES" or continue_process != "Y":
+                if continue_process != "YES":
                     return True
+
                 else:
                     self.cancel_voyage()
-
         else:
             return True
 
 
+    def try_again(self):
+        wantToTryStr = input("Would you like to try again?\n(Yes) to continue\nAnything else to exit: ").strip().upper()
+        return wantToTryStr
+
     def continue_it(self):
-        want_to_continue = input("Would you like to try again? (Y/N) ").strip().upper()
-        return want_to_continue
+        wantToContinue = input("Would you like to continue?\n(Yes) to continue\nAnything else to exit: ").strip().upper()
+        return wantToContinue
 
 
     def man_voyage_SM(self):

@@ -2,6 +2,7 @@ import csv
 import os
 from Models.employee import Employee
 from DataLayer.employeeDL import EmployeeDL
+from DataLayer.voyageDL import VoyageDL
 from datetime import timedelta, datetime, date
 
 
@@ -9,6 +10,7 @@ class EmployeeLL:
 
     def __init__(self):
         self.__employeeDL = EmployeeDL()
+        self.__voyageDL = VoyageDL()
 
 
     def get_all_employees(self):
@@ -63,8 +65,9 @@ class EmployeeLL:
         return self.__employeeDL.remove_employee(ssn)
 
 
-    def print_week_of_employee(self, date):  # A printable work summary can be displayed showing all employee work trips in a given week.
-        pass
+    def print_week_of_employee(self, date, ssn_employee):  # A printable work summary can be displayed showing all employee work trips in a given week.
+        voyages = self.__voyageDL.get_all_upcoming_voyages()
+        return self.__employeeDL.print_week_of_employee(date, voyages, ssn_employee)
 
 
     def get_week_list(self):

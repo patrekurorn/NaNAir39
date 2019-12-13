@@ -90,6 +90,7 @@ class VoyageLL:
     def list_voyages_week(self, date):    # checkar hvort voyage sé fullmönnuð í ákveðinni viku
         return self.__voyageDL.list_voyages_week(date)
 
+
 if __name__ == "__main__":
     a = VoyageLL()
     a.edit_date()
