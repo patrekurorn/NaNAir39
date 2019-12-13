@@ -292,7 +292,7 @@ class VoyageUI(Page):
 
         voyage = self.__voyageLL.list_voyages_day(date)
 
-        if voyage != False:
+        while voyage != None:
             print("\n{:<5}{:>8}{:>6}{:>10}{:>19}{:>12}{:>16}{:>16}{:>18}".format("Flight", "From", "To", "Cpt.","Copilot", "FSM", "FA1", "FA2","Plane"))
             for x in range(len(voyage)):
                 if x == 3 or x == 4:
@@ -302,12 +302,26 @@ class VoyageUI(Page):
 
             if len(voyage) == 11:
                 print("\n\nVoyage is fully staffed on {}".format(date))
+                choice = input("Do you want to continue? (Y/N) ").upper()
+                if choice == "Y":
+                    self.list_voyage_day()
+                else:
+                    break
             else:
                 print("\n\nVoyage is not fully staffed on {}".format(date))
-        else:
-            print("Date isn't in system.")
+                choice = input("Do you want to continue? (Y/N) ").upper()
+                if choice == "Y":
+                    self.list_voyage_day()
+                else:
+                    break
 
-        return True
+        if voyage == None:
+            print("Date isn't in system.")
+            input()
+            return True
+
+
+
 
     def print_all_voyages(self):
         self.header("All voyages")
@@ -329,6 +343,5 @@ class VoyageUI(Page):
 
 if __name__ == "__main__":
     a = VoyageUI()
-    #a.man_voyage_SM()
-    a.edit_voyage_date()
+    a.print_all_voyages()
 

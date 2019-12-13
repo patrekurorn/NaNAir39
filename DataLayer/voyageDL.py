@@ -215,7 +215,7 @@ class VoyageDL:
 
             if date == busy_date[0]:
                 return x
-        return False
+        return None
 
 
 

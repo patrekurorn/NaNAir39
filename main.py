@@ -9,6 +9,8 @@ from UI.airplaneUI import AirplaneUI
 import os
 import pathlib
 
+#a = VoyageUI()
+#a.list_voyage_day()
 
 # VALID_THREE= ["1","2","3"]
 
@@ -212,7 +214,7 @@ class User(Page):
 
             elif user_input == "2":
                 
-                chose_back = self.voyageUI.print_list_voyage_by_day()
+                chose_back = self.voyageUI.list_voyage_day()
 
             elif user_input == "3":
                 
@@ -275,7 +277,7 @@ class User(Page):
 
 # user.man_voyage_SM()
 
-"""user = User()
+user = User()
 exit = False
 
 while(not exit):
@@ -292,5 +294,5 @@ while(not exit):
 #print("home window: {} second_window: {}".format(user.first_pick,user.second_pick))
 
 
-# print(user)"""
+# print(user)
 
