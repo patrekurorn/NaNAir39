@@ -20,6 +20,9 @@ class VoyageLL:
     def get_all_upcoming_voyages(self):  # display voyages
         return self.__voyageDL.get_all_upcoming_voyages()
 
+    def get_only_voyages(self):
+        return self.__voyageDL.get_only_voyages()
+
 
 
     def check_flight_number(self, flightNumber):

@@ -154,16 +154,19 @@ class VoyageUI(Page):
         """ Removes an voyage from the csv file,
             sends voyage fligt number to a function already made in voyageLL to delete specific flight Number
         """
-        # væri best að setja self.header("Cancel voyage") í kall fallið svo það repeati sig ekki endalaust
-     #   self._header("Cancel voyage",60)
-        self.show_page(["bla"])
+        pageWidth = 136
+        self._header("All voyages", pageWidth)
+        all_voyages = self.__voyageLL.get_all_upcoming_voyages()
 
-        # self._header("Cancel voyage", 60)
+        employeeHeader = "|{:<8} {:>3} {:>3} {:>12} {:>19} {:>17} {:>16} {:>8} {:>12} {:>12} {:>14} |\n".format("Flight", "From", "To", "Departure", "Arrival", "Cpt", "Copilot", "FSM", "FA1", "FA2", "Plane") + "| " + "-" * (pageWidth - 2) + " |"
+        print(employeeHeader)
 
-        # print("To quit press q at any time.")
+        for x in all_voyages:
+            print("|{:<8} {:<5} {:<5} {:4} {:>21} {:>12} {:>12} {:>12} {:>12} {:>12} {:>8}|".format( x[0], x[1], x[2], x[3],
+                                                                                      x[4], x[5], x[6], x[7], x[8], x[9], x[10]))
 
-        self.show_page(["To quit press q at any time."])
-
+        self._footer(pageWidth, None)
+        print("To quit press q at any time.")
         voyage = input("Enter a flight number of voyage to be canceled: ").strip()
 
         if voyage!= "q":

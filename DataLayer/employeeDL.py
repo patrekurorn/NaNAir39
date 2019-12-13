@@ -45,10 +45,10 @@ class EmployeeDL:
         """
         data = self.get_all_employees()
 
-        if self.ssn_valid(ssn):
-            for row in data:
-                if row[0] == ssn:
-                    return row
+    
+        for row in data:
+            if row[0] == ssn:
+                return row
 
         return False
 
