@@ -270,63 +270,64 @@ class VoyageUI(Page):
                 input()
                 return True
             elif voyage[10] == "-":
-                voyage[10] == display_avail_airplanes(voyage)
-                
+                voyage[10] == self.display_avail_airplanes(voyage)
+                if voyage[10] == False:
+                    return False
+            self.manning_flight(voyage)
 
 
-            # busy_date = voyage[3]
-            # busy_date = busy_date.split("T")
-            # date = busy_date[0]
-            # print(date)
+            busy_date = voyage[3]
+            busy_date = busy_date.split("T")
+            date = busy_date[0]
+            print(date)
 
-            # while True:
-            #     captain = input("Enter Captain SSN: ")
-            #     if self.__voyageLL.check_if_busy(date, captain):
-            #         print("Employee is busy at this date.")
-            #         continue
-            #     else:
-            #         break
-            # while True:
-            #     copilot = input("Enter copilot SSN: ")
-            #     if self.__voyageLL.check_if_busy(date, copilot):
-            #         print("Employee is busy at this date.")
-            #         continue
-            #     else:
-            #         break
-            # while True:
-            #     fsm = input("Enter flight service manager SSN: ")
-            #     if self.__voyageLL.check_if_busy(date, fsm):
-            #         print("Employee is busy at this date.")
-            #         continue
-            #     else:
-            #         break
-            # while True:
-            #     fa1 = input("Enter first flight attendant SSN: ")
-            #     if self.__voyageLL.check_if_busy(date, fa1):
-            #         print("Employee is busy at this date.")
-            #         continue
-            #     else:
-            #         break
-            # while True:
-            #     fa2 = input("Enter second flight attendant SSN: ")
-            #     if self.__voyageLL.check_if_busy(date, fa2):
-            #         print("Employee is busy at this date.")
-            #         continue
-            #     else:
-            #         break
-            # planeInsignia = input("Enter plane insignia: ")
+            while True:
+                captain = input("Enter Captain SSN: ")
+                if self.__voyageLL.check_if_busy(date, captain):
+                    print("Employee is busy at this date.")
+                    continue
+                else:
+                    break
+            while True:
+                copilot = input("Enter copilot SSN: ")
+                if self.__voyageLL.check_if_busy(date, copilot):
+                    print("Employee is busy at this date.")
+                    continue
+                else:
+                    break
+            while True:
+                fsm = input("Enter flight service manager SSN: ")
+                if self.__voyageLL.check_if_busy(date, fsm):
+                    print("Employee is busy at this date.")
+                    continue
+                else:
+                    break
+            while True:
+                fa1 = input("Enter first flight attendant SSN: ")
+                if self.__voyageLL.check_if_busy(date, fa1):
+                    print("Employee is busy at this date.")
+                    continue
+                else:
+                    break
+            while True:
+                fa2 = input("Enter second flight attendant SSN: ")
+                if self.__voyageLL.check_if_busy(date, fa2):
+                    print("Employee is busy at this date.")
+                    continue
+                else:
+                    break
 
 
-            # voyage_added_staff = VoyageSm(voyage[0], voyage[1],voyage[2], voyage[3], voyage[4], captain, copilot, fsm,fa1,fa2,planeInsignia)
+            voyage_added_staff = VoyageSm(voyage[0], voyage[1],voyage[2], voyage[3], voyage[4], captain, copilot, fsm,fa1,fa2,planeInsignia)
 
-            # self.__voyageLL.cancel_voyage(flightNumber)
-            # self.__voyageLL.register_voyage_PM2(voyage_added_staff)
-            # print("Voyage successfully manned!")
-            # choice = input("Do you want to man another voyage? (Y/N) ").upper()
-            # if choice == "Y":
-            #     continue
-            # else:
-            #     break
+            self.__voyageLL.cancel_voyage(flightNumber)
+            self.__voyageLL.register_voyage_PM2(voyage_added_staff)
+            print("Voyage successfully manned!")
+            choice = input("Do you want to man another voyage? (Y/N) ").upper()
+            if choice == "Y":
+                continue
+            else:
+                break
         return True
 
     def display_avail_airplanes(self, voyage):
@@ -334,7 +335,7 @@ class VoyageUI(Page):
         page_width = 60
         self._header("Available airplanes", page_width)
 
-        avail_airplanes = self.__airplaneLL.get_available_airplanes(voyage[10])
+        avail_airplanes = self.__airplaneLL.available_airplanes(voyage[10])
         
         print("| {:<10}{:<10}{:<10}{:<10}{:<10} |".format("Plane insignia", "Plane type", "Manufacturer", "Model", "Capacity"))
         print("| " + "-" * (page_width-2) + " |")
@@ -342,8 +343,18 @@ class VoyageUI(Page):
             print("| {:<10}{:<10}{:<10}{:<10}{:<10} |".format(x[0], x[1], x[2], x[3], x[4]))
 
         print("| " + "-" * (page_width-2) + " |")
-        self._footer(page_width, None)
+        self._footer(page_width, "Type a plane insignia to select a plane")
 
+        airplane_insignia = input().strip()
+
+        for x in avail_airplanes:
+            if x[0] == airplane_insignia:
+                return x
+
+        print("Input doesn't match a plane")
+
+        return False
+        
     def list_voyage_day(self):
         self.voyage_screen_header("List voyage by day")
         date = self.__employeeUI.get_date()
