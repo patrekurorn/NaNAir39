@@ -6,12 +6,15 @@ from UI.employeeUI import EmployeeUI
 from datetime import datetime
 
 
+# Need "list of unmanned voyages" for improved "man voyage"
 
 class VoyageUI(Page):
 
     def __init__(self):
         self.__voyageLL = VoyageLL()
         self.__employeeUI = EmployeeUI()
+        super().__init__()
+
         super().__init__()
 
 
@@ -205,7 +208,7 @@ class VoyageUI(Page):
 
             if voyage == False:
                 print("No voyage with this flight number.")
-                continue
+                break
 
             busy_date = voyage[3]
             busy_date = busy_date.split("T")
@@ -283,6 +286,7 @@ class VoyageUI(Page):
         else:
             print("Date isn't in system.")
 
+        return True
 
     def print_all_voyages(self):
         self.header("All voyages")

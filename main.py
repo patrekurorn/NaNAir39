@@ -190,12 +190,14 @@ class User(Page):
 
 
     def list_of_voyages(self):
-        self.page._header()
-        print(  "1. List all voyages\n" + \
-                "2. List by day\n" + \
-                "3. List by week\n" + \
-                "4. Back")
-        self.page._footer()
+        
+        options = [  "1. List all voyages",
+                "2. List by day",
+                "3. List by week",
+                "4. Back"]
+        
+
+        self.show_page(options)
 
         user_input = input().strip()
 
@@ -235,7 +237,7 @@ class User(Page):
                 "4. List of all pilots",
                 "5. List of all available employees at a given time",
                 "6. List of all busy employees at a given time",
-                "7. Find an employee",
+                "7. Print week of employee",
                 "8. Back"]
         
         self.show_page(options, header)
