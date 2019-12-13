@@ -55,9 +55,10 @@ class VoyageLL:
          pass
 
 
-    def edit_voyage(self):
+    def edit_voyage(self,voyageName,date,time,selectedVoyageData,editNumber):
+        return self.__voyageDL.edit_voyage_date(voyageName,date,time,selectedVoyageData,editNumber)
 
-         pass
+
 
 
     def edit_time(self):
@@ -88,4 +89,5 @@ class VoyageLL:
 
 if __name__ == "__main__":
     a = VoyageLL()
+    a.edit_date()
 

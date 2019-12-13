@@ -72,6 +72,24 @@ class VoyageDL:
                 return False
 
 
+    def edit_voyage_date(self,voyageName,date,time,selectedVoyageData,editNumber):
+        """
+        1. Changes arrival
+        2. Changes departures
+        """
+
+        if editNumber == 1:
+            selectedVoyageData.set_arrival_time(date + "T" + time)
+            self.cancel_voyage(voyageName)
+            self.register_voyage_PM2(selectedVoyageData)
+
+        elif editNumber == 2:
+            selectedVoyageData.set_departure_time(date + "T" + time)
+            self.cancel_voyage(voyageName)
+            self.register_voyage_PM2(selectedVoyageData)
+
+
+
     @staticmethod
     def register_voyage_PM2(new_voyage):
 
@@ -142,6 +160,7 @@ class VoyageDL:
                 elif len(x) == 5:
                     newVoyage = Voyage(x[0], x[1], x[2], x[3], x[4])
                     self.register_voyage_PM(newVoyage)
+
 
 
 
