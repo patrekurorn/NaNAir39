@@ -10,13 +10,10 @@ from datetime import datetime
 import os
 import pathlib
 
-<<<<<<< HEAD
-=======
-a = VoyageUI()
-a.get_all_voyages_after_current_date()
+#a = VoyageUI()
+#a.get_all_voyages_after_current_date()
 
 
->>>>>>> b5942ce546883d4838a215a7ff123e73578cc1ac
 # VALID_THREE= ["1","2","3"]
 
 class User(Page):
@@ -225,10 +222,8 @@ class User(Page):
         return False
 
 
-
     def manage_destinations(self):
         pass
-
 
     def Workforce_information(self):
         
@@ -277,6 +272,8 @@ class User(Page):
 # user = VoyageUI()
 
 # user.man_voyage_SM()
+user = User()
+
 
 
 
@@ -285,6 +282,8 @@ exit = False
 while(not exit):
     user_selection = user.Home()
     exit = user_selection
+
+
 """
 
 # if user.first_pick == "1":
@@ -297,4 +296,4 @@ while(not exit):
 
 
 # print(user)
-
+"""
