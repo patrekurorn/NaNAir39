@@ -45,16 +45,20 @@ class AirplaneUI(Page):
         
 
         print("| " + "-" * (page_width-2) + " |")
-        self._print_footer(page_width, 'Type a plane insignia for a list of pilots permitted to fly the plane or "q" to quit')
+        self._footer(page_width, 'Type a plane insignia for a list of pilots permitted to fly the plane or "q" to quit')
 
-        user_input = input().strip()
-        
+        user_input = input().strip().upper()
+
         chose_quit = False
         while not chose_quit:
-            if user_input == "q":
+            if user_input == "Q":
                 return True 
             if user_input in plane_insignias:
-                pass
+                chose_quit = self.__employeeUI.list_pilots_by_airplane(plane_insignias[user_input])
+                print(plane_insignias[user_input])
+            else:
+                self.valid = False
+                return False
 
         return False
 

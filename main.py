@@ -23,7 +23,6 @@ class User(Page):
         self.destinationUI = DestinationUI()
         self.voyageUI = VoyageUI()
         self.airplaneUI = AirplaneUI()
-        self.page = Page()
 
         super().__init__()
 
@@ -48,6 +47,7 @@ class User(Page):
                 return True                 
             else:                   # Invalid input
                 self.valid = False
+                return False
         
         return False    #Continue outside loop
 
@@ -81,7 +81,7 @@ class User(Page):
             else:                       # Invalid input
                 # set valid to false to display an error message
                 self.valid = False
-                
+                return False
         # Return "False" to display this screen again
         return False
     
@@ -111,6 +111,7 @@ class User(Page):
                 chose_back == self.employeeUI.edit_employee()
             else:                       # Invalid input
                 self.valid = False
+                return False
             
         return False
 
@@ -142,6 +143,7 @@ class User(Page):
             else:                       # Invalid input
                 # set valid to false to display a "... valid input..." message
                 self.valid = False
+                return False
 
         return False
 
@@ -179,6 +181,7 @@ class User(Page):
                 chose_back = self.voyageUI.cancel_voyage()
             else:
                 self.valid = False
+                return False
 
         return False            
 
@@ -212,6 +215,7 @@ class User(Page):
             else: 
                 self.valid = False
                 return False
+        return False
 
 
     def manage_destinations(self):
@@ -255,6 +259,7 @@ class User(Page):
                 chose_back = self.employeeUI.get_employee()     # Festist hérna inni, ekki hægt að fara til baka
             else: 
                 self.valid = False
+                return False
         
         return False
 

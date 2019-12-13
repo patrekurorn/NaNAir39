@@ -24,23 +24,22 @@ class EmployeeUI(Page):
         """ Lists information about all employees. """
         # ssn,name,position,rank,licence,address,mobile,landlineNr,email
 
-        page_width = 160
-
-        self.header("All employees")
-        self._print_header("All employees", page_width)
-
-        # self.show_page()
+        page_width = 118
+        self._header("All employees", page_width)
 
         all_employees = self.__employee_LL.get_all_employees()
 
-        employee_header =   "| {:<12} {:<19} {:<14} {:<24} {:<19} {:<14} {:<9} {:<9} {:<30} |\n".format("SSN", "Name", "Position", "Rank", "Licence", \
-                            "Address", "Mobile", "Landline", "email") + \
+        employee_header =   "| {:<10} {:<19} {:<22} {:<12} {:<12} {:<7} {:<28} |\n".format("SSN", "Name", "Rank", "Licence", \
+                            "Address", "Mobile", "email") + \
                             "| " + "-" * (page_width-2) + " |"
 
         print(employee_header)
 
         for x in all_employees:
-            print("| {:<13}{:<20}{:<15}{:<25}{:<20}{:<15}{:<10}{:<10}{:<30} |".format(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8]))
+            print("| {:<11}{:<20}{:<23}{:<13}{:<13}{:<8}{:<28} |".format(x[0], x[1], x[3], x[4], x[5], x[6], x[8]))
+        
+        self._footer(page_width, None)
+
         input()
         return True
 
@@ -559,15 +558,24 @@ class EmployeeUI(Page):
     def list_all_pilots(self):
         """ Lists all pilots in employee.csv file. """
 
-        self.header("All pilots.")
+        
+        page_width = 115
+
+        self._header("All pilots", page_width)
         all_pilots = self.__employee_LL.list_all_pilots()
 
-        pilots = ""
-        for index, row in enumerate(all_pilots):
-            for x in row:
-                pilots += (x + ", ")
-            print("{}. {}".format(index+1, pilots))
-            pilots = ""
+        pilots_header =   "| {:<12} {:<21} {:<10} {:<13} {:<14} {:<9} {:<28} |\n".format("SSN", "Name", "Rank", "Licence", \
+                            "Address", "Mobile", "email") + \
+                            "| " + "-" * (page_width-2) + " |"
+        print(pilots_header)
+
+        for x in all_pilots:
+            print("| {:<13}{:<22}{:<11}{:<14}{:<15}{:<10}{:<28} |".format(x[0], x[1], x[3], x[4], x[5], x[6], x[8]))
+        
+        self._footer(page_width, None)
+
+        input()
+        return True
 
 
     def list_airplane_by_pilot(self):
@@ -580,7 +588,7 @@ class EmployeeUI(Page):
         while isValid == False:
             ssn = input("Enter q to quit.\nEnter a social security number: ")
             if ssn == "q":
-                break
+                return True
             try:
                 licence = self.__employee_LL.list_airplane_by_pilot(ssn)
                 if licence == "N/A":
@@ -602,29 +610,49 @@ class EmployeeUI(Page):
     def list_pilots_by_airplane(self, licence):
         """ Lists which pilots have licence to given airplanes. """
 
-        self.header("List pilots by airplane")
 
-        isValid = False
-        while isValid == False:
-            header = "\n{:<5} {:>10} {:>19}\n".format("SSN", "Name", "Rank")
+        self._header("List pilots by airplane", 60)
+
+        header = "{:<20}{:<20}{:<10}".format("SSN", "Name", "Rank")
+    
+        pilots = self.__employee_LL.list_pilots_by_airplane(licence)
+        pilot_lines = []
+
+        for x in pilots:
+            pilot_lines.append("{:<20}{:<20}{:<10}".format(x[0], x[1], x[3]))
+
+        print("| {:^58} |".format(header))
+        print("| " + "-" * 58 + " |")
+        for line in pilot_lines:
+            print("| {:^58} |".format(line))
+        print("| " + "-" * 58 + " |")
+
+        self._footer(60, None)
+
+        input()
+        return True
         
-            airplanes = self.__employee_LL.list_pilots_by_airplane(licence)
-            print(header)
-            for x in airplanes:
-                print("{:<5}\t{:<17}\t{:<15}".format(x[0], x[1], x[3]))
-            
 
     def list_all_flight_attendants(self):
         """ Lists all flight attendants (Cabincrew) in employee.csv file. """
 
-        self.header("All flight attendants")
+        page_width = 116
+
+        self._header("All flight attendants", page_width)
         all_flight_attendants = self.__employee_LL.list_all_flight_attendants()
-        flight_attendants = ""
-        for index, row in enumerate(all_flight_attendants):
-            for x in row:
-                flight_attendants += (x + ", ")
-            print("{}.  \t{}".format(index+1, flight_attendants))
-            flight_attendants = ""
+
+        available_flight_attendant_header = "| {:<11} {:<21} {:<24} {:<14} {:<9} {:<30} |\n".format("SSN", "Name", "Rank", \
+                            "Address", "Mobile", "email") + \
+                            "| " + "-" * (page_width-2) + " |"
+        print(available_flight_attendant_header)
+
+        for x in all_flight_attendants:
+            print("| {:<12}{:<22}{:<25}{:<15}{:<10}{:<30} |".format(x[0], x[1], x[3], x[5], x[6], x[8]))
+
+        self._footer(page_width, None)
+        input()
+
+        return True
 
     def print_week_of_employee(self):
         self.get_all_employees()

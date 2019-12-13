@@ -3,8 +3,6 @@ import string
 
 class Page:
 
-
-
     def __init__(self):
         self.valid = True
         self.length = 60
@@ -19,7 +17,7 @@ class Page:
         if self.valid == False:
             print("Please enter a valid number")
             self.valid = True
-
+        
     def _print_header(self, header, length):
         
 
