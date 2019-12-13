@@ -266,5 +266,5 @@ class VoyageUI(Page):
 
 if __name__ == "__main__":
     a = VoyageUI()
-    a.man_voyage_SM()
+    a.list_voyage_day()
 
