@@ -13,6 +13,7 @@ class VoyageUI(Page):
     def __init__(self):
         self.__voyageLL = VoyageLL()
         self.__employeeUI = EmployeeUI()
+        super().__init__()
 
         super().__init__()
 
@@ -22,35 +23,51 @@ class VoyageUI(Page):
                    :param head:
                """
 
-        print("-" * 50)
-        print("|{:^48}|".format(head))
-        print("-" * 50)
+        print("-" * 62)
+        print("|{:^60}|".format(head))
+        print("-" * 62)
         print()
 
-    def edit_voyage_date(self):
-        self.header("Edit voyage data")
-        print("Enter q an any time to quit")
+    def edit_voyage_input(self):
 
         isValid = True
         while isValid == True:
-            try:
-                editNumber = int(input("1. edit voyage arrival\n2. edit voyage departure\nEdit number: "))
-            except:
-                print("-> Invalid input, please enter 1 or 2")
-                continue
-
-            else:
+            editNumber = input("1. edit voyage arrival\n2. edit voyage departure\nEnter number: ").strip()
+            if editNumber == "q" or editNumber == "1" or editNumber == "2":
                 isValid = False
-
-
-        voyageName = input("Enter voyage id: ").strip()
-        if not self.__voyageLL.check_flight_number(voyageName):
-            print("--> Voyage does not exist")
-            wantToContinue_str = input("Do you want to try again?\n(Yes) to continue, anything else to exit: ").strip().upper()
-            if wantToContinue_str == "YES" or wantToContinue_str == "Y":
-                self.edit_voyage_date()
             else:
-                return None
+                print("Error: please enter a valid number")
+                continue
+        return editNumber
+
+    def edit_voyage_secondInput(self):
+        isvalid = True
+        while isvalid:
+            voyageName = input("Enter voyage id: ").strip()
+            if voyageName !="q":
+                if not self.__voyageLL.check_flight_number(voyageName):
+                    print("Error: Voyage does not exist")
+                    continue
+                else:
+                    isvalid = False
+            else:
+                isvalid = False
+
+        return voyageName
+
+
+    def edit_voyage_date(self):
+
+        self.header("Edit voyage data")
+        print("Enter q an any time to quit")
+
+        editNumber = self.edit_voyage_input()
+        if editNumber == "q":
+            return True
+
+        voyageName= self.edit_voyage_secondInput()
+        if voyageName =="q":
+                return True
 
         isValid = False
         while not isValid:
@@ -74,8 +91,15 @@ class VoyageUI(Page):
         self.__voyageLL.edit_voyage(voyageName,date,time,selectedVoyageData,editNumber)
 
         print()
-        if editNumber == 1:
-            print ("Voyage {} has been changed to:\n{}".format(voyageName,selectedVoyageData))
+        print ("Voyage {} has been changed to:\n{}".format(voyageName,selectedVoyageData))
+        print()
+        again = input("Would you like to edit another voyage? (Yes) to continue \nAnything else to exit: ").upper()
+        if again == "YES" or again == "Y":
+            self.edit_voyage_date()
+
+        else:
+            return True
+
 
 
 
@@ -131,6 +155,8 @@ class VoyageUI(Page):
             sends voyage fligt number to a function already made in voyageLL to delete specific flight Number
         """
         # væri best að setja self.header("Cancel voyage") í kall fallið svo það repeati sig ekki endalaust
+     #   self._header("Cancel voyage",60)
+        self.show_page(["bla"])
 
         # self._header("Cancel voyage", 60)
 
@@ -142,8 +168,7 @@ class VoyageUI(Page):
 
         if voyage!= "q":
             if not self.__voyageLL.check_flight_number(voyage):
-                print("--> Voyage: {} was not found.".format(voyage))
-
+                print("Error: voyage: {} was not found.".format(voyage))
                 continue_process = self.continue_it()
 
                 if continue_process.upper() == "Y" or continue_process.upper() == "YES":
@@ -258,6 +283,7 @@ class VoyageUI(Page):
         else:
             print("Date isn't in system.")
 
+        return True
 
     def print_all_voyages(self):
         self.header("All voyages")

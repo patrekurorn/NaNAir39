@@ -117,15 +117,9 @@ class User(Page):
 
     def Planning_manager(self):
 
-        # self._header()
-        # print("1. Manage voyages\n2. List of voyages\n3. Manage destinations\n4. Back")
-        # self._footer()
-
         header = "Planning manager"
         options = ["1. Manage voyages", "2. Voyage informations", "3. Manage destinations", "4. Back"]
         self.show_page(options, header)
-
-        
 
         user_input = input().strip()
 
@@ -136,8 +130,10 @@ class User(Page):
                 return True
             elif user_input == "1":     # Manage voyages
                 chose_back = self.manage_voyages()
+
             elif user_input == "2":     # Voyage information
                 chose_back = self.list_of_voyages()
+
             elif user_input == "3":     # Manage destinations
                 chose_back = self.manage_destinations()
             else:                       # Invalid input
@@ -148,40 +144,55 @@ class User(Page):
         return False
 
     def manage_voyages(self):
-
-
         header = "Manage voyages"
         options = ["1. Register a new voyage", "2. Edit a voyage", "3. Cancel a voyage", "4. Back"]
         self.show_page(options, header)
 
         voyage_pick = input().strip()
 
-
         chose_back = False
         if not chose_back:
-
             if voyage_pick == "4":      # Back
                 return True
+
             elif voyage_pick == "1":     # Register a new voyage
                 chose_back = self.voyageUI.register_voyage_PM()
+
             elif voyage_pick == "2":     # Edit a voyage
-                print("Edit voyage")
-                input()
-                return True
-            #######################################################################################################################
-            ######################################                                           ######################################
-            ######################################           Needs implementation            ######################################
-            ######################################                                           ######################################
-            #######################################################################################################################
-                # chose_back = self.voyageUI.edit_voyage()         
-                # edit a voyage
+                chose_back = self.edit_voyage_information()
+
+
             elif voyage_pick == "3":    # Cancel a voyage
                 chose_back = self.voyageUI.cancel_voyage()
             else:
                 self.valid = False
                 return False
 
-        return False            
+        return False
+
+    def edit_voyage_information(self):
+        edit_header = "Edit voyage"
+        edit_options = ["1. Edit voyage date", "2. Edit destination","3. Back"]
+        self.show_page(edit_options,edit_header)
+        user_input_str = input().strip()
+
+        chooseBack = False
+        if not chooseBack:
+            if user_input_str =="1":
+                chooseBack = self.voyageUI.edit_voyage_date()
+            elif user_input_str == "2":
+                """ þarf að klára """
+
+                print("unfinished")
+                chooseBack == True
+
+            elif user_input_str == "3":
+                chooseBack == True
+
+            else:
+                self.valid = False
+        return True
+
 
     def list_of_voyages(self):
         
@@ -231,7 +242,7 @@ class User(Page):
                 "4. List of all pilots",
                 "5. List of all available employees at a given time",
                 "6. List of all busy employees at a given time",
-                "7. Find an employee",
+                "7. Print week of employee",
                 "8. Back"]
         
         self.show_page(options, header)

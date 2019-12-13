@@ -37,32 +37,36 @@ class EmployeeUI(Page):
 
         for x in all_employees:
             print("| {:<11}{:<20}{:<23}{:<13}{:<13}{:<8}{:<28} |".format(x[0], x[1], x[3], x[4], x[5], x[6], x[8]))
-        
-        self._footer(page_width, None)
+        print("| " + "-" * (page_width-2) + " |")
 
-        input()
+        self._footer(page_width, 'Type employee SSN for more details, or "q" to quit')
+
+        employee_ssn = input().strip
+        
+        if employee_ssn == "q":
+            return True
+        else:
+            for x in all_employees:
+                if x[0] == employee_ssn:
+                    self.get_employee(employee_ssn)
         return True
 
-    def get_employee(self):
+    def get_employee(self, ssn):
         """ Lists information about a specific employee. """
 
         self.header("Employee information")
 
-        isValid = False
-        while isValid == False:
-            ssn = input("\nEnter q to quit.\nEnter a social security number: ")
-            if ssn == "q":
-                break
-            try:
-                employee = self.__employee_LL.get_employee(ssn)
+        try:
+            employee = self.__employee_LL.get_employee(ssn)
 
-                print("\nSSN: \t\t\t{}\nName: \t\t\t{}\nPosition: \t\t{}\nRank: \t\t\t{}\nLicence: \t\t{}\nAddress: \t\t{}\nMobile: \t\t{}\nLandline nr: \t{}\nEmail: \t\t\t{}".format(\
-                    employee[0], employee[1], employee[2], employee[3], employee[4], employee[5],
-                    employee[6],employee[7], employee[8]))
-            except:
-                print("\nSocial security number not in system.")
-
-
+            print("\nSSN: \t {:>} |\nName: {:>} |\nPosition: {:>} |\nRank: {:>} |\nLicence: {:>} |\nAddress: {:>} |\nMobile: {:>} |\n\
+                Landline nr: {:>} |\nEmail: {:>} |".format(\
+                employee[0], employee[1], employee[2], employee[3], employee[4], employee[5],
+                employee[6],employee[7], employee[8]))
+        except:
+            print("\nSocial security number not in system.")
+        input()
+        return True
 
     def register_employee(self):
         """ Registers a new employee and adds him to the employee.csv file. """
@@ -294,6 +298,10 @@ class EmployeeUI(Page):
             except ValueError:
                 print("\nPlease enter a valid date.\n")
         return None
+
+    def print_employee(self, employee):
+
+        pass
 
 
     def available_employees(self):
