@@ -285,15 +285,15 @@ class VoyageUI(Page):
             else:
                 break
 
-
     def list_voyage_day(self):
-
+        self.voyage_screen_header("List voyage by day")
         date = self.__employeeUI.get_date()
-
         voyage = self.__voyageLL.list_voyages_day(date)
 
         if voyage != False:
-            print("\n{:<5}{:>8}{:>6}{:>10}{:>19}{:>12}{:>16}{:>16}{:>18}".format("Flight", "From", "To", "Cpt.","Copilot", "FSM", "FA1", "FA2","Plane"))
+            print("\n{:<5}{:>8}{:>6}{:>10}{:>19}{:>12}{:>16}{:>16}{:>18}".format("Flight", "From", "To", "Cpt.",
+                                                                                 "Copilot", "FSM", "FA1", "FA2",
+                                                                                 "Plane"))
             for x in range(len(voyage)):
                 if x == 3 or x == 4:
                     pass
@@ -306,23 +306,49 @@ class VoyageUI(Page):
                 print("\n\nVoyage is not fully staffed on {}".format(date))
         else:
             print("Date isn't in system.")
-
-        return True
+            return True
 
     def print_all_voyages(self):
-        self.header("All voyages")
+        self.voyage_screen_header("Print all voyages")
         voyages = self.__voyageLL.get_all_upcoming_voyages()
 
-        print("\t{:>5}{:>7}{:>4}{:>13}{:>20}{:>19}{:>16}{:>9}{:>13}{:>13}{:>15}\n".format("Flight", "From", "To","Departure","Arrival", "Cpt.", "Copilot", "FSM", "FA1", "FA2", "Plane"))
-        for index, x in enumerate(voyages):
-            print("{}.\t{} - {} - {} - {} - {} - {} - {} - {} - {} - {} - {}".format(index+1, x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],x[9],x[10]))
+        if input('Enter "q" to exit: ').upper() == "Q":
+            return True
 
+    def get_user_date_week(self):
 
+        isValid = False
+        while not isValid:
+            user_in_date = input("Enter date,time (i.e. 'yy-mm-dd,hh:mm:ss'): ").strip()
+            try:
+                date_obj = datetime.strptime(user_in_date, '%y-%m-%d,%H:%M:%S')
+                isValid = True
+
+            except KeyError:
+                print("Error: please enter a valid number")
+                continue
+
+        dateformat_str = str(date_obj)
+        date, time = dateformat_str.split()
+        final = date + "T" + time
+
+        return final
 
     def print_list_voyage_by_week(self):
-        self.header("Voyage by week")
-        week_dict = self.__voyageLL.list_voyages_week()
-        print(week_dict)
+        self.voyage_screen_header("Print list voyage by week ")
+        user_date = self.get_user_date_week()
+
+        week_dict = self.__voyageLL.list_voyages_week(user_date)
+
+        print("Dates for given date:\n{},{}".format(week_dict[0],week_dict[1]))
+        print()
+        continue_it = input(' "Yes" enter another date \Anything else to exit\n Would you like to try another date? ').upper()
+
+        if continue_it == "YES":
+            self.get_user_date_week()
+        else:
+            return True
+
 
 
 

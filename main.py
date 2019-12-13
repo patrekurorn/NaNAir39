@@ -6,11 +6,9 @@ from UI.voyageUI import VoyageUI
 from UI.page import Page
 from UI.employeeUI import EmployeeUI
 from UI.airplaneUI import AirplaneUI
+from datetime import datetime
 import os
 import pathlib
-
-a = EmployeeUI()
-a.print_week_of_employee()
 
 # VALID_THREE= ["1","2","3"]
 
@@ -23,13 +21,11 @@ class User(Page):
 
         super().__init__()
 
-
     def Home(self):
 
         options = ["1. Staff manager", "2. Planning manager", "3. Exit"]
 
         self.show_page(options)
-
         user_input = input().strip()
       
         chose_back = False
@@ -121,7 +117,7 @@ class User(Page):
         user_input = input().strip()
 
         chose_back = False
-        while not chose_back:
+        if not chose_back:
             
             if user_input == "4":       # Back
                 return True
@@ -175,12 +171,12 @@ class User(Page):
 
         chooseBack = False
         if not chooseBack:
-            if user_input_str =="1":
+            if user_input_str =="1": # edit voyage date
                 chooseBack = self.voyageUI.edit_voyage_date()
-            elif user_input_str == "2":
+
+            elif user_input_str == "2": # edit destination
                 """ þarf að klára """
-                print("unfinished")
-                chooseBack == True
+                chooseBack == self.destinationUI.edit_destination()
 
             elif user_input_str == "3":
                 chooseBack == True
@@ -192,19 +188,16 @@ class User(Page):
 
     def list_of_voyages(self):
         
-        options = [  "1. List all voyages",
+        options = ["1. List all voyages",
                 "2. List by day",
                 "3. List by week",
                 "4. Back"]
-        
 
         self.show_page(options)
-
         user_input = input().strip()
-
         chose_back = False
-        while chose_back == False:
 
+        if not chose_back:
             if user_input == "4":
                 return True
 
@@ -214,15 +207,16 @@ class User(Page):
 
             elif user_input == "2":
                 
-                chose_back = self.voyageUI.print_list_voyage_by_day()
+                chose_back = self.voyageUI.list_voyage_day()
 
             elif user_input == "3":
-                
                 chose_back = self.voyageUI.print_list_voyage_by_week()
             else: 
                 self.valid = False
                 return False
+
         return False
+
 
 
     def manage_destinations(self):
