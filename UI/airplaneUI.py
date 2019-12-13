@@ -26,18 +26,41 @@ class AirplaneUI(Page):
     def list_all_airplanes(self):
         """ List of all airplanes """
         
+        page_width = 84
+        self._clear_screen()
         header = "All airplanes"
-        self._print_header(header)
+        self._print_header(header, page_width)
         airplanes = self.__airplaneLL.get_all_airplanes()
 
-        header = "\n{:<5} {:>12} {:>28} {:>8} {:>10}\n".format("Plane insignia", "Type ID", "Manufacturer", "Model", "Capacity")
+        airplane_header =   "| {:<20} {:<20} {:<20} {:<10} {:<8} |\n".format("Plane insignia", "Type ID", "Manufacturer", "Model", "Capacity") + \
+                            "| " + "-" * (page_width-2) + " |"
+        print(airplane_header)
+        
 
-        print(header)
-
+        plane_insignias = dict()
         for x in airplanes:
-            print("{:<16}\t{:<20}\t{:<15}\t{:<5}\t{:<5}".format(x[0], x[1], x[2], x[3], x[4]))
+            plane_insignias[x[0]] = x[1]
+            print("| {:<21}{:<21}{:<21}{:<11}{:<8} |".format(x[0], x[1], x[2], x[3], x[4]))
 
-        input()
+        
+
+        print("| " + "-" * (page_width-2) + " |")
+        self._footer(page_width, 'Type a plane insignia for a list of pilots permitted to fly the plane or "q" to quit')
+
+        user_input = input().strip().upper()
+
+        chose_quit = False
+        while not chose_quit:
+            if user_input == "Q":
+                return True 
+            if user_input in plane_insignias:
+                chose_quit = self.__employeeUI.list_pilots_by_airplane(plane_insignias[user_input])
+                print(plane_insignias[user_input])
+            else:
+                self.valid = False
+                return False
+
+        return False
 
     def register_airplane(self):
         """ Registers a new airplane in csv file """

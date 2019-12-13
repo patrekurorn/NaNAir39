@@ -32,7 +32,7 @@ class VoyageDL:
         """
         voyages = []
         #path = os.path.join("../Data", "UpcomingFlightsSM.csv")
-        path = os.path.join("../Data", "UpcomingFlightsSM.csv")
+        path = os.path.join("Data", "UpcomingFlightsSM.csv")
 
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
@@ -41,6 +41,15 @@ class VoyageDL:
             for row in reader:
                 voyages.append(row)
         return voyages
+
+    def get_only_voyages(self):
+        voyage = []
+        data = self.get_all_upcoming_voyages()
+        for item in data:
+            voyage.append(item[0])
+
+        return  voyage
+
 
 
     def check_flight_number(self, flightNumber):
@@ -61,7 +70,7 @@ class VoyageDL:
         departureTime = new_voyage.get_departure_time()
         arrivalTime = new_voyage.get_arrival_time()
 
-        path2 = os.path.join("../Data", "UpcomingFlightsSM.csv")
+        path2 = os.path.join("Data", "UpcomingFlightsSM.csv")
 
         with open(path2, "a+", encoding="utf-8") as file:
             try:
@@ -70,6 +79,24 @@ class VoyageDL:
                 file.write("\n{},{},{},{},{}".format(flightNumber,departingFrom,arrivingAt,departureTime,arrivalTime))
             except:
                 return False
+
+
+    def edit_voyage_date(self,voyageName,date,time,selectedVoyageData,editNumber):
+        """
+        1. Changes arrival
+        2. Changes departures
+        """
+
+        if editNumber == 1:
+            selectedVoyageData.set_arrival_time(date + "T" + time)
+            self.cancel_voyage(voyageName)
+            self.register_voyage_PM2(selectedVoyageData)
+
+        elif editNumber == 2:
+            selectedVoyageData.set_departure_time(date + "T" + time)
+            self.cancel_voyage(voyageName)
+            self.register_voyage_PM2(selectedVoyageData)
+
 
 
     @staticmethod
@@ -87,7 +114,7 @@ class VoyageDL:
         fa2 = new_voyage.get_fa2()
         planeInsignia = new_voyage.get_planeInsignia()
 
-        path2 = os.path.join("../Data", "UpcomingFlightsSM.csv")
+        path2 = os.path.join("Data", "UpcomingFlightsSM.csv")
 
         with open(path2, "a+", encoding="utf-8") as file:
             try:
@@ -125,7 +152,7 @@ class VoyageDL:
         voyages = self.get_all_upcoming_voyages()
 
         selectedVoyage = voyage[0]
-        path = os.path.join("../Data", "UpcomingFlightsSM.csv")
+        path = os.path.join("Data", "UpcomingFlightsSM.csv")
         os.remove(path)
         header = "flightNumber,departingFrom,arrivingAt,departure,arrival,captain,copilot,fsm,fa1,fa2,planeInsignia"
 
@@ -142,6 +169,7 @@ class VoyageDL:
                 elif len(x) == 5:
                     newVoyage = Voyage(x[0], x[1], x[2], x[3], x[4])
                     self.register_voyage_PM(newVoyage)
+
 
 
 

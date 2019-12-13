@@ -20,6 +20,9 @@ class VoyageLL:
     def get_all_upcoming_voyages(self):  # display voyages
         return self.__voyageDL.get_all_upcoming_voyages()
 
+    def get_only_voyages(self):
+        return self.__voyageDL.get_only_voyages()
+
 
 
     def check_flight_number(self, flightNumber):
@@ -55,9 +58,10 @@ class VoyageLL:
          pass
 
 
-    def edit_voyage(self):
+    def edit_voyage(self,voyageName,date,time,selectedVoyageData,editNumber):
+        return self.__voyageDL.edit_voyage_date(voyageName,date,time,selectedVoyageData,editNumber)
 
-         pass
+
 
 
     def edit_time(self):
@@ -83,9 +87,9 @@ class VoyageLL:
         return self.__voyageDL.list_voyages_day(date)
 
 
-    def list_voyages_week(self):    # checkar hvort voyage sé fullmönnuð í ákveðinni viku
-        return self.__voyageDL.list_voyages_week()
+    def list_voyages_week(self, date):    # checkar hvort voyage sé fullmönnuð í ákveðinni viku
+        return self.__voyageDL.list_voyages_week(date)
 
 if __name__ == "__main__":
     a = VoyageLL()
-
+    a.edit_date()

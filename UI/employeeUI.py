@@ -6,6 +6,7 @@ from UI.page import Page
 ###
 from datetime import datetime
 from datetime import timedelta
+import os
 
 
 
@@ -18,52 +19,55 @@ class EmployeeUI(Page):
         super().__init__()
 
     def header(self, i):
-        
-        length = 50
-
-        line = "|{:^" + str(length) + "}|"
-
-        print("-" * 50)
-        print(line.format(i))
-        print("-" * 50)
-        print()
-
+        return " "
 
     def get_all_employees(self):
         """ Lists information about all employees. """
+        # ssn,name,position,rank,licence,address,mobile,landlineNr,email
 
-        self.header("All employees")
+        page_width = 118
+        self._header("All employees", page_width)
 
         all_employees = self.__employee_LL.get_all_employees()
 
-        employees = ""
-        for index, row in enumerate(all_employees):
-            for x in row:
-                employees += (x + ", ")
-            print("{}. {}".format(index+1, employees))
-            employees = ""
+        employee_header =   "| {:<10} {:<19} {:<22} {:<12} {:<12} {:<7} {:<28} |\n".format("SSN", "Name", "Rank", "Licence", \
+                            "Address", "Mobile", "email") + \
+                            "| " + "-" * (page_width-2) + " |"
 
+        print(employee_header)
 
-    def get_employee(self):
+        for x in all_employees:
+            print("| {:<11}{:<20}{:<23}{:<13}{:<13}{:<8}{:<28} |".format(x[0], x[1], x[3], x[4], x[5], x[6], x[8]))
+        print("| " + "-" * (page_width-2) + " |")
+
+        self._footer(page_width, 'Type employee SSN for more details, or "q" to quit')
+
+        employee_ssn = input().strip
+        
+        if employee_ssn == "q":
+            return True
+        else:
+            for x in all_employees:
+                if x[0] == employee_ssn:
+                    self.get_employee(employee_ssn)
+        return True
+
+    def get_employee(self, ssn):
         """ Lists information about a specific employee. """
 
         self.header("Employee information")
 
-        isValid = False
-        while isValid == False:
-            ssn = input("\nEnter q to quit.\nEnter a social security number: ")
-            if ssn == "q":
-                break
-            try:
-                employee = self.__employee_LL.get_employee(ssn)
+        try:
+            employee = self.__employee_LL.get_employee(ssn)
 
-                print("\nSSN: \t\t\t{}\nName: \t\t\t{}\nPosition: \t\t{}\nRank: \t\t\t{}\nLicence: \t\t{}\nAddress: \t\t{}\nMobile: \t\t{}\nLandline nr: \t{}\nEmail: \t\t\t{}".format(\
-                    employee[0], employee[1], employee[2], employee[3], employee[4], employee[5],
-                    employee[6],employee[7], employee[8]))
-            except:
-                print("\nSocial security number not in system.")
-
-
+            print("\nSSN: \t {:>} |\nName: {:>} |\nPosition: {:>} |\nRank: {:>} |\nLicence: {:>} |\nAddress: {:>} |\nMobile: {:>} |\n\
+                Landline nr: {:>} |\nEmail: {:>} |".format(\
+                employee[0], employee[1], employee[2], employee[3], employee[4], employee[5],
+                employee[6],employee[7], employee[8]))
+        except:
+            print("\nSocial security number not in system.")
+        input()
+        return True
 
     def register_employee(self):
         """ Registers a new employee and adds him to the employee.csv file. """
@@ -279,12 +283,12 @@ class EmployeeUI(Page):
 
         isValid = False
         while isValid == False:
-            print("Enter q anytime to quit.")
+            print("Enter q to quit.")
 
             try:
                 datetime_str = input("Enter date  (i.e. 'mm/dd/yy'): ").strip()
                 if datetime_str == "q":
-                    break
+                    return False
 
                 datetime_object = datetime.strptime(datetime_str, '%m/%d/%y')
                 datetime_object = str(datetime_object)
@@ -295,6 +299,10 @@ class EmployeeUI(Page):
             except ValueError:
                 print("\nPlease enter a valid date.\n")
         return None
+
+    def print_employee(self, employee):
+
+        pass
 
 
     def available_employees(self):
@@ -474,6 +482,7 @@ class EmployeeUI(Page):
                     break
             except:
                 print("\nNo busy employees at this time.\n")
+                break
 
 
     def busy_pilots(self):
@@ -559,15 +568,24 @@ class EmployeeUI(Page):
     def list_all_pilots(self):
         """ Lists all pilots in employee.csv file. """
 
-        self.header("All pilots.")
+        
+        page_width = 115
+
+        self._header("All pilots", page_width)
         all_pilots = self.__employee_LL.list_all_pilots()
 
-        pilots = ""
-        for index, row in enumerate(all_pilots):
-            for x in row:
-                pilots += (x + ", ")
-            print("{}. {}".format(index+1, pilots))
-            pilots = ""
+        pilots_header =   "| {:<12} {:<21} {:<10} {:<13} {:<14} {:<9} {:<28} |\n".format("SSN", "Name", "Rank", "Licence", \
+                            "Address", "Mobile", "email") + \
+                            "| " + "-" * (page_width-2) + " |"
+        print(pilots_header)
+
+        for x in all_pilots:
+            print("| {:<13}{:<22}{:<11}{:<14}{:<15}{:<10}{:<28} |".format(x[0], x[1], x[3], x[4], x[5], x[6], x[8]))
+        
+        self._footer(page_width, None)
+
+        input()
+        return True
 
 
     def list_airplane_by_pilot(self):
@@ -580,7 +598,7 @@ class EmployeeUI(Page):
         while isValid == False:
             ssn = input("Enter q to quit.\nEnter a social security number: ")
             if ssn == "q":
-                break
+                return True
             try:
                 licence = self.__employee_LL.list_airplane_by_pilot(ssn)
                 if licence == "N/A":
@@ -599,211 +617,226 @@ class EmployeeUI(Page):
                 print("\nPlease enter a valid social security number.\n")
 
 
-    def list_pilots_by_airplane(self):
+    def list_pilots_by_airplane(self, licence):
         """ Lists which pilots have licence to given airplanes. """
 
-        NABAE146 = 1
-        NAFokkerF28 = 2
-        NAFokkerF100 = 3
 
-        self.header("List pilots by airplane")
+        self._header("List pilots by airplane", 60)
 
-        isValid = False
-        while isValid == False:
-            print("\n1. NABAE146\n2. NAFokkerF28\n3. NAFokkerF100\n")
-            licence = input("Enter q to quit.\nEnter a licence: ")
-            header = "\n{:<5} {:>10} {:>19}\n".format("SSN", "Name", "Rank")
-            if licence == "q":
-                break
-            try:
-                licence = int(licence)
-                if licence == NABAE146:
-                    airplanes = self.__employee_LL.list_pilots_by_airplane("NABAE146")
-                    print(header)
-                    for x in airplanes:
-                        print("{:<5}\t{:<17}\t{:<15}".format(x[0], x[1], x[3]))
-                    if input("\nY: Yes\nAnything else: No\nDo you want to enter another licence: ").upper() == "Y":
-                        continue
-                    else:
-                        break
+        header = "{:<20}{:<20}{:<10}".format("SSN", "Name", "Rank")
+    
+        pilots = self.__employee_LL.list_pilots_by_airplane(licence)
+        pilot_lines = []
 
-                elif licence == NAFokkerF28:
-                    airplanes = self.__employee_LL.list_pilots_by_airplane("NAFokkerF28")
-                    print(header)
-                    for x in airplanes:
-                        print("{:<5}\t{:<17}\t{:<15}".format(x[0], x[1], x[3]))
-                    if input("\nY: Yes\nAnything else: No\nDo you want to enter another licence: ").upper() == "Y":
-                        continue
-                    else:
-                        break
+        for x in pilots:
+            pilot_lines.append("{:<20}{:<20}{:<10}".format(x[0], x[1], x[3]))
 
-                elif licence == NAFokkerF100:
-                    airplanes = self.__employee_LL.list_pilots_by_airplane("NAFokkerF100")
-                    print(header)
-                    for x in airplanes:
-                        print("{:<5}\t{:<17}\t{:<15}".format(x[0], x[1], x[3]))
-                    if input("\nY: Yes\nAnything else: No\nDo you want to enter another licence: ").upper() == "Y":
-                        continue
-                    else:
-                        break
+        print("| {:^58} |".format(header))
+        print("| " + "-" * 58 + " |")
+        for line in pilot_lines:
+            print("| {:^58} |".format(line))
+        print("| " + "-" * 58 + " |")
 
-                else:
-                    print("\nPlease enter 1, 2 or 3.")
-                    continue
-            except ValueError:
-                print("\nPlease enter 1, 2 or 3.")
-                continue
+        self._footer(60, None)
 
+        input()
+        return True
+        
 
     def list_all_flight_attendants(self):
         """ Lists all flight attendants (Cabincrew) in employee.csv file. """
 
-        self.header("All flight attendants")
+        page_width = 116
+
+        self._header("All flight attendants", page_width)
         all_flight_attendants = self.__employee_LL.list_all_flight_attendants()
-        flight_attendants = ""
-        for index, row in enumerate(all_flight_attendants):
-            for x in row:
-                flight_attendants += (x + ", ")
-            print("{}.  \t{}".format(index+1, flight_attendants))
-            flight_attendants = ""
+
+        available_flight_attendant_header = "| {:<11} {:<21} {:<24} {:<14} {:<9} {:<30} |\n".format("SSN", "Name", "Rank", \
+                            "Address", "Mobile", "email") + \
+                            "| " + "-" * (page_width-2) + " |"
+        print(available_flight_attendant_header)
+
+        for x in all_flight_attendants:
+            print("| {:<12}{:<22}{:<25}{:<15}{:<10}{:<30} |".format(x[0], x[1], x[3], x[5], x[6], x[8]))
+
+        self._footer(page_width, None)
+        input()
+
+        return True
 
     def print_week_of_employee(self):
+        """
+        prints the week plan for the selected employee, from the selected date and the next 6 days
+        and returns the week plan in excel
+        """
         self.get_all_employees()
         upcomingVoyagesList = self.__voyage_LL.get_all_upcoming_voyages()
         upcomingVoyagesList_len = len(upcomingVoyagesList)
 
-        ssn_employee = input("\nEnter the ssn of the employee you want to get the week plan for: ")
 
-        #Checks if the ssn_employee is the ssn of a employee
-        if self.__employee_LL.ssn_valid(ssn_employee) == True:
+        ssnTrue = False
+        while ssnTrue != True:
 
-            #checks if the format is correct
-            correctFormat = False
-            while correctFormat != True:
-                error = 0
-                getDateFromUser_str = input("Enter the starting day(YYYY/MM/DD): ")
-                try:
-                    splittedGetDateFromUser = getDateFromUser_str.split("/")
-                    splittedGetDateFromUserLen = len(splittedGetDateFromUser)
-                    selectedYear_str = splittedGetDateFromUser[0]
-                    selectedMonth_str = splittedGetDateFromUser[1]
-                    selectedDay_str = splittedGetDateFromUser[2]
+            ssn_employee = input("\nEnter q to quit.\nEnter the ssn of the employee you want to get the week plan for: ")
+            if ssn_employee == "q":
+                return
+            
+            elif self.__employee_LL.ssn_valid(ssn_employee) == False:
+                print("Error. Enter a valid ssn.")
+                ssnTrue = False
 
-                    if splittedGetDateFromUserLen != 3:
+            #Checks if the ssn_employee is the ssn of a employee
+            elif self.__employee_LL.ssn_valid(ssn_employee) == True:
+                ssnTrue = True
+
+                #checks if the format is correct
+                correctFormat = False
+                while correctFormat != True:
+                    error = 0
+                    getDateFromUser_str = input("Enter the starting day(YYYY/MM/DD): ")
+                    try:
+                        #if the format is correct then these variables hold under the input from the user
+                        splittedGetDateFromUser = getDateFromUser_str.split("/")
+                        splittedGetDateFromUserLen = len(splittedGetDateFromUser)
+                        selectedYear_str = splittedGetDateFromUser[0]
+                        selectedMonth_str = splittedGetDateFromUser[1]
+                        selectedDay_str = splittedGetDateFromUser[2]
+
+                        if splittedGetDateFromUserLen != 3:
+                            print("Error. You have to use the correct format.")
+                            error = 1
+                            correctFormat = False
+                        else:
+                            correctFormat = True
+                            #Checks if the year is integer and has 4 integers
+                            try:
+                                selectedYear_int = int(selectedYear_str)
+                                selectedYearLen = len(selectedYear_str)
+                                
+                                if selectedYearLen != 4:
+                                    print("Error. The year has to have 4 integers.")
+                                    error = 1
+                                    correctFormat = False
+                                elif selectedYear_int < 2019:
+                                    print("Error. The year has to be 2019 or above.")
+                                    error = 1
+                                    correctFormat = False
+                                else:
+                                    correctFormat = True
+
+                            except ValueError:
+                                print("Error. The year has to be integer.")
+                                error = 1
+                                correctFormat = False
+
+                            #Checks if the month is integer and has 2 integers
+                            try:
+                                selectedMonth_int = int(selectedMonth_str)
+                                selectedMonthLen = len(selectedMonth_str)
+
+                                if selectedMonthLen != 2:
+                                    print("Error. The month has to have 2 integers.")
+                                    error = 1
+                                    correctFormat = False
+                                elif selectedMonth_int > 12:
+                                    print("Error. The month has to be between 01-12.")
+                                    error = 1
+                                    correctFormat = False
+                                else:
+                                    correctFormat = True         
+                                    
+                            except ValueError:
+                                print("Error. The month has to be integer.")
+                                error = 1
+                                correctFormat = False
+
+                            #Checks if the day is integer and has 2 integers
+                            try:
+                                selectedDay_int = int(selectedDay_str)
+                                selectedDayLen = len(selectedDay_str)
+
+                                if selectedDayLen != 2:
+                                    print("Error. The day has to have 2 integers.")
+                                    error = 1
+                                    correctFormat = False
+                                elif selectedDay_int > 31:
+                                    print("Error. The day has to be between 01-31.")
+                                    error = 1
+                                    correctFormat = False
+                                else:
+                                    correctFormat = True 
+
+                            except ValueError:
+                                print("Error. The day has to be integer.")
+                                error = 1
+                                correctFormat = False
+                            if error > 0:
+                                correctFormat = False
+                            
+                    except IndexError:
                         print("Error. You have to use the correct format.")
                         error = 1
                         correctFormat = False
-                    else:
-                        correctFormat = True
-                        #Checks if the year is integer and has 4 integers
-                        try:
-                            selectedYear_int = int(selectedYear_str)
-                            selectedYearLen = len(selectedYear_str)
-                            
-                            if selectedYearLen != 4:
-                                print("Error. The year has to have 4 integers.")
-                                error = 1
-                                correctFormat = False
-                            elif selectedYear_int < 2019:
-                                print("Error. The year has to be 2019 or above.")
-                                error = 1
-                                correctFormat = False
-                            else:
-                                correctFormat = True
 
-                        except ValueError:
-                            print("Error. The year has to be integer.")
-                            error = 1
-                            correctFormat = False
 
-                        #Checks if the month is integer and has 2 integers
-                        try:
-                            selectedMonth_int = int(selectedMonth_str)
-                            selectedMonthLen = len(selectedMonth_str)
+                    if correctFormat == True:
+                        selectedDate_str = "{}-{}-{}T00:00:00".format(selectedYear_int, selectedMonth_int, selectedDay_int)
 
-                            if selectedMonthLen != 2:
-                                print("Error. The month has to have 2 integers.")
-                                error = 1
-                                correctFormat = False
-                            elif selectedMonth_int > 12:
-                                print("Error. The month has to be between 01-12.")
-                                error = 1
-                                correctFormat = False
-                            else:
-                                correctFormat = True         
-                                
-                        except ValueError:
-                            print("Error. The month has to be integer.")
-                            error = 1
-                            correctFormat = False
+                        selectedDate_obj = datetime.strptime(selectedDate_str, "%Y-%m-%dT%H:%M:%S")            
+                        week_obj = timedelta(days=6)
+                        weekFromSelectedDate_obj = selectedDate_obj + week_obj
+                        weekFromSelectedDate_str = weekFromSelectedDate_obj.strftime("%Y-%m-%dT%H:%M:%S")
+                        #selectedDate_obj: is the selected date from the user
+                        #weekFromSelectedDate_obj: is the date week from the selected date 
 
-                        #Checks if the day is integer and has 2 integers
-                        try:
-                            selectedDay_int = int(selectedDay_str)
-                            selectedDayLen = len(selectedDay_str)
-
-                            if selectedDayLen != 2:
-                                print("Error. The day has to have 2 integers.")
-                                error = 1
-                                correctFormat = False
-                            elif selectedDay_int > 31:
-                                print("Error. The day has to be between 01-31.")
-                                error = 1
-                                correctFormat = False
-                            else:
-                                correctFormat = True 
-
-                        except ValueError:
-                            print("Error. The day has to be integer.")
-                            error = 1
-                            correctFormat = False
-                        if error > 0:
-                            correctFormat = False
+                        #creates a list of the selected employee, all the work trips
+                        currEmployeeWork_list = []
+                        for i in range(upcomingVoyagesList_len):
+                            if ssn_employee in upcomingVoyagesList[i]:
+                                currEmployeeWork_list.append(upcomingVoyagesList[i])
                         
-                except IndexError:
-                    print("Error. You have to use the correct format.")
-                    error = 1
-                    correctFormat = False
+                        #create a list of all the work trips that the employee went on that week
+                        employeeWorkWeek_list = []
+                        currEmployeeWorkLen = len(currEmployeeWork_list)
+                        for i in range(currEmployeeWorkLen):
+                            iDate_str = currEmployeeWork_list[i][3]
+                            iDate_obj = datetime.strptime(iDate_str, "%Y-%m-%dT%H:%M:%S")
+        
+                            if selectedDate_obj < iDate_obj and iDate_obj < weekFromSelectedDate_obj:
+                                employeeWorkWeek_list.append(currEmployeeWork_list)
 
-
-                if correctFormat == True:
-                    selectedDate_str = "{}-{}-{}T00:00:00".format(selectedYear_int, selectedMonth_int, selectedDay_int)
-
-                    selectedDate_obj = datetime.strptime(selectedDate_str, "%Y-%m-%dT%H:%M:%S")            
-                    week_obj = timedelta(days=6)
-                    weekFromSelectedDate_obj = selectedDate_obj + week_obj
-                    #selectedDate_obj: is the selected date from the user
-                    #weekFromSelectedDate_obj: is the date week from the selected date 
-
-                    #creates a list of the selected employee, all the work trips
-                    currEmployeeWork_list = []
-                    for i in range(upcomingVoyagesList_len):
-                        if ssn_employee in upcomingVoyagesList[i]:
-                            currEmployeeWork_list.append(upcomingVoyagesList[i])
+                        #get the employee name
+                        employeeName = ""
+                        allEmployees_list =  self.__employee_LL.get_all_employees()
+                        for i in range(len(allEmployees_list)):
+                            if allEmployees_list[i][0] == ssn_employee:
+                                employeeName = allEmployees_list[i][1] 
+                        
+                        employeeWorkWeekLen = len(employeeWorkWeek_list)
+                        print("\nWork week for {}.".format(employeeName))
+                        print("From {} to {}.".format(selectedDate_str[:10], weekFromSelectedDate_str[:10]))
+                        os.remove(os.path.join("Data","workWeek.csv"))
+                        header = "flightNumber,departingFrom,arravingAt,departure,arrival,planeInsignia\n"
+                        with open(os.path.join("Data","workWeek.csv"), "a+", encoding="utf-8") as file:
+                            file.write(header)
+                        if employeeWorkWeekLen == 0:
+                            print("\nNo work trips registered that week.")
+                        else:
+                            print("\n{} work trips registered that week.".format(employeeWorkWeekLen*2))
+                            print("{:<9}{:<6}{:<7}{:<23}{:<22}{}".format("Number", "From", "To", "Departure", "Arrival", "Insignia"))
+                            employeeWorkWeek_listLen = len(employeeWorkWeek_list)
                     
-                    #create a list of all the work trips that the employee went on that week
-                    employeeWorkWeek_list = []
-                    currEmployeeWorkLen = len(currEmployeeWork_list)
-                    for i in range(currEmployeeWorkLen):
-                        iDate_str = currEmployeeWork_list[i][3]
-                        iDate_obj = datetime.strptime(iDate_str, "%Y-%m-%dT%H:%M:%S")
-       
-                        if selectedDate_obj < iDate_obj and iDate_obj < weekFromSelectedDate_obj:
-                            employeeWorkWeek_list.append(currEmployeeWork_list)
-                            
-                    print(employeeWorkWeek_list)
+                            for i in range(employeeWorkWeek_listLen):
+                                #This is when you loop through the work trips from Kef and returning to Kef
+                                for j in range(2):
+                                    print("{:<9}{:<6}{:<7}{:<23}{:<22}{}".format(employeeWorkWeek_list[i][j][0], employeeWorkWeek_list[i][j][1], employeeWorkWeek_list[i][j][2], employeeWorkWeek_list[i][j][3], employeeWorkWeek_list[i][j][4], employeeWorkWeek_list[i][j][10]))
+                                    currWorkWeek = "{},{},{},{},{},{}".format(employeeWorkWeek_list[i][j][0], employeeWorkWeek_list[i][j][1], employeeWorkWeek_list[i][j][2], employeeWorkWeek_list[i][j][3], employeeWorkWeek_list[i][j][4], employeeWorkWeek_list[i][j][10])
+                                    with open(os.path.join("Data","workWeek.csv"), "a+", encoding="utf-8") as file:
+                                        file.write("{}\n".format(currWorkWeek))
 
-                    #get the employee name
-                    employeeName = ""
-                    allEmployees_list =  self.__employee_LL.get_all_employees()
-                    for i in range(len(allEmployees_list)):
-                        if allEmployees_list[i][0] == ssn_employee:
-                            employeeName = allEmployees_list[i][1] 
-                    
-                    print(employeeName)
-
-
-
+                        
+                        filePath = os.path.normpath(os.path.join("Data","workWeek.csv"))
+                        os.startfile(filePath)
 
 
 if __name__ == "__main__":
