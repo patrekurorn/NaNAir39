@@ -263,6 +263,7 @@ class VoyageUI(Page):
                 continue
             else:
                 break
+        return True
 
 
     def list_voyage_day(self):
