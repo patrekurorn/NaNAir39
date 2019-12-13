@@ -22,6 +22,58 @@ class VoyageUI(Page):
         print("-" * 50)
         print()
 
+    def edit_voyage_date(self):
+        self.header("Edit voyage data")
+        print("Enter q an any time to quit")
+
+        isValid = True
+        while isValid == True:
+            try:
+                voyage_int = int(input("1. edit voyage arrival\n2. edit voyage departure\nEdit number: "))
+            except:
+                print("-> Invalid input, please enter 1 or 2")
+                continue
+
+            else:
+                isValid = False
+
+
+        user_voyage_input = input("Enter voyage id: ").strip()
+        if not self.__voyageLL.check_flight_number(user_voyage_input):
+            print("--> Voyage does not exist")
+            wantToContinue_str = input("Do you want to try again?\n(Yes) to continue, anything else to exit: ").strip().upper()
+            if wantToContinue_str == "YES" or wantToContinue_str == "Y":
+                self.edit_voyage_date()
+            else:
+                return None
+
+        isValid = False
+        while not isValid:
+            print("Date time")
+            user_in_date = input("Enter date  (i.e. 'mm/dd/yy hh:mm:ss'): ").strip()
+            try:
+                date_obj = datetime.strptime(user_in_date, '%y/%m/%d %H:%M:%S')
+                isValid = True
+
+            except KeyError:
+                print("Error: please enter a valid number")
+                continue
+
+        voyage_object = self.__voyageLL.get_voyage(user_voyage_input)
+        voyage_object_edit = VoyageSm(voyage_object[0], voyage_object[1], voyage_object[2], voyage_object[3],
+                                       voyage_object[4], voyage_object[5], voyage_object[6], voyage_object[7],
+                                       voyage_object[8], voyage_object[9], voyage_object[10])
+        if voyage_int == 1:
+            voyage_object_edit.set_arrival_time(date_obj)
+
+        if voyage_int == 2:
+            voyage_object_edit.set_departure_time(date_obj)
+
+
+
+
+
+
 
     def register_voyage_PM(self):
         """ Header """
@@ -66,8 +118,6 @@ class VoyageUI(Page):
                     continue
                 else:
                     break
-
-
 
 
 
