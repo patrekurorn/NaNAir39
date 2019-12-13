@@ -24,7 +24,7 @@ class EmployeeUI(Page):
         """ Lists information about all employees. """
         # ssn,name,position,rank,licence,address,mobile,landlineNr,email
 
-        page_width = 90
+        page_width = 160
 
         self.header("All employees")
         self._print_header("All employees", page_width)
@@ -32,16 +32,15 @@ class EmployeeUI(Page):
         # self.show_page()
 
         all_employees = self.__employee_LL.get_all_employees()
-        print(all_employees)
 
-        employee_header =   "| {:<12} {:<19} {:<14} {:<24} {:<19} {:<14} {:<9} {:<9} {:<28} |\n".format("SSN", "Name", "Position", "Rank", "Licence", \
+        employee_header =   "| {:<12} {:<19} {:<14} {:<24} {:<19} {:<14} {:<9} {:<9} {:<30} |\n".format("SSN", "Name", "Position", "Rank", "Licence", \
                             "Address", "Mobile", "Landline", "email") + \
                             "| " + "-" * (page_width-2) + " |"
 
         print(employee_header)
 
         for x in all_employees:
-            print("| {:<13}{:<20}{:<15}{:<25}{:<20}{:<15}{:<10}{:<10}{:<29} |".format(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8]))
+            print("| {:<13}{:<20}{:<15}{:<25}{:<20}{:<15}{:<10}{:<10}{:<30} |".format(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8]))
         input()
         return True
 
