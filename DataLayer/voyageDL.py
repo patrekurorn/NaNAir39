@@ -32,7 +32,7 @@ class VoyageDL:
         """
         voyages = []
         #path = os.path.join("../Data", "UpcomingFlightsSM.csv")
-        path = os.path.join("../Data", "UpcomingFlightsSM.csv")
+        path = os.path.join("Data", "UpcomingFlightsSM.csv")
 
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
@@ -61,7 +61,7 @@ class VoyageDL:
         departureTime = new_voyage.get_departure_time()
         arrivalTime = new_voyage.get_arrival_time()
 
-        path2 = os.path.join("../Data", "UpcomingFlightsSM.csv")
+        path2 = os.path.join("Data", "UpcomingFlightsSM.csv")
 
         with open(path2, "a+", encoding="utf-8") as file:
             try:
@@ -105,7 +105,7 @@ class VoyageDL:
         fa2 = new_voyage.get_fa2()
         planeInsignia = new_voyage.get_planeInsignia()
 
-        path2 = os.path.join("../Data", "UpcomingFlightsSM.csv")
+        path2 = os.path.join("Data", "UpcomingFlightsSM.csv")
 
         with open(path2, "a+", encoding="utf-8") as file:
             try:
@@ -143,7 +143,7 @@ class VoyageDL:
         voyages = self.get_all_upcoming_voyages()
 
         selectedVoyage = voyage[0]
-        path = os.path.join("../Data", "UpcomingFlightsSM.csv")
+        path = os.path.join("Data", "UpcomingFlightsSM.csv")
         os.remove(path)
         header = "flightNumber,departingFrom,arrivingAt,departure,arrival,captain,copilot,fsm,fa1,fa2,planeInsignia"
 
