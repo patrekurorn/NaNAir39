@@ -81,7 +81,7 @@ class VoyageDL:
             try:
                 if os.stat(path2).st_size == 0:
                     file.write("{},{},{},{},{},{},{},{},{},{},{}".format("flightNumber","departingFrom","arrivingAt", "departure_time", "arrival_time","captain","copilot","fsm","fa1","fa2","planeInsignia"))
-                file.write("\n{},{},{},{},{}".format(flightNumber,departingFrom,arrivingAt,departureTime,arrivalTime))
+                file.write("\n{},{},{},{},{},{},{},{},{},{},{}".format(flightNumber,departingFrom,arrivingAt,departureTime,arrivalTime,"-","-","-","-","-","-"))
             except:
                 return False
 
@@ -242,7 +242,7 @@ class VoyageDL:
         Returns all the voyages after current time and date.
         """
         #all the voyages
-        allVoyages_list = self.__voyageLL.get_all_upcoming_voyages()
+        allVoyages_list = self.get_all_upcoming_voyages()
         allVoyagesLen = len(allVoyages_list)
 
         #create a list of voyages that are after the current date

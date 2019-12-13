@@ -274,8 +274,8 @@ class User(Page):
 
 # user.man_voyage_SM()
 
+user = User()
 exit = False
-
 while(not exit):
     user_selection = user.Home()
     exit = user_selection

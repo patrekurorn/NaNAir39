@@ -43,8 +43,16 @@ class VoyageLL:
 
 
     def list_unmanned_voyages(self):
-         pass
+        all_voyages = self.__voyageDL.get_all_voyages_after_current_date()
 
+        all_unmanned_voyages = []
+        
+        for voyage in all_voyages:
+            if  voyage[5] == "-" or voyage[6] == "-" or voyage[7] == "-" or \
+                voyage[8] == "-" or voyage[9] == "-" or voyage[10] == "-":
+                all_unmanned_voyages.append(voyage)
+
+        return all_unmanned_voyages
 
     def list_available_dates(self):
          pass
