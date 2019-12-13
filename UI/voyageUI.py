@@ -70,11 +70,6 @@ class VoyageUI(Page):
             voyage_object_edit.set_departure_time(date_obj)
 
 
-
-
-
-
-
     def register_voyage_PM(self):
         """ Header """
 
@@ -235,29 +230,29 @@ class VoyageUI(Page):
 
         voyage = self.__voyageLL.list_voyages_day(date)
 
-        print("\n{:<5}{:>8}{:>6}{:>10}{:>19}{:>12}{:>16}{:>16}{:>18}".format("Flight","From","To","Cpt.","Copilot","FSM","FA1","FA2","Plane"))
+        if voyage != False:
+            print("\n{:<5}{:>8}{:>6}{:>10}{:>19}{:>12}{:>16}{:>16}{:>18}".format("Flight", "From", "To", "Cpt.","Copilot", "FSM", "FA1", "FA2","Plane"))
+            for x in range(len(voyage)):
+                if x == 3 or x == 4:
+                    pass
+                else:
+                    print(voyage[x], end="\t  ")
 
-        for x in range(len(voyage)):
-            if x == 3 or x == 4:
-                pass
+            if len(voyage) == 11:
+                print("\n\nVoyage is fully staffed on {}".format(date))
             else:
-                print(voyage[x], end="\t  ")
-
-        if len(voyage) == 11:
-            print("\n\nVoyage is fully staffed on {}".format(date))
+                print("\n\nVoyage is not fully staffed on {}".format(date))
         else:
-            print("\n\nVoyage is not fully staffed on {}".format(date))
-
+            print("Date isn't in system.")
 
 
     def print_all_voyages(self):    # ÞARF AÐ LAGA
         self.header("All voyages")
         voyages = self.__voyageLL.get_all_upcoming_voyages()
-        
-        for index, x in enumerate(voyages):
-            print("{},{}".format(index+1, x))
-        
 
+        print("\t{:>5}{:>7}{:>4}{:>13}{:>20}{:>19}{:>16}{:>9}{:>13}{:>13}{:>15}\n".format("Flight", "From", "To","Departure","Arrival", "Cpt.", "Copilot", "FSM", "FA1", "FA2", "Plane"))
+        for index, x in enumerate(voyages):
+            print("{}.\t{} - {} - {} - {} - {} - {} - {} - {} - {} - {} - {}".format(index+1, x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],x[9],x[10]))
 
 
 
@@ -271,5 +266,5 @@ class VoyageUI(Page):
 
 if __name__ == "__main__":
     a = VoyageUI()
-    a.list_voyage_day()
+    a.man_voyage_SM()
 
