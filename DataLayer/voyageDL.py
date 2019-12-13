@@ -42,6 +42,15 @@ class VoyageDL:
                 voyages.append(row)
         return voyages
 
+    def get_only_voyages(self):
+        voyage = []
+        data = self.get_all_upcoming_voyages()
+        for item in data:
+            voyage.append(item[0])
+
+        return  voyage
+
+
 
     def check_flight_number(self, flightNumber):
         data = self.get_all_upcoming_voyages()
