@@ -178,7 +178,6 @@ class User(Page):
                 chooseBack = self.voyageUI.edit_voyage_date()
             elif user_input_str == "2":
                 """ þarf að klára """
-
                 print("unfinished")
                 chooseBack == True
 
