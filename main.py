@@ -9,6 +9,10 @@ from UI.airplaneUI import AirplaneUI
 import os
 import pathlib
 
+#####
+a = VoyageUI()
+a.get_dates_to_print_voyages_week()
+#####
 
 
 # VALID_THREE= ["1","2","3"]

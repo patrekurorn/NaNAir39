@@ -3,7 +3,7 @@ from Models.voyage import Voyage
 from Models.voyage_Sm import VoyageSm
 from UI.page import Page
 from UI.employeeUI import EmployeeUI
-from datetime import datetime
+from datetime import timedelta, datetime, date
 
 
 # Need "list of unmanned voyages" for improved "man voyage"
@@ -298,10 +298,108 @@ class VoyageUI(Page):
 
 
 
-    def print_list_voyage_by_week(self):
-        self.header("Voyage by week")
-        week_dict = self.__voyageLL.list_voyages_week()
-        print(week_dict)
+    def get_dates_to_print_voyages_week(self):
+        #checks if the format is correct
+        correctFormat = False
+        while correctFormat != True:
+            error = 0
+            getDateFromUser_str = input("Enter the starting day(YYYY/MM/DD): ")
+            try:
+                #if the format is correct then these variables hold under the input from the user
+                splittedGetDateFromUser = getDateFromUser_str.split("/")
+                splittedGetDateFromUserLen = len(splittedGetDateFromUser)
+                selectedYear_str = splittedGetDateFromUser[0]
+                selectedMonth_str = splittedGetDateFromUser[1]
+                selectedDay_str = splittedGetDateFromUser[2]
+
+                if splittedGetDateFromUserLen != 3:
+                    print("Error. You have to use the correct format.")
+                    error = 1
+                    correctFormat = False
+                else:
+                    correctFormat = True
+                    #Checks if the year is integer and has 4 integers
+                    try:
+                        selectedYear_int = int(selectedYear_str)
+                        selectedYearLen = len(selectedYear_str)
+                        
+                        if selectedYearLen != 4:
+                            print("Error. The year has to have 4 integers.")
+                            error = 1
+                            correctFormat = False
+                        elif selectedYear_int < 2019:
+                            print("Error. The year has to be 2019 or above.")
+                            error = 1
+                            correctFormat = False
+                        else:
+                            correctFormat = True
+
+                    except ValueError:
+                        print("Error. The year has to be integer.")
+                        error = 1
+                        correctFormat = False
+
+                    #Checks if the month is integer and has 2 integers
+                    try:
+                        selectedMonth_int = int(selectedMonth_str)
+                        selectedMonthLen = len(selectedMonth_str)
+
+                        if selectedMonthLen != 2:
+                            print("Error. The month has to have 2 integers.")
+                            error = 1
+                            correctFormat = False
+                        elif selectedMonth_int > 12:
+                            print("Error. The month has to be between 01-12.")
+                            error = 1
+                            correctFormat = False
+                        else:
+                            correctFormat = True         
+                            
+                    except ValueError:
+                        print("Error. The month has to be integer.")
+                        error = 1
+                        correctFormat = False
+
+                    #Checks if the day is integer and has 2 integers
+                    try:
+                        selectedDay_int = int(selectedDay_str)
+                        selectedDayLen = len(selectedDay_str)
+
+                        if selectedDayLen != 2:
+                            print("Error. The day has to have 2 integers.")
+                            error = 1
+                            correctFormat = False
+                        elif selectedDay_int > 31:
+                            print("Error. The day has to be between 01-31.")
+                            error = 1
+                            correctFormat = False
+                        else:
+                            correctFormat = True 
+
+                    except ValueError:
+                        print("Error. The day has to be integer.")
+                        error = 1
+                        correctFormat = False
+                    if error > 0:
+                        correctFormat = False
+                    
+            except IndexError:
+                print("Error. You have to use the correct format.")
+                error = 1
+                correctFormat = False
+
+
+            if correctFormat == True:
+                selectedDate_str = "{}-{}-{}T00:00:00".format(selectedYear_int, selectedMonth_int, selectedDay_int)
+
+                selectedDate_obj = datetime.strptime(selectedDate_str, "%Y-%m-%dT%H:%M:%S")            
+                week_obj = timedelta(days=6)
+                weekFromSelectedDate_obj = selectedDate_obj + week_obj
+                weekFromSelectedDate_str = weekFromSelectedDate_obj.strftime("%Y-%m-%dT%H:%M:%S")
+                #selectedDate_obj: is the selected date from the user
+                #weekFromSelectedDate_obj: is the date week from the selected date 
+
+        
 
 
 
