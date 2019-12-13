@@ -38,11 +38,7 @@ class DestinationDL:
         :return: List of all destinations
         """
         destination = []
-<<<<<<< HEAD
-        path = "..Data/Destinations.csv"
-=======
         path = os.path.join("Data", "Destinations.csv")
->>>>>>> 26237ba2b611ddc00f0d46cba5dd50ff921bff90
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)
