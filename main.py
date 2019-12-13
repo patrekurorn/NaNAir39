@@ -9,6 +9,10 @@ from UI.airplaneUI import AirplaneUI
 import os
 import pathlib
 
+#####
+a = EmployeeUI()
+a.print_week_of_employee()
+#####
 
 
 VALID_THREE= ["1","2","3"]
@@ -260,13 +264,14 @@ class User(Page):
 
 # user.man_voyage_SM()
 
+"""
 user = User()
 exit = False
 
 while(not exit):
     user_selection = user.Home()
     exit = user_selection
-
+"""
 
 
 # if user.first_pick == "1":

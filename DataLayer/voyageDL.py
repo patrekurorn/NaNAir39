@@ -27,7 +27,8 @@ class VoyageDL:
         : Returns a list of voyages
         """
         voyages = []
-        path = os.path.join("../Data", "UpcomingFlightsSM.csv")
+        #path = os.path.join("../Data", "UpcomingFlightsSM.csv")
+        path = os.path.join("Data", "UpcomingFlightsSM.csv")
 
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
