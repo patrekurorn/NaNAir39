@@ -278,12 +278,12 @@ class EmployeeUI(Page):
 
         isValid = False
         while isValid == False:
-            print("Enter q anytime to quit.")
+            print("Enter q to quit.")
 
             try:
                 datetime_str = input("Enter date  (i.e. 'mm/dd/yy'): ").strip()
                 if datetime_str == "q":
-                    break
+                    return False
 
                 datetime_object = datetime.strptime(datetime_str, '%m/%d/%y')
                 datetime_object = str(datetime_object)
@@ -473,6 +473,7 @@ class EmployeeUI(Page):
                     break
             except:
                 print("\nNo busy employees at this time.\n")
+                break
 
 
     def busy_pilots(self):

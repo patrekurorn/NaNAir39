@@ -117,9 +117,9 @@ class User(Page):
 
     def Planning_manager(self):
 
-        self.page._header()
-        print("1. Manage voyages\n2. List of voyages\n3. Manage destinations\n4. Back")
-        self.page._footer()
+        # self._header()
+        # print("1. Manage voyages\n2. List of voyages\n3. Manage destinations\n4. Back")
+        # self._footer()
 
         header = "Planning manager"
         options = ["1. Manage voyages", "2. Voyage informations", "3. Manage destinations", "4. Back"]
@@ -150,10 +150,6 @@ class User(Page):
     def manage_voyages(self):
 
 
-        self.page._header()
-        voyage_pick = input("1. Register a new voyage\n2. Edit a voyage\n3. Cancel a voyage\n4. Back\n").strip()
-        self.page._footer()
-
         header = "Manage voyages"
         options = ["1. Register a new voyage", "2. Edit a voyage", "3. Cancel a voyage", "4. Back"]
         self.show_page(options, header)
@@ -166,10 +162,12 @@ class User(Page):
 
             if voyage_pick == "4":      # Back
                 return True
-            elif voyage_pick =="1":     # Register a new voyage
+            elif voyage_pick == "1":     # Register a new voyage
                 chose_back = self.voyageUI.register_voyage_PM()
-            elif voyage_pick =="2":     # Edit a voyage
-                pass
+            elif voyage_pick == "2":     # Edit a voyage
+                print("Edit voyage")
+                input()
+                return True
             #######################################################################################################################
             ######################################                                           ######################################
             ######################################           Needs implementation            ######################################
@@ -186,12 +184,14 @@ class User(Page):
         return False            
 
     def list_of_voyages(self):
-        self.page._header()
-        print(  "1. List all voyages\n" + \
-                "2. List by day\n" + \
-                "3. List by week\n" + \
-                "4. Back")
-        self.page._footer()
+        
+        options = [  "1. List all voyages",
+                "2. List by day",
+                "3. List by week",
+                "4. Back"]
+        
+
+        self.show_page(options)
 
         user_input = input().strip()
 

@@ -6,12 +6,15 @@ from UI.employeeUI import EmployeeUI
 from datetime import datetime
 
 
+# Need "list of unmanned voyages" for improved "man voyage"
 
 class VoyageUI(Page):
 
     def __init__(self):
         self.__voyageLL = VoyageLL()
         self.__employeeUI = EmployeeUI()
+
+        super().__init__()
 
 
     def header(self,head):
@@ -128,9 +131,12 @@ class VoyageUI(Page):
             sends voyage fligt number to a function already made in voyageLL to delete specific flight Number
         """
         # væri best að setja self.header("Cancel voyage") í kall fallið svo það repeati sig ekki endalaust
-        self.header("Cancel voyage")
 
-        print("To quit press q at any time.")
+        # self._header("Cancel voyage", 60)
+
+        # print("To quit press q at any time.")
+
+        self.show_page(["To quit press q at any time."])
 
         voyage = input("Enter a flight number of voyage to be canceled: ").strip()
 
@@ -174,7 +180,7 @@ class VoyageUI(Page):
 
             if voyage == False:
                 print("No voyage with this flight number.")
-                continue
+                break
 
             busy_date = voyage[3]
             busy_date = busy_date.split("T")
