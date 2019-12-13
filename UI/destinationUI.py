@@ -108,6 +108,7 @@ class DestinationUI(Page):
 
                 if action == "q":
                     self.__destinationLL.remove_destination(theDestination[ID])
+                    return True
 
                     updatedDestination = Destination(newId_str,newDestination_str,newCountry_str,newFlightDuration_str,newDistanceFromIceland_str,newContactName_str,newContactNumber_str)
                     self.__destinationLL.register_destination(updatedDestination)

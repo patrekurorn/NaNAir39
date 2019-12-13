@@ -119,15 +119,9 @@ class VoyageUI(Page):
 
         for x in all_voyages:
             try:
-                print("|{:<8} {:<5} {:<5} {:<4} {:>21} {:>12} {:>12} {:>12} {:>12} {:>12} {:>8}|".format(x[0], x[1], x[2],
-                                                                                                     x[3], x[4], x[5],
-                                                                                                     x[6], x[7], x[8], x[9],
-                                                                                                     x[10]))
+                print("|{:<8} {:<5} {:<5} {:<4} {:>21} {:>12} {:>12} {:>12} {:>12} {:>12} {:>8}|".format(x[0], x[1], x[2],x[3], x[4], x[5],x[6], x[7], x[8], x[9], x[10]))
             except:
-                print("|{:<8} {:<5} {:<5} {:<4} {:>21} {:>12} {:>12} {:>12} {:>12} {:>12} {:>8}|".format(x[0], x[1], x[2],
-                                                                                                     x[3], x[4], "",
-                                                                                                     "", "", "", "",
-                                                                                                     ""))
+                print("|{:<8} {:<5} {:<5} {:<4} {:>21} {:>12} {:>12} {:>12} {:>12} {:>12} {:>8}|".format(x[0], x[1], x[2],x[3], x[4],"-","-", "-", "-", "-","-"))
 
         self._footer(pageWidth, None)
         
@@ -360,6 +354,12 @@ class VoyageUI(Page):
         date = self.__employeeUI.get_date()
         voyage = self.__voyageLL.list_voyages_day(date)
 
+
+        if voyage != False:
+            print("\n{:<5}{:>8}{:>6}{:>10}{:>19}{:>12}{:>16}{:>16}{:>18}".format("Flight", "From", "To", "Cpt.",
+                                                                                 "Copilot", "FSM", "FA1", "FA2",
+                                                                                 "Plane"))
+
         while voyage != None:
             print("\n{:<5}{:>8}{:>6}{:>10}{:>19}{:>12}{:>16}{:>16}{:>18}".format("Flight", "From", "To", "Cpt.","Copilot", "FSM", "FA1", "FA2","Plane"))
             for x in range(len(voyage)):
@@ -385,6 +385,8 @@ class VoyageUI(Page):
 
         if voyage == None:
             print("Date isn't in system.")
+            return True
+
             input()
             return True
 
@@ -416,6 +418,23 @@ class VoyageUI(Page):
         final = date + "T" + time
 
         return final
+
+    def print_list_voyage_by_week(self):
+        self.voyage_screen_header("Print list voyage by week ")
+        user_date = self.get_user_date_week()
+
+        week_dict = self.__voyageLL.list_voyages_week(user_date)
+
+        print("Dates for given date:\n{},{}".format(week_dict[0],week_dict[1]))
+        print()
+        continue_it = input(' "Yes" enter another date \Anything else to exit\n Would you like to try another date? ').upper()
+
+        if continue_it == "YES":
+            self.get_user_date_week()
+        else:
+            return True
+
+
 
     def get_dates_to_print_voyages_week(self):
         #checks if the format is correct
