@@ -20,7 +20,7 @@ class Page:
             print("Please enter a valid number")
             self.valid = True
 
-    def _print_header(self, header, length):
+    def _print_header(self, header, length ):
         
 
         nan_air_header = self.get_formatable_line_center(length).format("NaN Air")
@@ -37,7 +37,7 @@ class Page:
         
         print(self.get_formatable_line_center(length).format(" "))
 
-    def _print_footer(self, length, instructions):
+    def _print_footer(self, length, instructions ):
 
         plane_tail = self.get_formatable_line_center(length).format("_|_")
         plane_main = self.get_formatable_line_center(length).format("*---o--(_)--o---*")
@@ -58,11 +58,11 @@ class Page:
         self._clear_screen()
         self._print_header(header, length)
     
-    def _footer(self, length, instructions):
+    def _footer(self, length = None, instructions = None):
         self._print_footer(length, instructions)
         self._last_input_valid_check()
     
-    def _lines(self, lines, length):
+    def _lines(self, lines = None, length = None):
         for line in lines:
             print(self.get_formatable_line_left(length).format(line))
 
