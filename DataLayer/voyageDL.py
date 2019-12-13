@@ -31,7 +31,6 @@ class VoyageDL:
         : Returns a list of voyages
         """
         voyages = []
-        #path = os.path.join("../Data", "UpcomingFlightsSM.csv")
         path = os.path.join("Data", "UpcomingFlightsSM.csv")
 
         with open(path, encoding="utf-8") as file:
@@ -69,6 +68,12 @@ class VoyageDL:
         arrivingAt = new_voyage.get_arriving_at()
         departureTime = new_voyage.get_departure_time()
         arrivalTime = new_voyage.get_arrival_time()
+        copilot = "-"
+        fsm = "-"
+        fa1 = "-"
+        fa2 = "-"
+        planeInsiglia = "-"
+
 
         path2 = os.path.join("Data", "UpcomingFlightsSM.csv")
 
