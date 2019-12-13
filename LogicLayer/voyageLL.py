@@ -35,6 +35,10 @@ class VoyageLL:
         return self.__voyageDL.register_voyage_PM2(new_voyage)
 
 
+    def check_if_busy(self, date, ssn):
+        return self.__voyageDL.check_if_busy(date, ssn)
+
+
     def list_unmanned_voyages(self):
          pass
 
@@ -74,11 +78,11 @@ class VoyageLL:
         return self.__voyageDL.csv_dictionary()
 
 
-    def list_voyages_day(self):
-        return self.__voyageDL.list_voyages_day()
+    def list_voyages_day(self, date):     # checkar hvort voyage sé fullmönnuð á ákveðnum degi
+        return self.__voyageDL.list_voyages_day(date)
 
 
-    def list_voyages_week(self):
+    def list_voyages_week(self):    # checkar hvort voyage sé fullmönnuð í ákveðinni viku
         return self.__voyageDL.list_voyages_week()
 
 if __name__ == "__main__":
