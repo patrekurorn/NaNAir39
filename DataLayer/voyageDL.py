@@ -215,7 +215,7 @@ class VoyageDL:
 
             if date == busy_date[0]:
                 return x
-        return False
+        return None
 
 
 
@@ -240,7 +240,26 @@ class VoyageDL:
 
         return(start_date,end_date)
 
+    def get_all_voyages_after_current_date(self):
+        """
+        Returns all the voyages after current time and date.
+        """
+        #all the voyages
+        allVoyages_list = self.__voyageLL.get_all_upcoming_voyages()
+        allVoyagesLen = len(allVoyages_list)
 
+        #create a list of voyages that are after the current date
+        allVoyagesAfterCurrentDate_list = []
+        for i in range(allVoyagesLen):
+            iDate_str = allVoyages_list[i][3]
+            iDate_obj = datetime.strptime(iDate_str, "%Y-%m-%dT%H:%M:%S")
+
+            if datetime.now() < iDate_obj:
+                allVoyagesAfterCurrentDate_list.append(allVoyages_list[i])
+
+        #returns all the voyages after the current date and only 
+        #get the work trips that are leaving KEF
+        return allVoyagesAfterCurrentDate_list
 
 
 
