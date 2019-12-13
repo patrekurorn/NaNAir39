@@ -17,7 +17,6 @@ class EmployeeDL:
         """
         employees = []        
         path = os.path.join("Data", "employee.csv")
-        #path = os.path.join("../Data", "employee.csv")
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)

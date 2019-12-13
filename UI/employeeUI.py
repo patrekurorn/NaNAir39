@@ -481,8 +481,6 @@ class EmployeeUI(Page):
                         employees = x[5:10]
                         destination = x[1]
 
-
-
                 if len(employees) > 0:
                     header = "\n   {:<5} {:>11} {:>23} {:>15}\n".format("SSN", "Name", "Position", "Rank")
                     print(header)
@@ -493,7 +491,7 @@ class EmployeeUI(Page):
 
                 print("\nDestination:\t\t{}".format(destination))
                 if input("\nY: Yes\nAnything else: No\nWould you like to enter another date? ").upper() == "Y":
-                    isValid = False
+                    continue
                 else:
                     break
             except:
@@ -712,4 +710,4 @@ class EmployeeUI(Page):
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.print_week_of_employee()
+    a.busy_employees()

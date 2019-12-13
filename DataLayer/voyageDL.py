@@ -215,11 +215,12 @@ class VoyageDL:
 
             if date == busy_date[0]:
                 return x
-        return False
+        return None
 
 
 
     def list_voyages_week(self, date):
+
 
         date = date.split("T")
         final_date = date[0].split("-")
@@ -228,14 +229,16 @@ class VoyageDL:
         month = final_date[1] #12
         day = final_date[2]   #31
 
+
+
         start_date = "{}-{}-{}T00:00:00".format(year, month, day)
 
         start_date_obj = datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%S")
         week_obj = timedelta(days=6)
         end_date = start_date_obj + week_obj
-        
-        print(start_date_obj)
-        print(end_date)
+
+
+        return(start_date,end_date)
 
     def get_all_voyages_after_current_date(self):
         """

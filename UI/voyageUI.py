@@ -345,12 +345,11 @@ class VoyageUI(Page):
         self._footer(page_width, None)
 
     def list_voyage_day(self):
-
+        self.voyage_screen_header("List voyage by day")
         date = self.__employeeUI.get_date()
-
         voyage = self.__voyageLL.list_voyages_day(date)
 
-        if voyage != False:
+        while voyage != None:
             print("\n{:<5}{:>8}{:>6}{:>10}{:>19}{:>12}{:>16}{:>16}{:>18}".format("Flight", "From", "To", "Cpt.","Copilot", "FSM", "FA1", "FA2","Plane"))
             for x in range(len(voyage)):
                 if x == 3 or x == 4:
@@ -360,22 +359,52 @@ class VoyageUI(Page):
 
             if len(voyage) == 11:
                 print("\n\nVoyage is fully staffed on {}".format(date))
+                choice = input("Do you want to continue? (Y/N) ").upper()
+                if choice == "Y":
+                    self.list_voyage_day()
+                else:
+                    break
             else:
                 print("\n\nVoyage is not fully staffed on {}".format(date))
-        else:
-            print("Date isn't in system.")
+                choice = input("Do you want to continue? (Y/N) ").upper()
+                if choice == "Y":
+                    self.list_voyage_day()
+                else:
+                    break
 
-        return True
+        if voyage == None:
+            print("Date isn't in system.")
+            input()
+            return True
+
+
+
 
     def print_all_voyages(self):
-        self.header("All voyages")
+        self.voyage_screen_header("Print all voyages")
         voyages = self.__voyageLL.get_all_upcoming_voyages()
 
-        print("\t{:>5}{:>7}{:>4}{:>13}{:>20}{:>19}{:>16}{:>9}{:>13}{:>13}{:>15}\n".format("Flight", "From", "To","Departure","Arrival", "Cpt.", "Copilot", "FSM", "FA1", "FA2", "Plane"))
-        for index, x in enumerate(voyages):
-            print("{}.\t{} - {} - {} - {} - {} - {} - {} - {} - {} - {} - {}".format(index+1, x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],x[9],x[10]))
+        if input('Enter "q" to exit: ').upper() == "Q":
+            return True
 
-        input()
+    def get_user_date_week(self):
+
+        isValid = False
+        while not isValid:
+            user_in_date = input("Enter date,time (i.e. 'yy-mm-dd,hh:mm:ss'): ").strip()
+            try:
+                date_obj = datetime.strptime(user_in_date, '%y-%m-%d,%H:%M:%S')
+                isValid = True
+
+            except KeyError:
+                print("Error: please enter a valid number")
+                continue
+
+        dateformat_str = str(date_obj)
+        date, time = dateformat_str.split()
+        final = date + "T" + time
+
+        return final
 
     def get_dates_to_print_voyages_week(self):
         #checks if the format is correct
@@ -519,6 +548,5 @@ class VoyageUI(Page):
 
 if __name__ == "__main__":
     a = VoyageUI()
-    #a.man_voyage_SM()
-    a.edit_voyage_date()
+    a.print_all_voyages()
 
