@@ -246,7 +246,7 @@ class VoyageUI(Page):
             print("Date isn't in system.")
 
 
-    def print_all_voyages(self):    # ÞARF AÐ LAGA
+    def print_all_voyages(self):
         self.header("All voyages")
         voyages = self.__voyageLL.get_all_upcoming_voyages()
 
