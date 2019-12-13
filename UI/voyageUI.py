@@ -343,15 +343,12 @@ class VoyageUI(Page):
         date = self.__employeeUI.get_date()
         voyage = self.__voyageLL.list_voyages_day(date)
 
-<<<<<<< HEAD
 
         if voyage != False:
             print("\n{:<5}{:>8}{:>6}{:>10}{:>19}{:>12}{:>16}{:>16}{:>18}".format("Flight", "From", "To", "Cpt.",
                                                                                  "Copilot", "FSM", "FA1", "FA2",
                                                                                  "Plane"))
 
-=======
->>>>>>> f695626c1ece5cb54fb996be1d7cb0ea735a91d3
         while voyage != None:
             print("\n{:<5}{:>8}{:>6}{:>10}{:>19}{:>12}{:>16}{:>16}{:>18}".format("Flight", "From", "To", "Cpt.","Copilot", "FSM", "FA1", "FA2","Plane"))
             for x in range(len(voyage)):
@@ -377,20 +374,14 @@ class VoyageUI(Page):
 
         if voyage == None:
             print("Date isn't in system.")
-<<<<<<< HEAD
             return True
 
-=======
->>>>>>> f695626c1ece5cb54fb996be1d7cb0ea735a91d3
             input()
             return True
 
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> f695626c1ece5cb54fb996be1d7cb0ea735a91d3
     def print_all_voyages(self):
         self.voyage_screen_header("Print all voyages")
         voyages = self.__voyageLL.get_all_upcoming_voyages()
@@ -417,7 +408,6 @@ class VoyageUI(Page):
 
         return final
 
-<<<<<<< HEAD
     def print_list_voyage_by_week(self):
         self.voyage_screen_header("Print list voyage by week ")
         user_date = self.get_user_date_week()
@@ -435,8 +425,6 @@ class VoyageUI(Page):
 
 
 
-=======
->>>>>>> f695626c1ece5cb54fb996be1d7cb0ea735a91d3
     def get_dates_to_print_voyages_week(self):
         #checks if the format is correct
         correctFormat = False

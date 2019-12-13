@@ -10,13 +10,10 @@ from datetime import datetime
 import os
 import pathlib
 
-<<<<<<< HEAD
 #a = VoyageUI()
 #a.get_all_voyages_after_current_date()
 
 
-=======
->>>>>>> f695626c1ece5cb54fb996be1d7cb0ea735a91d3
 # VALID_THREE= ["1","2","3"]
 
 class User(Page):
@@ -226,7 +223,32 @@ class User(Page):
 
 
     def manage_destinations(self):
-        pass
+        header = "Manage destinations"
+        options = [ "1. Voyage repetions",
+                    "2. Edit contact information",
+                    "3. Register destination",
+                    "4. Back "]
+
+        self.show_page(options,header)
+        user_input = input().strip()
+
+        chose_back = False
+        while not chose_back:
+            if user_input == "4":
+                return True
+            elif user_input == "1":
+                True
+
+            elif user_input == "2":
+                chose_back = self.destinationUI.edit_destination()
+
+            elif user_input == "3":
+                chose_back = self.destinationUI.register_destination()   # Endalaus loopa
+            else:
+                self.valid = False
+                return False
+
+        return False
 
     def Workforce_information(self):
         
