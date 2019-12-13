@@ -67,7 +67,7 @@ class EmployeeDL:
         landlineNr = new_employee.get_landlineNr()
         email = new_employee.get_email()
 
-        path = "../Data/employee.csv"
+        path = os.path.join("Data","employee.csv")
         with open(path, "a") as file:
             try:
                 writer = csv.writer(file)
@@ -127,11 +127,13 @@ class EmployeeDL:
         employee = self.get_employee(ssn)
         employees = self.get_all_employees()
 
+        path = os.path.join("Data", "employee.csv")
+
         selected_employee = employee[0]
 
-        os.remove("../Data/employee.csv")
+        os.remove(path)
         header = "ssn,name,position,rank,licence,address,mobile,landlineNr,email\n"
-        with open("../Data/employee.csv", "a+", encoding="utf-8") as file:
+        with open(path, "a+", encoding="utf-8") as file:
             file.write(header)
 
         for x in employees:
