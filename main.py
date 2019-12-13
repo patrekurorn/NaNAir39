@@ -9,11 +9,8 @@ from UI.airplaneUI import AirplaneUI
 import os
 import pathlib
 
-#####
 a = VoyageUI()
-a.get_dates_to_print_voyages_week()
-#####
-
+a.get_all_voyages_after_current_date()
 
 # VALID_THREE= ["1","2","3"]
 
@@ -279,14 +276,14 @@ class User(Page):
 # user = VoyageUI()
 
 # user.man_voyage_SM()
-
+"""
 user = User()
 exit = False
 
 while(not exit):
     user_selection = user.Home()
     exit = user_selection
-
+"""
 
 # if user.first_pick == "1":
 #     user.Staff_manager()

@@ -399,10 +399,44 @@ class VoyageUI(Page):
                 #selectedDate_obj: is the selected date from the user
                 #weekFromSelectedDate_obj: is the date week from the selected date 
 
-        
+                #all the voyages
+                allVoyages_list = self.__voyageLL.get_all_upcoming_voyages()
+                allVoyagesLen = len(allVoyages_list)
+
+                #create a list of voyages that are just in the specific week
+                allVoyagesThatWeek_list = []
+                for i in range(allVoyagesLen):
+                    iDate_str = allVoyages_list[i][3]
+                    iDate_obj = datetime.strptime(iDate_str, "%Y-%m-%dT%H:%M:%S")
+
+                    if selectedDate_obj < iDate_obj and iDate_obj < weekFromSelectedDate_obj:
+                        allVoyagesThatWeek_list.append(allVoyages_list[i])
 
 
+                #prints status(full or not full) for the work trips for the selected week
+                print("\nWork trips from {} to {}.".format(selectedDate_str[:10], weekFromSelectedDate_str[:10]))
+                allVoyagesThatWeekLen = len(allVoyagesThatWeek_list)
+                for i in range(0,allVoyagesThatWeekLen,2):
+                    #checking if missing copilot
+                    if len(allVoyagesThatWeek_list[i][6]) == 0:
+                        print("Not full. {}".format(allVoyagesThatWeek_list[i]))
+                        continue
+                    #checking if missing fsm
+                    elif len(allVoyagesThatWeek_list[i][7]) == 0:
+                        print("Not full. {}".format(allVoyagesThatWeek_list[i]))
+                        continue
+                    #checking if missing fa1
+                    elif len(allVoyagesThatWeek_list[i][8]) == 0:
+                        print("Not full. {}".format(allVoyagesThatWeek_list[i]))
+                        continue
+                    #checking if missing fa2
+                    elif len(allVoyagesThatWeek_list[i][9]) == 0:
+                        print("Not full. {}".format(allVoyagesThatWeek_list[i]))
+                        continue
+                    else:
+                        print("Full. {}".format(allVoyagesThatWeek_list[i]))
 
+ 
 
 if __name__ == "__main__":
     a = VoyageUI()

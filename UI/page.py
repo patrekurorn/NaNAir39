@@ -18,6 +18,8 @@ class Page:
             print("Please enter a valid number")
             self.valid = True
 
+
+
     def _print_header(self, header, length):
 
 

@@ -6,7 +6,7 @@ from UI.page import Page
 ###
 from datetime import datetime
 from datetime import timedelta
-import os
+import os, sys, subprocess
 
 
 
@@ -836,9 +836,15 @@ class EmployeeUI(Page):
 
                         
                         filePath = os.path.normpath(os.path.join("Data","workWeek.csv"))
-                        os.startfile(filePath)
+                        # Checks if system is windows or not
+                        if sys.platform == "win32":
+                            os.startfile(filePath)
+                        else:
+                            opener = "open" if sys.platform == "darwin" else "xdg-open"
+                            subprocess.call([opener, filePath])
+
 
 
 if __name__ == "__main__":
     a = EmployeeUI()
-    a.available_employees()
+    a.print_week_of_employee()
