@@ -301,6 +301,22 @@ class EmployeeUI(Page):
         return None
 
     def print_employee(self, employee):
+        # ssn,name,position,rank,licence,address,mobile,landlineNr,email
+        page_width = 60
+        ssn = "SSN: \t\t" + employee[0], 
+        name = "Name: \t\t" + employee[1], 
+        position = "Position: \t" + employee[2], 
+        rank = "Rank: \t\t" + employee[3], 
+        licence = "Licence: \t" + employee[4], 
+        address = "Address: \t" + employee[5], 
+        mobile = "Mobile: \t" + employee[6], 
+        landline = "Landline Nr: \t" + employee[7], 
+        email = "Email: \t\t" + employee[8]
+        
+        if employee[2] == "Pilot":
+            self.show_page([ssn, name, position, rank, license, address, mobile, landline, email], )
+
+        self.show_page()
 
         pass
 
