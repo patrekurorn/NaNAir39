@@ -10,10 +10,13 @@ from datetime import datetime
 import os
 import pathlib
 
+<<<<<<< HEAD
 #a = VoyageUI()
 #a.get_all_voyages_after_current_date()
 
 
+=======
+>>>>>>> f695626c1ece5cb54fb996be1d7cb0ea735a91d3
 # VALID_THREE= ["1","2","3"]
 
 class User(Page):
@@ -275,10 +278,8 @@ class User(Page):
 user = User()
 
 
-
-
+user = User()
 exit = False
-
 while(not exit):
     user_selection = user.Home()
     exit = user_selection
@@ -296,4 +297,8 @@ while(not exit):
 
 
 # print(user)
+<<<<<<< HEAD
+=======
+
+>>>>>>> f695626c1ece5cb54fb996be1d7cb0ea735a91d3
 """
