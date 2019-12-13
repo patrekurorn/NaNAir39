@@ -1,13 +1,16 @@
 import csv
 import os
+from datetime import datetime
+from datetime import timedelta
 from Models.voyage import Voyage
 from Models.voyage_Sm import VoyageSm
+from DataLayer.employeeDL import EmployeeDL
 
 
 class VoyageDL:
 
     def __init__(self):
-        pass
+        self.__employeeDL = EmployeeDL()
 
     def get_voyage(self, flightNumber):
         """
@@ -19,6 +22,7 @@ class VoyageDL:
             for row in total_data:
                 if row[0] == flightNumber:
                     return row
+        return False
 
 
 
@@ -56,6 +60,56 @@ class VoyageDL:
         arrivingAt = new_voyage.get_arriving_at()
         departureTime = new_voyage.get_departure_time()
         arrivalTime = new_voyage.get_arrival_time()
+        captain = new_voyage.get_captain()
+        copilot = new_voyage.get_copilot()
+        fsm = new_voyage.get_fsm()
+        fa1 = new_voyage.get_fa1()
+        fa2 = new_voyage.get_fa2()
+        planeInsignia = new_voyage.get_planeInsignia()
+
+        path2 = os.path.join("../Data", "UpcomingFlightsSM.csv")
+
+        with open(path2, "a+",encoding="utf-8") as file:
+            try:
+                if os.stat(path2).st_size == 0:
+                    file.write("{},{},{},{},{},{},{},{},{},{},{}".format("flightNumber","departingFrom","arrivingAt", "departure_time", "arrival_time","captain","copilot","fsm","fa1","fa2","planeInsignia"))
+                file.write("\n{},{},{},{},{},{},{},{},{},{},{}".format(flightNumber,departingFrom,arrivingAt,departureTime,arrivalTime,captain, copilot, fsm, fa1, fa2, planeInsignia))
+            except:
+                return False
+
+
+    def check_if_busy(self, date, ssn):
+
+        voyage = self.get_all_upcoming_voyages()
+
+        if not self.__employeeDL.ssn_valid(ssn):
+            return False
+
+        for x in voyage:
+            busy_date = x[3]
+            busy_date = busy_date.split("T")
+
+            if busy_date[0] == date:
+                employees = x[5:10]
+
+        for x in employees:
+            if x == ssn:
+                return True
+
+        return False
+
+
+
+    """def man_voyage_SM(self, flight_number):
+        
+        captain = flight_number.get_captain()
+        copilot = flight_number.get_copilot()
+        fsm = flight_number.get_fsm()
+        fa1 = flight_number.get_fa1()
+        fa2 = flight_number.get_fa2()
+        planeInsignia = flight_number.get_planeInsignia()
+
+        path = os.path.join("../Data", "UpcomingFlightsSM.csv")
 
         path = os.path.join("../Data","UpcomingFlightsPM.csv")
         with open(path, "a+",encoding="utf-8") as file:
@@ -64,7 +118,7 @@ class VoyageDL:
                     file.write("{},{},{},{},{},".format("flightNumber","departingFrom","arrivingAt", "departure_time", "arrival_time"))
                 file.write("\n{},{},{},{},{}".format(flightNumber,departingFrom,arrivingAt,departureTime,arrivalTime))
             except:
-                return False
+                return False"""
 
 
     def cancel_voyage(self, flightNumber):
@@ -107,32 +161,47 @@ class VoyageDL:
 
         return dateDictionary
 
-    def list_voyages_day(self):
-        """ collects date from csv  and prints out a dictionary with each day and information  UI has to print out the dictionary
-            return:dict
-           """
-        day_dict = {}
-        without_first = []
-        path = os.path.join("../Data", "UpcomingFlightsPM.csv")
 
-        with open(path, encoding="utf-8") as file:
-            reader = csv.reader(file)
-            next(reader)
+    def list_voyages_day(self, date):
 
-            for row in reader:
-                without_first.append(row)
+        voyages = self.get_all_upcoming_voyages()
 
-        for row in without_first:
-            day = int(row[3].split("T")[0].split("-")[2])
+        for x in voyages:
+            busy_date = x[3]
+            busy_date = busy_date.split("T")
 
-            if day in day_dict:
-                day_dict[day] += [[row[0], row[1], row[2]]]
-            else:
-                day_dict[day] = [[row[0], row[1], row[2]]]
+            if date == busy_date[0]:
+                return x
+        return False
 
-        return day_dict
 
-    def list_voyages_week(self):
+
+    def list_voyages_week(self, date):
+
+        date = date.split("T")
+        final_date = date[0].split("-")
+
+        year = final_date[0]  #2019
+        month = final_date[1] #12
+        day = final_date[2]   #31
+
+        start_date = "{}-{}-{}T00:00:00".format(year, month, day)
+
+        start_date_obj = datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%S")
+        week_obj = timedelta(days=6)
+        end_date = start_date_obj + week_obj
+        
+        print(start_date_obj)
+        print(end_date)
+
+
+
+
+
+
+
+"""   
+def list_voyages_week(self):
         week_dict = {}
         without_first = []
         week1 = 7
@@ -162,5 +231,10 @@ class VoyageDL:
             if key in range(week4,week5):
                 week5dict[key] = value
 
-        """ þetta fall á ekki að prenta heldur á UI að prenta dictinarinu"""
+        þetta fall á ekki að prenta heldur á UI að prenta dictinarinu
         return "First Week: {}\nSecond week: {}\nThird week: {}\nFourth week: {}\nFifth week: {}".format(week1dict,week2dict,week3dict,week4dict,week5dict)
+    """
+
+if __name__ == "__main__":
+    a = VoyageDL()
+    a.list_voyages_week("2019-12-31T12:40:00")

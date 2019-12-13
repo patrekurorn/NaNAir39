@@ -15,7 +15,7 @@ class AirplaneDL:
         model = new_airplane.get_model()
         capacity = new_airplane.get_capacity()
 
-        path = "../Data/Aircraft.csv"
+        path = os.path.join("Data", "Aircraft.csv")
         with open(path, "a+") as file:
             try:
                 writer = csv.writer(file)
@@ -29,7 +29,7 @@ class AirplaneDL:
         :return: A list of all the airplanes
         """
         airplanes = []
-        path = os.path.join("../Data", "Aircraft.csv")
+        path = os.path.join("Data", "Aircraft.csv")
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)

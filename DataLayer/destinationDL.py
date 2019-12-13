@@ -38,7 +38,11 @@ class DestinationDL:
         :return: List of all destinations
         """
         destination = []
+<<<<<<< HEAD
         path = "..Data/Destinations.csv"
+=======
+        path = os.path.join("Data", "Destinations.csv")
+>>>>>>> 26237ba2b611ddc00f0d46cba5dd50ff921bff90
         with open(path, encoding="utf-8") as file:
             reader = csv.reader(file)
             next(reader)
@@ -60,7 +64,7 @@ class DestinationDL:
         distanceFromIceland = new_destination.get_distance_from_iceland()
         contactName = new_destination.get_contact_name()
         contactNumber = new_destination.get_contact_number()
-        path = "../Data/Destinations.csv"
+        path = os.path.join("Data", "Destinations.csv")
         with open(path, "a+") as file:
             try:
                 writer = csv.writer(file)
@@ -77,10 +81,10 @@ class DestinationDL:
         destinations = self.get_all_destinations()
 
         selected_destination = destination[0]
-
-        os.remove("../Data/Destinations.csv")
+        path = os.path.join("Data", "Destinations.csv")
+        os.remove(path)
         header = "id,destination,country,FlightDuration,distanceFromIceland,ContactName,ContactNumber\n"
-        with open("../Data/Destinations.csv", "a+", encoding="utf-8") as file:
+        with open(path, "a+", encoding="utf-8") as file:
             file.write(header)
 
         for x in destinations:

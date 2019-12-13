@@ -142,6 +142,7 @@ class EmployeeDL:
                 self.register_employee(new_employee)
 
 
+
     def print_week_of_employee(self, date):  # A printable work summary can be displayed showing all employee work trips in a given week.
         pass
 
