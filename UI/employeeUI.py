@@ -6,6 +6,7 @@ from UI.page import Page
 ###
 from datetime import datetime
 from datetime import timedelta
+import os
 
 
 
@@ -683,6 +684,7 @@ class EmployeeUI(Page):
                 error = 0
                 getDateFromUser_str = input("Enter the starting day(YYYY/MM/DD): ")
                 try:
+                    #if the format is correct then these variables hold under the input from the user
                     splittedGetDateFromUser = getDateFromUser_str.split("/")
                     splittedGetDateFromUserLen = len(splittedGetDateFromUser)
                     selectedYear_str = splittedGetDateFromUser[0]
@@ -772,6 +774,7 @@ class EmployeeUI(Page):
                     selectedDate_obj = datetime.strptime(selectedDate_str, "%Y-%m-%dT%H:%M:%S")            
                     week_obj = timedelta(days=6)
                     weekFromSelectedDate_obj = selectedDate_obj + week_obj
+                    weekFromSelectedDate_str = weekFromSelectedDate_obj.strftime("%Y-%m-%dT%H:%M:%S")
                     #selectedDate_obj: is the selected date from the user
                     #weekFromSelectedDate_obj: is the date week from the selected date 
 
@@ -790,8 +793,6 @@ class EmployeeUI(Page):
        
                         if selectedDate_obj < iDate_obj and iDate_obj < weekFromSelectedDate_obj:
                             employeeWorkWeek_list.append(currEmployeeWork_list)
-                            
-                    print(employeeWorkWeek_list)
 
                     #get the employee name
                     employeeName = ""
@@ -800,10 +801,31 @@ class EmployeeUI(Page):
                         if allEmployees_list[i][0] == ssn_employee:
                             employeeName = allEmployees_list[i][1] 
                     
-                    print(employeeName)
+                    employeeWorkWeekLen = len(employeeWorkWeek_list)
+                    print("\nWork week for {}.".format(employeeName))
+                    print("From {} to {}.".format(selectedDate_str[:10], weekFromSelectedDate_str[:10]))
+                    os.remove("Data/workWeek.csv")
+                    header = "flightNumber,departingFrom,arravingAt,departure,arrival,planeInsignia\n"
+                    with open("Data/workWeek.csv", "a+", encoding="utf-8") as file:
+                        file.write(header)
+                    if employeeWorkWeekLen == 0:
+                        print("\nNo work trips registered that week.")
+                    else:
+                        print("\n{} work trips registered that week.".format(employeeWorkWeekLen*2))
+                        print("{:<9}{:<6}{:<7}{:<23}{:<22}{}".format("Number", "From", "To", "Departure", "Arrival", "Insignia"))
+                        employeeWorkWeek_listLen = len(employeeWorkWeek_list)
+                
+                        for i in range(employeeWorkWeek_listLen):
+                            #This is when you loop through the work trips from Kef and returning to Kef
+                            for j in range(2):
+                                print("{:<9}{:<6}{:<7}{:<23}{:<22}{}".format(employeeWorkWeek_list[i][j][0], employeeWorkWeek_list[i][j][1], employeeWorkWeek_list[i][j][2], employeeWorkWeek_list[i][j][3], employeeWorkWeek_list[i][j][4], employeeWorkWeek_list[i][j][10]))
+                                currWorkWeek = "{},{},{},{},{},{}".format(employeeWorkWeek_list[i][j][0], employeeWorkWeek_list[i][j][1], employeeWorkWeek_list[i][j][2], employeeWorkWeek_list[i][j][3], employeeWorkWeek_list[i][j][4], employeeWorkWeek_list[i][j][10])
+                                with open("Data/workWeek.csv", "a+", encoding="utf-8") as file:
+                                    file.write("{}\n".format(currWorkWeek))
 
 
-
+                    filePath = os.path.normpath("Data/workWeek.csv")
+                    os.startfile(filePath)
 
 
 if __name__ == "__main__":
