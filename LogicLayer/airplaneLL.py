@@ -56,8 +56,8 @@ class AirplaneLL:
 
         available_airplanes = []
 
-        for row in all_airplanes_insignia:
-            if row not in busy_airplanes:
+        for row in all_airplanes_info:
+            if row[0] not in busy_airplanes:
                 available_airplanes.append(row)
 
 

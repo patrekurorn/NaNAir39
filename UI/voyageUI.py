@@ -208,16 +208,6 @@ class VoyageUI(Page):
         else:
             return True
 
-
-    def manning_flight(self, flight):
-        
-        page_width = 60
-        
-        line_left_right = "| {:<29}{:>29} |"
-        
-        self._header("Flight number " + flight[0], page_width)
-        print("| " + "-" * (page_width - 2) + " |")
-        print(line_left_right.format())
         
 
     def try_again(self):
@@ -264,10 +254,9 @@ class VoyageUI(Page):
                 input()
                 return True
             elif voyage[10] == "-":
-                voyage[10] == self.display_avail_airplanes(voyage)
+                voyage[10] = self.display_avail_airplanes(voyage)
                 if voyage[10] == False:
                     return False
-            self.manning_flight(voyage)
 
 
             busy_date = voyage[3]
@@ -312,7 +301,7 @@ class VoyageUI(Page):
                     break
 
 
-            voyage_added_staff = VoyageSm(voyage[0], voyage[1],voyage[2], voyage[3], voyage[4], captain, copilot, fsm,fa1,fa2,planeInsignia)
+            voyage_added_staff = VoyageSm(voyage[0], voyage[1],voyage[2], voyage[3], voyage[4], captain, copilot, fsm,fa1,fa2, voyage[10])
 
             self.__voyageLL.cancel_voyage(flightNumber)
             self.__voyageLL.register_voyage_PM2(voyage_added_staff)
@@ -329,7 +318,7 @@ class VoyageUI(Page):
         page_width = 60
         self._header("Available airplanes", page_width)
 
-        avail_airplanes = self.__airplaneLL.available_airplanes(voyage[10])
+        avail_airplanes = self.__airplaneLL.available_airplanes(voyage[3])
         
         print("| {:<10}{:<10}{:<10}{:<10}{:<10} |".format("Plane insignia", "Plane type", "Manufacturer", "Model", "Capacity"))
         print("| " + "-" * (page_width-2) + " |")

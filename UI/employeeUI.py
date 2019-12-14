@@ -329,8 +329,9 @@ class EmployeeUI(Page):
         isValid = False
         while isValid == False:
             date = self.get_date()
-            if date == None:
-                break
+            if date == False:
+                return True
+
 
             try:
                 voyage = self.__voyage_LL.get_all_upcoming_voyages()
@@ -366,6 +367,7 @@ class EmployeeUI(Page):
 
             except:
                 print("No available employees at this time.")
+
 
 
     def available_pilots(self):
@@ -467,8 +469,8 @@ class EmployeeUI(Page):
         isValid = False
         while isValid == False:
             date = self.get_date()
-            if date == None:
-                break
+            if date == False:
+                return True
 
             try:
                 voyage = self.__voyage_LL.get_all_upcoming_voyages()
@@ -493,10 +495,11 @@ class EmployeeUI(Page):
                 if input("\nY: Yes\nAnything else: No\nWould you like to enter another date? ").upper() == "Y":
                     continue
                 else:
-                    break
+                    return True
             except:
-                print("\nNo busy employees at this time.\n")
-                break
+                input()
+                return True
+        return True
 
 
     def busy_pilots(self):

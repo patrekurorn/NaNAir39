@@ -70,10 +70,10 @@ class EmployeeDL:
         email = new_employee.get_email()
 
         path = os.path.join("Data","employee.csv")
-        with open(path, "a") as file:
+        with open(path, "a", encoding="utf-8") as file:
             try:
                 writer = csv.writer(file)
-                writer.writerow([ssn, name, position, rank, licence, address, mobile, landlineNr, email])
+                file.write("\n{},{},{},{},{},{},{},{},{}".format(ssn, name, position, rank, licence, address, mobile, landlineNr, email))
             except:
                 return False
 
@@ -134,7 +134,7 @@ class EmployeeDL:
         selected_employee = employee[0]
 
         os.remove(path)
-        header = "ssn,name,position,rank,licence,address,mobile,landlineNr,email\n"
+        header = "ssn,name,position,rank,licence,address,mobile,landlineNr,email"
         with open(path, "a+", encoding="utf-8") as file:
             file.write(header)
 

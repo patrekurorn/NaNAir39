@@ -1,4 +1,3 @@
 id,destination,country,FlightDuration,distanceFromIceland,ContactName,ContactNumber
-KUS,Kulusuk,Greenland,01h-40m,710km,KulusukAirport,+299986988
-FAE,Thorshavn,FaroeIslands,01h-25m,797.80km,VÃ¡garAirport,+298354400
-GOH,Nuuk,Greenland,02h-00,1404.74km,NuukInternationalAirport,+299-32-60-05
+FAE,Thorshavn,FaroeIslands,01h-25m,797.80km,VágarAirport,+298354400
+GOH,Nuuk,Greenland,02h-00,1404.74km,NuukInternationalAirport,+299-32-60-05

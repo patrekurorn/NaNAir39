@@ -284,7 +284,7 @@ class User(Page):
             elif user_input == "6":
                 chose_back = self.employeeUI.busy_employees()   # Festist inní
             elif user_input == "7":
-                chose_back = self.employeeUI.get_employee()     # Festist hérna inni, ekki hægt að fara til baka
+                chose_back = self.employeeUI.print_week_of_employee()     # Festist hérna inni, ekki hægt að fara til baka
             else: 
                 self.valid = False
                 return False
